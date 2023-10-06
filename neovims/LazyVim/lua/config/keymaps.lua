@@ -13,3 +13,7 @@ vim.keymap.set("n", "<C-k>", ":<C-U>TmuxNavigateUp<cr>", { noremap = true, silen
 
 -- Icon Picker keymap
 vim.keymap.set("n", "<leader>ip", "<cmd>IconPickerNormal<cr>", { desc = "Open Icon Picker and insert icon" })
+
+-- Remapping Ctrl-d and Ctrl-u for better scrolling
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Better Ctrl-d scrolling" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Better Ctrl-u scrolling" })
