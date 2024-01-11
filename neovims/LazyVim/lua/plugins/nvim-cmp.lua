@@ -23,6 +23,7 @@ return {
         ["<C-n>"] = cmp.mapping.scroll_docs(4),
       })
 
+      ---@diagnostic disable-next-line: missing-fields
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
           { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).

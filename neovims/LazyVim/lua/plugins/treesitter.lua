@@ -24,6 +24,7 @@ return {
         "gitattributes",
         "gitcommit",
         "gitignore",
+        "go",
       },
     },
   },

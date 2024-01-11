@@ -15,6 +15,7 @@ return {
         "pyright",
         "marksman",
         "rust-analyzer",
+        "gopls",
       },
     },
   },
