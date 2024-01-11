@@ -12,9 +12,10 @@ return {
 	-- Color scheme (Multiple ones I like hehe)
 	--[[ color_scheme = 'Chalk', ]]
 	--[[ color_scheme = 'Firewatch', ]]
-	color_scheme = "Helios (base16)",
+	-- color_scheme = "Helios (base16)",
 	--[[ color_scheme = 'Highway', ]]
 	--[[ color_scheme = "palenight (Gogh)", ]]
+	color_scheme = "Catppuccin Mocha",
 	-- Font
 	font = wezterm.font({
 		family = "Space Mono Nerd Font",
