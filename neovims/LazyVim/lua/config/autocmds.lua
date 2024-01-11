@@ -4,7 +4,7 @@
 local api = vim.api
 
 local resetGroup = api.nvim_create_augroup("ResetCursor", { clear = true })
-api.nvim_create_autocmd({ "VimLeave, VimSuspend" }, {
+api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
   pattern = { "*" },
   group = resetGroup,
   callback = function()
