@@ -10,11 +10,11 @@ end)
 -- Wezterm Configuration
 return {
 	-- Color scheme (Multiple ones I like hehe)
-	--[[ color_scheme = 'Chalk', ]]
-	--[[ color_scheme = 'Firewatch', ]]
+	-- color_scheme = 'Chalk',
+	-- color_scheme = 'Firewatch',
 	-- color_scheme = "Helios (base16)",
-	--[[ color_scheme = 'Highway', ]]
-	--[[ color_scheme = "palenight (Gogh)", ]]
+	-- color_scheme = "Highway",
+	-- color_scheme = "palenight (Gogh)",
 	color_scheme = "Catppuccin Mocha",
 	-- Font
 	font = wezterm.font({
@@ -34,7 +34,7 @@ return {
 	-- Borderless window
 	window_decorations = "RESIZE",
 	-- enable scrollbar
-	enable_scroll_bar = true,
+	enable_scroll_bar = false,
 	-- Dead Keys
 	use_dead_keys = false,
 	-- Cursor Style
