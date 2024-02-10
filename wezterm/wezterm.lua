@@ -41,8 +41,6 @@ return {
 	default_cursor_style = "SteadyBar",
 	-- Enable cursor dynamic color change
 	force_reverse_video_cursor = true,
-	-- Show when Wezterm wants to be updated
-	show_update_window = true,
 	-- Disable prompt when closing windows
 	window_close_confirmation = "NeverPrompt",
 	-- Key Bindings for Wezterm
