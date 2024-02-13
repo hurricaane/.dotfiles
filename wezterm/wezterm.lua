@@ -7,55 +7,68 @@ wezterm.on("gui-startup", function(cmd)
 	window:gui_window():maximize()
 end)
 
--- Wezterm Configuration
-return {
-	-- Color scheme (Multiple ones I like hehe)
-	-- color_scheme = 'Chalk',
-	-- color_scheme = 'Firewatch',
-	-- color_scheme = "Helios (base16)",
-	-- color_scheme = "Highway",
-	-- color_scheme = "palenight (Gogh)",
-	color_scheme = "Catppuccin Mocha",
-	-- Font
-	font = wezterm.font({
-		family = "Space Mono Nerd Font",
-		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	}),
-	font_size = 11.0,
-	-- Disable tab bar
-	enable_tab_bar = false,
-	-- Remove window padding
-	window_padding = {
-		left = 0,
-		right = 0,
-		top = 0,
-		bottom = 0,
-	},
-	-- Borderless window
-	window_decorations = "RESIZE",
-	-- enable scrollbar
-	enable_scroll_bar = false,
-	-- Dead Keys
-	use_dead_keys = false,
-	-- Cursor Style
-	default_cursor_style = "SteadyBar",
-	-- Enable cursor dynamic color change
-	force_reverse_video_cursor = true,
-	-- Disable prompt when closing windows
-	window_close_confirmation = "NeverPrompt",
-	-- Key Bindings for Wezterm
-	disable_default_key_bindings = true,
-	keys = {
-		-- Copy & Paste
-		{ action = act.CopyTo("Clipboard"), mods = "CTRL|SHIFT", key = "C" },
-		{ action = act.PasteFrom("Clipboard"), mods = "CTRL|SHIFT", key = "V" },
-		-- Zoom in, zoom out & reset
-		{ action = act.DecreaseFontSize, mods = "CTRL", key = "-" },
-		{ action = act.IncreaseFontSize, mods = "CTRL", key = "=" },
-		{ action = act.ResetFontSize, mods = "CTRL", key = "0" },
-		-- Fullscreen
-		{ action = act.ToggleFullScreen, key = "F11" },
-		-- Close window
-		{ action = act.CloseCurrentTab({ confirm = true }), mods = "CTRL|SHIFT", key = "W" },
-	},
+-- local config = {}
+-- if wezterm.config_builder then
+-- 	config = wezterm.config_builder()
+-- end
+local config = wezterm.config_builder()
+
+-- Color scheme
+config.color_scheme = "Catppuccin Mocha"
+
+-- Font
+config.font = wezterm.font({
+	family = "Space Mono Nerd Font",
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+})
+config.font_size = 11.0
+
+-- Disable tab bar
+config.enable_tab_bar = false
+
+-- Wayland support
+config.enable_wayland = true
+
+-- Remove window padding
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
+
+-- Borderless window
+config.window_decorations = "RESIZE"
+
+-- Disable scrollbar
+config.enable_scroll_bar = false
+
+-- Disable dead keys
+config.use_dead_keys = false
+
+-- Cursor Style
+config.default_cursor_style = "SteadyBar"
+
+-- Enable cursor dynamic color change
+config.force_reverse_video_cursor = true
+
+-- Disable prompt when closing windows
+config.window_close_confirmation = "NeverPrompt"
+
+-- Keybindings
+config.disable_default_key_bindings = true
+config.keys = {
+	-- Copy & Paste
+	{ action = act.CopyTo("Clipboard"), mods = "CTRL|SHIFT", key = "C" },
+	{ action = act.PasteFrom("Clipboard"), mods = "CTRL|SHIFT", key = "V" },
+	-- Zoom in, zoom out & reset
+	{ action = act.DecreaseFontSize, mods = "CTRL", key = "-" },
+	{ action = act.IncreaseFontSize, mods = "CTRL", key = "=" },
+	{ action = act.ResetFontSize, mods = "CTRL", key = "0" },
+	-- Fullscreen
+	{ action = act.ToggleFullScreen, key = "F11" },
+	-- Close window
+	{ action = act.CloseCurrentTab({ confirm = true }), mods = "CTRL|SHIFT", key = "W" },
+}
+
+return config
