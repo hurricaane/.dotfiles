@@ -13,8 +13,6 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
 
-      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = false })
-
       -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "git" } }))
       table.insert(opts.sources, { name = "git" })
 
@@ -23,6 +21,10 @@ return {
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-n>"] = cmp.mapping.scroll_docs(4),
       })
+
+      opts.experimental = {
+        ghost_text = true,
+      }
 
       ---@diagnostic disable-next-line: missing-fields
       cmp.setup.filetype("gitcommit", {
