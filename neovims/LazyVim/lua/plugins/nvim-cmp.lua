@@ -15,7 +15,8 @@ return {
 
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = false })
 
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "git" } }))
+      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "git" } }))
+      table.insert(opts.sources, { name = "git" })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
