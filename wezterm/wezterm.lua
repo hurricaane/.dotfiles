@@ -37,8 +37,14 @@ config.window_padding = {
 	bottom = 0,
 }
 
+-- Enable kitty graphics
+config.enable_kitty_graphics = true
+
 -- Borderless window
 config.window_decorations = "RESIZE"
+
+-- Window opacity
+config.window_background_opacity = 0.85
 
 -- Disable scrollbar
 config.enable_scroll_bar = false
