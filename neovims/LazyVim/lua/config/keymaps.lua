@@ -17,3 +17,7 @@ vim.keymap.set("n", "<leader>ip", "<cmd>IconPickerNormal<cr>", { desc = "Open Ic
 -- Remapping Ctrl-d and Ctrl-u for better scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Better Ctrl-d scrolling" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Better Ctrl-u scrolling" })
+
+-- Add relative movements to jumplist
+vim.keymap.set("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k']], { noremap = true, silent = true, expr = true })
+vim.keymap.set("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j']], { noremap = true, silent = true, expr = true })
