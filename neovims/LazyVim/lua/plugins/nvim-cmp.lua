@@ -23,7 +23,7 @@ return {
       })
 
       opts.experimental = {
-        ghost_text = true,
+        ghost_text = false,
       }
 
       ---@diagnostic disable-next-line: missing-fields
