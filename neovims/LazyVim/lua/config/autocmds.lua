@@ -3,14 +3,14 @@
 -- Add any additional autocmds here
 local api = vim.api
 
-local resetGroup = api.nvim_create_augroup("ResetCursor", { clear = true })
-api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
-  pattern = { "*" },
-  group = resetGroup,
-  callback = function()
-    vim.opt_local.guicursor = "a:ver25-blinkoff0"
-  end,
-})
+-- local resetGroup = api.nvim_create_augroup("ResetCursor", { clear = true })
+-- api.nvim_create_autocmd({ "VimLeave" }, {
+--   pattern = { "*" },
+--   group = resetGroup,
+--   callback = function()
+--     vim.opt_local.guicursor = "a:ver25-blinkoff0"
+--   end,
+-- })
 
 local function detach_yamlls()
   local clients = vim.lsp.get_active_clients()
