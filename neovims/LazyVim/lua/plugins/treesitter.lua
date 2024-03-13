@@ -25,6 +25,7 @@ return {
         "gitcommit",
         "gitignore",
         "go",
+        "php",
       },
     },
   },
