@@ -14,7 +14,7 @@ return {
         html = { "prettierd" },
         json = { "prettierd" },
         yaml = { "prettierd" },
-        markdown = { "prettierd", "markdownlint" },
+        -- markdown = { "prettierd", "markdownlint" },
         lua = { "stylua" },
         python = {
           -- Ruff - see docs : https://docs.astral.sh/ruff/integrations/#vim-neovim
