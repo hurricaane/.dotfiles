@@ -8,6 +8,9 @@ elif command -v wsl &>/dev/null; then
 fi
 
 if [ -n "$wifi" ]; then
+  if [[ "$wifi" == "_SNCF_WIFI_INTERCITES" ]]; then
+    wifi="SNCF"
+  fi
 	echo "$wifi"
 else
 	echo "No Active Wifi"
