@@ -58,6 +58,22 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search R
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
+-- Spell options
+map("n", "<F5>", function()
+  local spell = vim.api.nvim_exec2("set spell?", { output = true })
+  spell.output = string.gsub(spell.output, "%s+", "")
+  vim.cmd("set spell!")
+  if spell.output == "spell" then
+    vim.notify("Spell deactivated")
+  else
+    vim.notify("Spell activated")
+  end
+end, { desc = "Toggle spell" })
+map("n", "<F6>", function()
+  local input = vim.fn.input("Spell language: ")
+  vim.cmd(string.format("setlocal spelllang=%s", input))
+end, { desc = "Set spelllang for current buffer" })
+
 -- Plugins
 -- Open Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
