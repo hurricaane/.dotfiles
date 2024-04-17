@@ -120,3 +120,5 @@ end, { desc = "Rename Tab" })
 map("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", { desc = "Preview Markdown file" })
 -- Hardtime Toggle
 map("n", "<leader>H", "<cmd>Hardtime toggle<CR>", { desc = "Toggle Hardtime" })
+-- Screenkey
+map("n", "<leader>S", "<cmd>Screenkey<CR>", { desc = "Toggle Screenkey (Key casting)" })
