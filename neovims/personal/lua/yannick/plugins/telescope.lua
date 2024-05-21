@@ -61,7 +61,9 @@ return {
     map("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
     map("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
     map("n", "<leader>f.", builtin.oldfiles, { desc = "Recent Files" })
-    map("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers (in current tab)" })
+    map("n", "<leader>fb", builtin.buffers, { desc = "Buffers (in current tab)" })
+    map("n", "<leader>gf", builtin.git_files, { desc = "Find git files" })
+    map("n", "<leader>fq", builtin.quickfix, { desc = "Quickfix" })
     map("n", "<leader><leader>", "<cmd> Telescope scope buffers<CR>", { desc = "Find Buffers" })
     map("n", "<leader>/", function()
       builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
@@ -77,6 +79,7 @@ return {
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "Neovim Config" })
     map("n", "<leader>fu", "<cmd>Telescope undo<CR>", { desc = "Undo" })
+    map("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Notifications" })
 
     -- Vim functions
     map("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
