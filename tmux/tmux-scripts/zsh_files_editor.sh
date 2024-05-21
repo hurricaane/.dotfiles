@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ~/.profile &>/dev/null
 items=("Aliases" "Zshrc")
 to_edit=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Zsh Files " --height=~50% --layout=reverse --border --exit-0)
 if [[ -z $to_edit ]]; then
