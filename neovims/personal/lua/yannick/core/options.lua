@@ -7,6 +7,7 @@ local opt = vim.opt
 g.have_nerd_font = true
 g.netrw_liststyle = 3
 g.markdown_recommended_style = 0 -- Fix markdown indentation settings
+g.python3_host_prog = "/home/yannick/.pyenv/versions/nvim/bin/python"
 
 -- Line numbers
 opt.number = true
