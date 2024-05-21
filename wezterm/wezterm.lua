@@ -41,8 +41,10 @@ config.color_scheme = "Catppuccin Mocha"
 
 -- Font
 config.font = wezterm.font({
-	family = "Space Mono Nerd Font",
-	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	-- family = "MonaspiceNe NF",
+	-- harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "calt", "dlig", "liga" },
+	family = "SpaceMono Nerd Font",
+	harfbuzz_features = { "calt=0", "liga=0", "clig=0" },
 })
 config.font_size = 11.0
 
