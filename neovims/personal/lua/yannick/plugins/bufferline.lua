@@ -1,11 +1,14 @@
 return {
   "akinsho/bufferline.nvim",
-  version = "*",
+  -- version = "*",
+  branch = "main",
   event = "VeryLazy",
   dependencies = "nvim-tree/nvim-web-devicons",
   keys = {
     { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
     { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+    { "<leader>k", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+    { "<leader>j", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
     { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
     { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers" },
