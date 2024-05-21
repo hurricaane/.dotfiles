@@ -50,7 +50,7 @@ return {
               return { fg = vim.bo.modified and "#f38ba8" or "#b4befe", gui = "bold", bg = "#313244" }
             end,
             separator = {
-              left = "",
+              -- left = "",
               right = "",
             },
             symbols = {
