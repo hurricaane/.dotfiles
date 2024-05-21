@@ -122,5 +122,7 @@ map("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", { desc = "Preview Markdown fi
 map("n", "<leader>H", "<cmd>Hardtime toggle<CR>", { desc = "Toggle Hardtime" })
 -- Screenkey
 map("n", "<leader>S", "<cmd>Screenkey<CR>", { desc = "Toggle Screenkey (Key casting)" })
+-- Precognition
+map("n", "<leader>p", '<cmd>lua require("precognition").toggle()<CR>', { desc = "Toggle Precognition" })
 -- Git blame
 map("n", "<leader>gB", "<cmd>BlameToggle virtual<CR>", { desc = "Toggle Git Blame view (virtual)" })
