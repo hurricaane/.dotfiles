@@ -43,10 +43,12 @@ config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font({
 	-- family = "MonaspiceNe NF",
 	-- harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "calt", "dlig", "liga" },
-	family = "SpaceMono Nerd Font",
-	harfbuzz_features = { "calt=0", "liga=0", "clig=0" },
+	family = "FiraCode Nerd Font",
+	-- family = "SpaceMono Nerd Font",
+	-- harfbuzz_features = { "calt=0", "liga=0", "clig=0" },
 })
-config.font_size = 11.0
+config.font_size = 11.5
+config.line_height = 1.1
 
 -- Disable tab bar
 config.enable_tab_bar = false
