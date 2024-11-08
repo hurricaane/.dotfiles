@@ -85,6 +85,13 @@ config.use_dead_keys = false
 -- Cursor Style
 config.default_cursor_style = "SteadyBar"
 
+-- Blinking style
+config.cursor_blink_ease_out = "Constant"
+config.cursor_blink_ease_in = "Constant"
+
+-- Disable blinking
+config.cursor_blink_rate = 0
+
 -- Enable cursor dynamic color change
 config.force_reverse_video_cursor = true
 
@@ -107,7 +114,7 @@ config.keys = {
 	-- Fullscreen
 	{ action = act.ToggleFullScreen, key = "F11" },
 	-- Close window
-	{ action = act.CloseCurrentTab({ confirm = true }), mods = "CTRL|SHIFT", key = "W" },
+	{ action = act.CloseCurrentTab({ confirm = false }), mods = "CTRL|SHIFT", key = "W" },
 }
 
 return config
