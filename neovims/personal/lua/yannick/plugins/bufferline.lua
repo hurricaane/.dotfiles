@@ -31,6 +31,7 @@ return {
       close_command = function(n) require("mini.bufremove").delete(n, false) end,
       -- stylua: ignore
       right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+      mode = "tabs",
       indicator_icon = "▎",
       modified_icon = "",
       buffer_close_icon = "",

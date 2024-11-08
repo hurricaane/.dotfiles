@@ -128,8 +128,7 @@ return {
         rust_analyzer = {},
         tailwindcss = {},
         terraformls = {},
-        tsserver = {},
-        yamlls = {},
+        jinja_lsp = {},
 
         -- Servers that need configuration
         emmet_ls = {
@@ -169,6 +168,28 @@ return {
           init_options = {
             settings = {
               args = {},
+            },
+          },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+              schemas = require("schemastore").yaml.schemas({
+                select = {
+                  "gitlab-ci",
+                  "docker-compose.yml",
+                },
+              }),
+              -- schemas = {
+              --   ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.{yml,yaml}",
+              -- },
             },
           },
         },

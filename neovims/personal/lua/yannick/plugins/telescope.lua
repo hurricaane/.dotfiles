@@ -33,6 +33,11 @@ return {
           },
         },
       },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+      },
       extensions = {
         ["ui-select"] = {
           themes.get_dropdown(),
@@ -61,10 +66,14 @@ return {
     map("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
     map("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
     map("n", "<leader>f.", builtin.oldfiles, { desc = "Recent Files" })
-    map("n", "<leader>fb", builtin.buffers, { desc = "Buffers (in current tab)" })
+    -- map("n", "<leader>fb", builtin.buffers, { desc = "Buffers (in current tab)" })
+    map("n", "<leader>fb", "<cmd> Telescope scope buffers<CR>", { desc = "Find Buffers" })
     map("n", "<leader>gf", builtin.git_files, { desc = "Find git files" })
     map("n", "<leader>fq", builtin.quickfix, { desc = "Quickfix" })
-    map("n", "<leader><leader>", "<cmd> Telescope scope buffers<CR>", { desc = "Find Buffers" })
+    -- map("n", "<leader><leader>", "<cmd> Telescope scope buffers<CR>", { desc = "Find Buffers" })
+    -- map("n", "<leader><leader>", function()
+    --   require("telescope").extensions.smart_open.smart_open({ match_algorithm = "fzf" })
+    -- end, { desc = "Smart Open" })
     map("n", "<leader>/", function()
       builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         winblend = 10,

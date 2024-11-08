@@ -5,10 +5,10 @@ local map = vim.keymap.set -- For conciseness
 
 -- General keymaps
 -- Remap <C-j> in insert mode to act like <Enter>
-map("i", "<C-j>", "<Enter>")
+map("i", "<C-j>", "<CR>")
 -- Remap <ESC>
-map("i", "jk", "<ESC>")
-map("i", "kj", "<ESC>")
+-- map("i", "jk", "<ESC>") -- Replaced by better escape
+-- map("i", "kj", "<ESC>") -- Replaced by better escape
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -74,15 +74,37 @@ map("n", "<F6>", function()
   vim.cmd(string.format("setlocal spelllang=%s", input))
 end, { desc = "Set spelllang for current buffer" })
 
+-- Toggle Wrapping
+map("n", "<leader>uw", function()
+  local wrap = vim.api.nvim_exec2("set wrap?", { output = true })
+  wrap.output = string.gsub(wrap.output, "%s+", "")
+  vim.cmd("set wrap!")
+  if wrap.output == "wrap" then
+    vim.notify("Wrap deactivated")
+  else
+    vim.notify("Wrap activated")
+  end
+end, { desc = "Toggle Wrap" })
+
+-- Execute lua
+map("n", "<leader>e", function()
+  vim.cmd(".lua")
+  vim.notify("Current line executed")
+end, { desc = "Execute current line (lua)" })
+map("n", "<leader><leader>e", function()
+  vim.cmd("source %")
+  vim.notify("Current file executed")
+end, { desc = "Execute current file (lua)" })
+
 -- Plugins
 -- Open Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 -- Open URLs - gx.nvim plugin
 map({ "n", "x" }, "gx", "<cmd>Browse<CR>", { desc = "Open link in browser" })
--- Mini Files
-map("n", "<leader>o", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>", { desc = "Open Mini Files" })
+-- Oil.nvim
+map("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- Icon picker
-map("n", "<leader>ip", "<cmd>IconPickerNormal", { desc = "Pick and Insert icon" })
+map("n", "<leader>ip", "<cmd>IconPickerNormal<CR>", { desc = "Pick and Insert icon" })
 -- Telescope mappings - see ../plugins/telescope.lua
 -- Mini Surround - see ../plugins/mini-surround.lua
 -- Todo Comments
@@ -126,3 +148,12 @@ map("n", "<leader>S", "<cmd>Screenkey<CR>", { desc = "Toggle Screenkey (Key cast
 map("n", "<leader>p", '<cmd>lua require("precognition").toggle()<CR>', { desc = "Toggle Precognition" })
 -- Git blame
 map("n", "<leader>gB", "<cmd>BlameToggle virtual<CR>", { desc = "Toggle Git Blame view (virtual)" })
+-- Git conflicts
+map("n", "<leader>gco", "<cmd>GitConflictChooseOurs<CR>", { desc = "Select current changes (choose ours)" })
+map("n", "<leader>gct", "<cmd>GitConflictChooseTheirs<CR>", { desc = "Select incoming changes (choose theirs)" })
+map("n", "<leader>gcb", "<cmd>GitConflictChooseBoth<CR>", { desc = "Select both changes (choose both)" })
+map("n", "<leader>gc0", "<cmd>GitConflictChooseNone<CR>", { desc = "Select none of the changes (choose none)" })
+map("n", "<leader>gcp", "<cmd>GitConflictPrevConflict<CR>", { desc = "Move to the previous conflict" })
+map("n", "<leader>gcn", "<cmd>GitConflictNextConflict<CR>", { desc = "Move to the next conflict" })
+-- Mason
+map("n", "<leader>cm", "<cmd>Mason<CR>", { desc = "Open Mason" })
