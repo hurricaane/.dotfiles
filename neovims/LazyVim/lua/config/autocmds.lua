@@ -6,6 +6,20 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("yannick_" .. name, { clear = true })
 end
 
+-- Autosource tmux
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "*tmux.conf" },
+  group = augroup("tmux_source"),
+  command = "execute 'silent !tmux source <afile> --silent'",
+})
+
+-- Clear Yazi cache
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "yazi.toml" },
+  group = augroup("yazi_clear_cache"),
+  command = "execute 'silent !yazi --clear-cache'",
+})
+
 -- Disable comment creation after <CR> in Insert Mode or O/o in Normal Mode
 vim.api.nvim_create_autocmd("BufEnter", {
   group = augroup("comment_creation"),
