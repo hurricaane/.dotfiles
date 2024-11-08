@@ -36,6 +36,9 @@ end)
 -- end
 local config = wezterm.config_builder()
 
+-- Setup terminal
+config.term = "xterm-kitty"
+
 -- Color scheme
 config.color_scheme = "Catppuccin Mocha"
 
@@ -87,6 +90,9 @@ config.force_reverse_video_cursor = true
 
 -- Disable prompt when closing windows
 config.window_close_confirmation = "NeverPrompt"
+
+-- Max FPS
+config.max_fps = 120
 
 -- Keybindings
 config.disable_default_key_bindings = true
