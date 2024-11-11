@@ -347,6 +347,9 @@ bindkey -M emacs '\es' sesh-sessions
 bindkey -M vicmd '\es' sesh-sessions
 bindkey -M viins '\es' sesh-sessions
 
+# Libvirt
+export LIBVIRT_DEFAULT_URI="qemu:///system"
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
