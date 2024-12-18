@@ -16,5 +16,6 @@ vim.filetype.add({
   -- Detect based on regex pattern
   pattern = {
     ["Dockerfile*"] = "dockerfile",
+    ["*Dockerfile"] = "dockerfile",
   },
 })

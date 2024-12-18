@@ -20,3 +20,6 @@ opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or 
 -- Tabs & Indentation
 opt.autoindent = true
 vim.bo.softtabstop = 2
+
+-- views can only be fully collapsed with the global statusline
+opt.laststatus = 3
