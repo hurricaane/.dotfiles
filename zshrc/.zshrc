@@ -294,6 +294,59 @@ export PATH="/etc/nix:$PATH"
 # Load ~/Code/zshrc
 source ~/Code/zshrc
 
+source "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+function search() {
+  emulate -L zsh
+  zle -I
+
+    # swap stderr and stdout, so that the tui stuff works
+    # TODO: not this
+    local output
+    # shellcheck disable=SC2048
+    output=$(ATUIN_SHELL_ZSH=t ATUIN_LOG=error ATUIN_QUERY=$BUFFER atuin search $* -i 3>&1 1>&2 2>&3)
+
+    zle reset-prompt
+
+    if [[ -n $output ]]; then
+      RBUFFER=""
+      LBUFFER=$output
+
+      if [[ $LBUFFER == __atuin_accept__:* ]]
+      then
+        LBUFFER=${LBUFFER#__atuin_accept__:}
+        zle accept-line
+      fi
+    fi
+}
+
+zle     -N            search
+bindkey -M emacs '^o' search
+bindkey -M vicmd '^o' search
+bindkey -M viins '^o' search
+
+source $HOME/.tenv.completion.zsh
+
+# Create keybinding for sesh
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    zle reset-prompt > /dev/null 2>&1 || true
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+
+zle     -N             sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions
+
 # Load autocompletion system
 fpath+=~/.zfunc
 fpath=(${ASDF_DIR}/completions $fpath)
@@ -328,24 +381,6 @@ install_xterm_kitty_terminfo() {
   fi
 }
 install_xterm_kitty_terminfo
-
-# Create keybinding for sesh
-function sesh-sessions() {
-  {
-    exec </dev/tty
-    exec <&1
-    local session
-    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
-    zle reset-prompt > /dev/null 2>&1 || true
-    [[ -z "$session" ]] && return
-    sesh connect $session
-  }
-}
-
-zle     -N             sesh-sessions
-bindkey -M emacs '\es' sesh-sessions
-bindkey -M vicmd '\es' sesh-sessions
-bindkey -M viins '\es' sesh-sessions
 
 # Libvirt
 export LIBVIRT_DEFAULT_URI="qemu:///system"
