@@ -1,0 +1,129 @@
+#  ▄▄▄       ██▓     ██▓ ▄▄▄        ██████ ▓█████   ██████ 
+# ▒████▄    ▓██▒    ▓██▒▒████▄    ▒██    ▒ ▓█   ▀ ▒██    ▒ 
+# ▒██  ▀█▄  ▒██░    ▒██▒▒██  ▀█▄  ░ ▓██▄   ▒███   ░ ▓██▄   
+# ░██▄▄▄▄██ ▒██░    ░██░░██▄▄▄▄██   ▒   ██▒▒▓█  ▄   ▒   ██▒
+#  ▓█   ▓██▒░██████▒░██░ ▓█   ▓██▒▒██████▒▒░▒████▒▒██████▒▒
+#  ▒▒   ▓▒█░░ ▒░▓  ░░▓   ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░░░ ▒░ ░▒ ▒▓▒ ▒ ░
+#   ▒   ▒▒ ░░ ░ ▒  ░ ▒ ░  ▒   ▒▒ ░░ ░▒  ░ ░ ░ ░  ░░ ░▒  ░ ░
+#   ░   ▒     ░ ░    ▒ ░  ░   ▒   ░  ░  ░     ░   ░  ░  ░  
+#       ░  ░    ░  ░ ░        ░  ░      ░     ░  ░      ░  
+
+
+# ░█▀▀░█░░░█▀█░█▀▄░█▀█░█░░
+# ░█░█░█░░░█░█░█▀▄░█▀█░█░░
+# ░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀░▀░▀▀▀
+
+# alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+# alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+# ░█░░░▀█▀░█▀▀░▀█▀░▀█▀░█▀█░█▀▀
+# ░█░░░░█░░▀▀█░░█░░░█░░█░█░█░█
+# ░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀▀▀
+
+alias ls='eza --header --icons'
+alias l='eza --long --header --icons --git'
+alias ll='eza --long --header --icons --git'
+alias la='eza --long --header --icons --all --git'
+
+# ░█▀█░█▀▀░█▀█░█░█░▀█▀░█▄█
+# ░█░█░█▀▀░█░█░▀▄▀░░█░░█░█
+# ░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀
+
+alias nv='nvim'
+alias v='nvim'
+alias vimbegood='docker run -it --rm brandoncc/vim-be-good:latest'
+alias vimdiff='nvim -d'
+
+# ░█▀▀░▀█▀░▀█▀
+# ░█░█░░█░░░█░
+# ░▀▀▀░▀▀▀░░▀░
+
+alias git='LANG=en_US git'
+alias gaa='git add --all'
+alias gco='git checkout'
+alias gc='git commit'
+alias gcmsg='git commit -m'
+alias gcan!='git commit --amend --no-edit'
+alias gcm='git checkout $(git_main_branch)'
+alias gcd='git checkout develop'
+alias gcb='git checkout -b'
+alias gcl='git clone'
+alias gp='git push'
+alias ggp='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpsup='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
+alias ggpur='git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)'
+alias gup='git pull --rebase'
+alias gst='git status'
+alias gsth='git stash'
+alias gstp='git stash pop'
+alias gsts='git stash push'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gsta='git stash apply'
+alias grs='git reset'
+alias grh='git reset HEAD'
+alias grhh='git reset HEAD --hard'
+alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
+alias gunwip='git log -n 1 | grep -q -c "--wip--" && git reset HEAD~1'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbs='git rebase --skip'
+alias grbq='git rebase --quit'
+alias grbi='git rebase -i'
+alias gd='git diff'
+alias glg='git log --graph --oneline --decorate --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
+alias gpf='git push --force-with-lease'
+alias gb='git branch'
+alias ga='git add'
+alias grbm='git rebase $(git_main_branch)'
+alias grbd='git rebase develop'
+alias gg='git grep --textconv'
+alias gcp='git cherry-pick'
+alias gsh='git show'
+alias grdo='git range-diff origin/$(git rev-parse --abbrev-ref HEAD)...'
+alias groh='git reset origin/$(git rev-parse --abbrev-ref HEAD) --hard'
+alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gss='git status -s'
+alias gdo='git diff origin/$(git rev-parse --abbrev-ref HEAD)'
+alias gapa='git add --patch'
+alias gan='git add -N'
+alias gdca='git diff --cached'
+alias gclw='git clone-for-worktrees'
+alias gw='git worktree'
+
+# ░█▀▀░▀█▀░▀█▀░░░█▀▀░█▀█░█▄█░█▀█░█░░░█▀▀░▀█▀░▀█▀░█▀█░█▀█
+# ░█░█░░█░░░█░░░░█░░░█░█░█░█░█▀▀░█░░░█▀▀░░█░░░█░░█░█░█░█
+# ░▀▀▀░▀▀▀░░▀░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀
+
+type __git_complete >/dev/null 2>&1 && {
+    __git_complete   gd       _git_diff
+    __git_complete   gco      _git_checkout
+    __git_complete   ga       _git_add
+}
+
+# ░▀▀█░█▀▀░█░█░█▀▄░█▀▀
+# ░▄▀░░▀▀█░█▀█░█▀▄░█░░
+# ░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀
+
+alias nzsh='nvim ~/.zshrc'
+alias nzsha='nvim ~/.zsh_aliases'
+alias szsh='source ~/.zshrc'
+
+# ░█▀▄░█▀█░▀█▀
+# ░█▀▄░█▀█░░█░
+# ░▀▀░░▀░▀░░▀░
+
+alias cat='bat --paging=never'
+alias diff='batdiff'
+
+# ░█▄█░▀█▀░█▀▀░█▀▀░█▀▀░█░░░█░░░█▀█░█▀█░█▀█░█░█░█▀▀
+# ░█░█░░█░░▀▀█░█░░░█▀▀░█░░░█░░░█▀█░█░█░█░█░█░█░▀▀█
+# ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
+
+alias d='dirs -v'
+alias cl='clear -x'
+alias clear='clear -x'
+alias ssh='TERM=xterm-256color ssh'
+alias tf='terraform'
+alias copy='wl-copy'
+alias paste='wl-paste'
