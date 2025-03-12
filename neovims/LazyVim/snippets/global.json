@@ -1,1 +1,28 @@
-{}
+{
+  "props": {
+    "body": [
+      "defineProps({",
+      "  $0",
+      "})"
+    ],
+    "prefix": "props"
+  },
+  "style": {
+    "body": [
+      "<style>",
+      "$0",
+      "</style>"
+    ],
+    "prefix": "style"
+  },
+  "vue": {
+    "body": [
+      "<template>",
+      "</template>",
+      "",
+      "<script setup>",
+      "</script>"
+    ],
+    "prefix": "vue"
+  }
+}
