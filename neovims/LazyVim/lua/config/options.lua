@@ -8,6 +8,8 @@ local opt = vim.opt
 
 -- Global options
 g.python3_host_prog = "/home/yannick/.pyenv/versions/nvim/bin/python"
+g.snacks_animate = false
+g.lazyvim_picker = "snacks"
 
 -- Appearance
 vim.diagnostic.config({
