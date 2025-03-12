@@ -5,12 +5,13 @@ return {
 
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
-    "nvim-tree/nvim-web-devicons",
+    "echasnovski/mini.nvim",
   },
   opts = {
-    filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
-    buf_ignore = {},
-    max_length = 99999,
+    preview = {
+      filetypes = { "markdown", "norg", "rmd", "org", "vimwiki", "Avante" },
+      ignore_buftypes = {},
+    },
   },
   config = function(_, opts)
     require("markview").setup(opts)
