@@ -10,18 +10,35 @@ vim.keymap.del("n", "<C-Down>")
 vim.keymap.del("n", "<C-Left>")
 vim.keymap.del("n", "<C-Right>")
 
--- Jumplist
+-- Better up/down + jumplist
 map({ "n", "x" }, "j", function()
-  return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
-end, { noremap = true, expr = true })
+  if vim.v.count > 0 then
+    return "m'" .. vim.v.count .. "j"
+  else
+    return "gj"
+  end
+end, { expr = true, noremap = true })
 
 map({ "n", "x" }, "k", function()
-  return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
-end, { noremap = true, expr = true })
+  if vim.v.count > 0 then
+    return "m'" .. vim.v.count .. "k"
+  else
+    return "gk"
+  end
+end, { expr = true, noremap = true })
 
--- Better navigation with <C-d> / <C-u>
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll half a page down" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll half a page up" })
+-- Better navigation with <C-d> / <C-u> with jumplist
+map("n", "<C-d>", function()
+  vim.api.nvim_feedkeys("m'", "n", false)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-d>", true, false, true), "n", false)
+  vim.api.nvim_feedkeys("m'zz", "n", false)
+end, { desc = "Scroll half a page down", noremap = true, silent = true })
+
+map("n", "<C-u>", function()
+  vim.api.nvim_feedkeys("m'", "n", false) -- Sauvegarde la position actuelle
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-u>", true, false, true), "n", false) -- Effectue le scroll
+  vim.api.nvim_feedkeys("m'zz", "n", false) -- Sauvegarde la position après et recentre
+end, { desc = "Scroll half a page up", noremap = true, silent = true })
 
 -- Set spell language for current buffer
 map("n", "<F6>", function()
@@ -51,3 +68,7 @@ map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Go to las
 -- Tabs
 map("n", "<leader><tab>j", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- Normal mode in terminal
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal mode" })
+
