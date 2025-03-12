@@ -72,3 +72,28 @@ map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- Normal mode in terminal
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal mode" })
 
+-- Zk keybindings
+map(
+  "n",
+  "<leader>zn",
+  "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
+  { desc = "Create and edit new note", noremap = true, silent = true }
+)
+map(
+  "n",
+  "<leader>zo",
+  "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
+  { desc = "Open notes", noremap = true, silent = true }
+)
+map(
+  "n",
+  "<leader>zt",
+  "<Cmd>ZkTags<CR>",
+  { desc = "Open notes associated with the tag", noremap = true, silent = true }
+)
+map(
+  "n",
+  "<leader>zf",
+  "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+  { desc = "Search note", noremap = true, silent = true }
+)
