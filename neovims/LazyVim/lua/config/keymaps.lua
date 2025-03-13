@@ -9,6 +9,7 @@ vim.keymap.del("n", "<C-Up>")
 vim.keymap.del("n", "<C-Down>")
 vim.keymap.del("n", "<C-Left>")
 vim.keymap.del("n", "<C-Right>")
+vim.keymap.del("n", "<leader>gd")
 
 -- Better up/down + jumplist
 map({ "n", "x" }, "j", function()
