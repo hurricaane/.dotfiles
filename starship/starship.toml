@@ -1,0 +1,94 @@
+# format = """
+# $directory\
+# $git_branch\
+# $git_status\
+# $fill\
+# $lua\
+# $python\
+# $nodejs\
+# $golang\
+# $rust\
+# $terraform\
+# $kubernetes\
+# $aws\
+# $docker_context\
+# $jobs\
+# $cmd_duration\
+# $line_break\
+# $character
+# """
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$kubernetes\
+$docker_context\
+$package\
+$c\
+$cmake\
+$deno\
+$dotnet\
+$gleam\
+$golang\
+$helm\
+$java\
+$gradle\
+$lua\
+$nodejs\
+$php\
+$pulumi\
+$python\
+$ruby\
+$rust\
+$terraform\
+$typst\
+$vagrant\
+$zig\
+$nix_shell\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$cmd_duration\
+$jobs\
+$status\
+$container\
+$shell\
+$line_break\
+$character
+"""
+
+[fill]
+symbol = " "
+
+[directory]
+truncation_length = 0
+
+[golang]
+format = '[$symbol($version )]($style)'
+
+[aws]
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[cmd_duration]
+format = '[$duration]($style)'
+
+[kubernetes]
+disabled = false
+
+[status]
+disabled = false
+format = '[$symbol$status]($style) '
+symbol = "✖ "
+
+[os]
+disabled = false
+
+[os.symbols]
+EndeavourOS = "  "
