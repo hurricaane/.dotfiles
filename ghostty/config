@@ -1,0 +1,27 @@
+# Font
+# font-family = FiraCode Nerd Font
+font-family = CaskaydiaCove Nerd Font
+font-size = 10
+
+# Appearance
+theme = tokyonight_moon
+mouse-hide-while-typing = true
+window-decoration = false
+background-opacity = 0.8
+# TODO: Check if this is supported on linux
+# background-blur-radius = 20
+shell-integration-features = cursor,sudo,no-title
+window-padding-x = 5
+window-padding-y = 5,0
+cursor-style = bar
+adjust-cell-height = 30%
+title = "Ghostty"
+
+# Keybindings
+keybind = ctrl+]=reload_config
+
+# General
+confirm-close-surface = false
+window-inherit-working-directory = true
+command = /usr/bin/fish --login --interactive
+# shell-integration = zsh
