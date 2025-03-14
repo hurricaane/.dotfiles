@@ -25,3 +25,10 @@ vim.bo.softtabstop = 2
 
 -- views can only be fully collapsed with the global statusline
 opt.laststatus = 3
+
+-- add localoptions to sessionoptions default value in LazyVim so that it can save language options of a buffer
+opt.sessionoptions =
+  { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds", "localoptions" }
+
+-- set default language to english
+opt.spelllang = { "en" }
