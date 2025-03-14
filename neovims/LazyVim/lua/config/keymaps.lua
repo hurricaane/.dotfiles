@@ -44,7 +44,7 @@ end, { desc = "Scroll half a page up", noremap = true, silent = true })
 -- Set spell language for current buffer
 map("n", "<F6>", function()
   local input = vim.fn.input("Spell language: ")
-  vim.cmd(string.format("setlocal spelllang=%s", input))
+  vim.opt.spelllang = input
 end, { desc = "Set spelllang for current buffer" })
 
 -- Execute lua
