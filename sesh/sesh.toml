@@ -58,3 +58,8 @@ path = "~/Code/"
 [[session]]
 name = "refonte-dkadm"
 path = "~/Code/Formations/OCAC/formations-cloud-devops/"
+
+[[session]]
+name = "ghostty config"
+path = "~/dotfiles/ghostty"
+startup_command = "nvim config"
