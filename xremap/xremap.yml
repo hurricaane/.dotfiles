@@ -1,0 +1,11 @@
+modmap:
+  - name: Global
+    remap:
+      # CapsLock -> Control_L
+      CapsLock: Ctrl_L
+# keymap:
+#   - name: Terminal
+#     application:
+#       only: ghostty
+#     remap:
+#       Super-]: Super-]
