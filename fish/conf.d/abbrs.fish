@@ -13,6 +13,7 @@ abbr --add -- cl 'clear -x'
 
 # Stuff
 abbr --add -- tf tofu
+abbr --add -- k kubectl
 
 # Git
 abbr --add -- gaa 'git add --all'
