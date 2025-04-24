@@ -10,6 +10,7 @@ vim.keymap.del("n", "<C-Down>")
 vim.keymap.del("n", "<C-Left>")
 vim.keymap.del("n", "<C-Right>")
 vim.keymap.del("n", "<leader>gd")
+vim.keymap.del("n", "L")
 
 -- Better up/down + jumplist
 map({ "n", "x" }, "j", function()
@@ -42,21 +43,10 @@ map("n", "<C-u>", function()
 end, { desc = "Scroll half a page up", noremap = true, silent = true })
 
 -- Set spell language for current buffer
-map("n", "<F6>", function()
-  local input = vim.fn.input("Spell language: ")
-  vim.opt.spelllang = input
-end, { desc = "Set spelllang for current buffer" })
-
--- Execute lua
-map("n", "<leader>e", function()
-  vim.cmd(".lua")
-  vim.notify("Current line executed")
-end, { desc = "Execute current line (lua)" })
-
-map("n", "<leader>E", function()
-  vim.cmd("source %")
-  vim.notify("Current file executed")
-end, { desc = "Execute current file (lua)" })
+-- map("n", "<F6>", function()
+--   local input = vim.fn.input("Spell language: ")
+--   vim.opt.spelllang = input
+-- end, { desc = "Set spelllang for current buffer" })
 
 -- Navigate between windows / splits
 local nvim_tmux_nav = require("nvim-tmux-navigation")
@@ -74,27 +64,27 @@ map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal mode" })
 
 -- Zk keybindings
-map(
-  "n",
-  "<leader>zn",
-  "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
-  { desc = "Create and edit new note", noremap = true, silent = true }
-)
-map(
-  "n",
-  "<leader>zo",
-  "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
-  { desc = "Open notes", noremap = true, silent = true }
-)
-map(
-  "n",
-  "<leader>zt",
-  "<Cmd>ZkTags<CR>",
-  { desc = "Open notes associated with the tag", noremap = true, silent = true }
-)
-map(
-  "n",
-  "<leader>zf",
-  "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-  { desc = "Search note", noremap = true, silent = true }
-)
+-- map(
+--   "n",
+--   "<leader>zn",
+--   "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
+--   { desc = "Create and edit new note", noremap = true, silent = true }
+-- )
+-- map(
+--   "n",
+--   "<leader>zo",
+--   "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
+--   { desc = "Open notes", noremap = true, silent = true }
+-- )
+-- map(
+--   "n",
+--   "<leader>zt",
+--   "<Cmd>ZkTags<CR>",
+--   { desc = "Open notes associated with the tag", noremap = true, silent = true }
+-- )
+-- map(
+--   "n",
+--   "<leader>zf",
+--   "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+--   { desc = "Search note", noremap = true, silent = true }
+-- )
