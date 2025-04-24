@@ -14,6 +14,9 @@ abbr --add -- cl 'clear -x'
 # Stuff
 abbr --add -- tf tofu
 abbr --add -- k kubectl
+abbr --add -- kx kubectx
+abbr --add -- kns kubens
+abbr --add -- kget 'kubectl get'
 
 # Git
 abbr --add -- gaa 'git add --all'
