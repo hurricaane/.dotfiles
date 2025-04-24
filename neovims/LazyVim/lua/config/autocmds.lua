@@ -1,24 +1,15 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+--
 -- Add any additional autocmds here
+-- with `vim.api.nvim_create_autocmd`
+--
+-- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
+-- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 local function augroup(name)
   return vim.api.nvim_create_augroup("yannick_" .. name, { clear = true })
 end
-
--- Autosource tmux
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "*tmux.conf" },
-  group = augroup("tmux_source"),
-  command = "execute 'silent !tmux source <afile> --silent'",
-})
-
--- Clear Yazi cache
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "yazi.toml" },
-  group = augroup("yazi_clear_cache"),
-  command = "execute 'silent !yazi --clear-cache'",
-})
 
 -- Disable comment creation after <CR> in Insert Mode or O/o in Normal Mode
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -44,25 +35,5 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "Avante",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set("n", "q", function()
-        vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = "Quit buffer",
-      })
-    end)
   end,
 })
