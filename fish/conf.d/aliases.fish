@@ -24,3 +24,4 @@ alias copy wl-copy
 alias paste wl-paste
 alias nfsh 'nvim $__fish_config_dir/config.fish'
 alias sfsh 'source $__fish_config_dir/config.fish'
+alias git='env LANG=en_US git'
