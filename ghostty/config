@@ -1,7 +1,7 @@
 # Font
 # font-family = FiraCode Nerd Font
 font-family = "CaskaydiaCove Nerd Font"
-font-size = 10
+font-size = 12
 
 # Appearance
 theme = tokyonight_moon
