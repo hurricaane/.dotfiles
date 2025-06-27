@@ -4,6 +4,26 @@ if status is-interactive
     fish_add_path $PYENV_ROOT/bin
     set -gx ATUIN_NOBIND true
     atuin init fish | source
+    # Homebrew
+    if test -d /home/linuxbrew/.linuxbrew # Linux
+        set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
+        set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
+        set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/Homebrew"
+    else if test -d /opt/homebrew # MacOS
+        set -gx HOMEBREW_PREFIX /opt/homebrew
+        set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
+        set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/homebrew"
+    end
+    fish_add_path -gP "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
+
+    ! set -q MANPATH; and set MANPATH ''
+    set -gx MANPATH "$HOMEBREW_PREFIX/share/man" $MANPATH
+
+    ! set -q INFOPATH; and set INFOPATH ''
+    set -gx INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
+
+    fish_add_path ~/.local/bin
+    fish_add_path ~/.local/share/bob/nvim-bin
 end
 
 # Disable fish greeting
@@ -78,3 +98,13 @@ set fish_cursor_external line
 # The following variable can be used to configure cursor shape in
 # visual mode, but due to fish_cursor_default, is redundant here
 set fish_cursor_visual block
+
+# Sudo editor
+set -gx SUDO_EDITOR nvim
+
+# Go path
+fish_add_path /usr/local/go/bin
+
+# Nix path
+fish_add_path /nix/var/nix/profiles/default/bin
+fish_add_path "$HOME/.nix-profile/bin"
