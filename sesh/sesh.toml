@@ -11,11 +11,11 @@ disable_startup_command = true
 [[session]]
 name = "dotfiles"
 path = "~/dotfiles"
-startup_command = "lazygit"
 
 [[session]]
 name = "downloads"
-path = "~/Downloads"
+# path = "~/Downloads"
+path = "~/Téléchargements"
 startup_command = "y"
 
 [[session]]
@@ -41,9 +41,9 @@ path = "~/.config/yazi"
 startup_command = "nvim yazi.toml"
 preview_command = "bat --color=always ~/.config/yazi/yazi.toml"
 
-[[session]]
-name = "hyprland config"
-path = "~/.config/hypr"
+# [[session]]
+# name = "hyprland config"
+# path = "~/.config/hypr"
 
 [[session]]
 name = "fish config"
@@ -52,12 +52,8 @@ startup_command = "nvim config.fish"
 preview_command = "bat --color=always ~/.config/fish/config.fish"
 
 [[session]]
-name = "coding"
+name = "coding/code"
 path = "~/Code/"
-
-[[session]]
-name = "refonte-dkadm"
-path = "~/Code/Formations/OCAC/formations-cloud-devops/"
 
 [[session]]
 name = "ghostty config"
