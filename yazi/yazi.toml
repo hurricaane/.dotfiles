@@ -2,7 +2,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-[manager]
+[mgr]
 ratio = [2, 4, 3]
 sort_by = "alphabetical"
 sort_sensitive = false
@@ -10,7 +10,7 @@ sort_reverse = false
 sort_dir_first = true
 sort_translit = false
 linemode = "none"
-show_hidden = true
+show_hidden = false
 show_symlink = true
 scrolloff = 5
 mouse_events = ["click", "scroll"]
@@ -25,13 +25,12 @@ cache_dir = ""
 image_delay = 30
 image_filter = "triangle"
 image_quality = 75
-sixel_fraction = 15
 ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = 'nvim "$@"', desc = "nvim", block = true, for = "unix" },
+  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
   { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
 ]
@@ -39,12 +38,14 @@ open = [
   { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
   { run = 'open "$@"', desc = "Open", for = "macos" },
   { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+  { run = 'termux-open "$1"', desc = "Open", for = "android" },
 ]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
   { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
   { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+  { run = 'termux-open "$(dirname "$1")"', desc = "Reveal", for = "android" },
+  { run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
   { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
@@ -109,33 +110,23 @@ rules = [
 micro_workers = 10
 macro_workers = 10
 bizarre_retry = 3
-image_alloc = 536870912  # 512MB
-image_bound = [0, 0]
+image_alloc = 536870912    # 512MB
+image_bound = [5000, 5000]
 suppress_preload = false
 
 [plugin]
-prepend_previewers = [
-  { name = "*.md", run = "glow" },
-  # Archive previewer
-  { mime = "application/*zip", run = "ouch" },
-  { mime = "application/x-tar", run = "ouch" },
-  { mime = "application/x-bzip2", run = "ouch" },
-  { mime = "application/x-7z-compressed", run = "ouch" },
-  { mime = "application/x-rar", run = "ouch" },
-  { mime = "application/x-xz", run = "ouch" },
-]
-
 fetchers = [
   # Mimetype
-  { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+  { id = "mime", name = "*", run = "mime", prio = "high" },
 ]
 spotters = [
   { name = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
-  { mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
@@ -144,7 +135,8 @@ spotters = [
 ]
 preloaders = [
   # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
@@ -155,14 +147,15 @@ preloaders = [
   { mime = "application/ms-opentype", run = "font" },
 ]
 previewers = [
-  { name = "*/", run = "folder", sync = true },
+  { name = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
-  { mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # JSON
   { mime = "application/{json,ndjson}", run = "json" },
   # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
@@ -242,7 +235,7 @@ overwrite_offset = [0, 0, 50, 15]
 
 # quit
 quit_title = "Quit?"
-quit_content = "The following task is still running, are you sure you want to quit?"
+quit_content = "The following tasks are still running, are you sure you want to quit?"
 quit_origin = "center"
 quit_offset = [0, 0, 50, 15]
 
