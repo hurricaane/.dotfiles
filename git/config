@@ -1,0 +1,85 @@
+[user]
+  email = dossouyannick@gmail.com
+  name = Yannick Dossou
+
+[core]
+  compression = 9
+  preloadindex = true
+  pager = delta
+
+[advice]
+  addEmptyPathspec = false
+  pushNonFastForward = false
+  statusHints = false
+
+[init]
+	defaultBranch = main
+
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+  interHunkContext = 10
+
+[commit]
+  verbose = true
+
+[push]
+  autoSetupRemote = true
+  followTags = true
+  useForceIfIncludes = true
+
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
+  missingCommitsCheck = warn
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[log]
+  abbrevCommit = true
+  graphColors = blue,yellow,cyan,magenta,green,red
+
+[color "branch"]
+  current = magenta
+  local = default
+  remote = yellow
+  upstream = green
+  plain = blue
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+  singleKey = true
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  dark = true      # or light = true, or omit for auto-detection
+  line-numbers = true
+  hyperlinks = true
+  side-by-side = true
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[merge]
+  conflictstyle = zdiff3
+
+[alias]
+  clone-for-worktrees = "!sh $HOME/dotfiles/scripts/git-clone-bare-for-worktrees.sh"
