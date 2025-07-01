@@ -77,10 +77,10 @@ return {
         input = {
           keys = {
             ["<Esc>"] = { "close", mode = { "n", "i" } },
-            ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
-            ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
-            ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
-            ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+            ["<C-M-j>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<C-M-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<C-M-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
+            ["<C-M-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
           },
         },
       },
