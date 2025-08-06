@@ -14,6 +14,7 @@ return {
       -- to fully override the default_config, change the below
       -- filetypes = {}
     }
+    -- opts.servers.terraformls = nil
     opts.setup = vim.tbl_extend("force", opts.setup, {
       tailwindcss = function(_, tailwind_opts)
         local tw = LazyVim.lsp.get_raw_config("tailwindcss")
