@@ -82,4 +82,5 @@
   conflictstyle = zdiff3
 
 [alias]
-  clone-for-worktrees = "!sh $HOME/dotfiles/scripts/git-clone-bare-for-worktrees.sh"
+  clone-for-worktrees = "!bash $HOME/dotfiles/scripts/git-clone-bare-for-worktrees.sh"
+  init-for-worktrees = "!bash $HOME/dotfiles/scripts/git-init-bare-for-worktrees.sh"

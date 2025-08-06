@@ -1,34 +1,33 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-# Examples of call:
-# git-clone-bare-for-worktrees git@github.com:name/repo.git
-# => Clones to a /repo directory
-#
-# git-clone-bare-for-worktrees git@github.com:name/repo.git my-repo
-# => Clones to a /my-repo directory
+# Usage:
+#   ./git-clone-bare-for-worktrees.sh git@github.com:user/repo.git [optional-dir]
 
-url=$1
-basename=${url##*/}
-name=${2:-${basename%.*}}
+url="${1:?You must provide a Git repository URL}"
+basename="${url##*/}"
+name="${2:-${basename%.git}}"
+
+if [ -e "$name" ]; then
+  echo "Error: directory '$name' already exists." >&2
+  exit 1
+fi
 
 mkdir "$name"
 cd "$name"
 
-# Moves all the administrative git files (a.k.a $GIT_DIR) under .bare directory.
-#
-# Plan is to create worktrees as siblings of this directory.
-# Example targeted structure:
-# .bare
-# main
-# new-awesome-feature
-# hotfix-bug-12
-# ...
+# Clone in bare mode
 git clone --bare "$url" .bare
+
+# Make this directory a git repo that points to the bare directory
 echo "gitdir: ./.bare" >.git
 
-# Explicitly sets the remote origin fetch so we can fetch remote branches
+# Ensure we fetch remote branches
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
-# Gets all branches from origin
+# Fetch all branches
 git fetch origin
+
+echo "Repository cloned in bare mode for worktrees in '$name/'."
+echo "You can now create worktrees using:"
+echo "  git worktree add <dir> <branch>"
