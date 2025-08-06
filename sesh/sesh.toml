@@ -16,7 +16,6 @@ path = "~/dotfiles"
 name = "downloads"
 # path = "~/Downloads"
 path = "~/Téléchargements"
-startup_command = "y"
 
 [[session]]
 name = "tmux config"
