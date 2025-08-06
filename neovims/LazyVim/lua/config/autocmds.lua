@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = augroup("comment_creation"),
   desc = "Disable new comment creation after new line",
   callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
+    vim.opt.formatoptions:remove({ "r", "o" })
   end,
 })
 
@@ -35,5 +35,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
+  end,
+})
+
+-- check for spell in text filetypes
+-- I'll enable wrapping myself
+vim.api.nvim_create_autocmd("FileType", {
+  group = "lazyvim_wrap_spell",
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.spell = true
   end,
 })

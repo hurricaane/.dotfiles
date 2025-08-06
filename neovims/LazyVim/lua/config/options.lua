@@ -14,3 +14,6 @@ vim.opt.sessionoptions =
 
 -- set default language to english
 vim.opt.spelllang = { "en", "fr_fr" }
+
+-- eslint
+vim.g.lazyvim_eslint_auto_format = true
