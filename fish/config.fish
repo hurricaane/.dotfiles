@@ -68,7 +68,7 @@ function y
 end
 
 function sesh-sessions
-    set session (sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    set session (sesh list -t -c -z | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
     if [ -z "$session" ]
         return
     end
@@ -104,7 +104,15 @@ set -gx SUDO_EDITOR nvim
 
 # Go path
 fish_add_path /usr/local/go/bin
+fish_add_path "$HOME/go/bin"
 
 # Nix path
 fish_add_path /nix/var/nix/profiles/default/bin
 fish_add_path "$HOME/.nix-profile/bin"
+
+# pnpm
+set -gx PNPM_HOME "/home/yannick-dossou/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

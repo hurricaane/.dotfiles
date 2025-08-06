@@ -49,5 +49,5 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d2d3f76
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/yannick\x2ddossou/\x2enix\x2dprofile/bin\x1e/nix/var/nix/profiles/default/bin\x1e/usr/local/go/bin\x1e/home/yannick\x2ddossou/\x2epyenv/bin\x1e/home/yannick\x2ddossou/\x2elocal/share/bob/nvim\x2dbin\x1e/home/yannick\x2ddossou/\x2elocal/bin\x1e/home/yannick/\x2epyenv/bin
+SETUVAR fish_user_paths:/home/yannick\x2ddossou/go/bin\x1e/home/yannick\x2ddossou/\x2enix\x2dprofile/bin\x1e/nix/var/nix/profiles/default/bin\x1e/usr/local/go/bin\x1e/home/yannick\x2ddossou/\x2epyenv/bin\x1e/home/yannick\x2ddossou/\x2elocal/share/bob/nvim\x2dbin\x1e/home/yannick\x2ddossou/\x2elocal/bin\x1e/home/yannick/\x2epyenv/bin
 SETUVAR nvm_default_version:latest
