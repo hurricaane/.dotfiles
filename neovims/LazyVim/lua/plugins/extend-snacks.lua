@@ -65,6 +65,14 @@ return {
       enabled = true,
     },
     picker = {
+      hidden = true,
+      ignored = false,
+      sources = {
+        files = {
+          hidden = true,
+          ignored = false,
+        },
+      },
       previewers = {
         git = {
           builtin = false,
@@ -81,6 +89,7 @@ return {
             ["<C-M-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
             ["<C-M-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
             ["<C-M-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
+            ["<M-S-h>"] = { "toggle_hidden", mode = { "i", "n" } },
           },
         },
       },

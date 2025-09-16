@@ -1,5 +1,6 @@
 return {
   "echasnovski/mini.files",
+  lazy = false,
   keys = {
     {
       "<leader>e",
@@ -35,6 +36,7 @@ return {
       trim_right = ">",
     },
     options = {
+      permanent_delete = false,
       use_as_default_explorer = true,
     },
     windows = {

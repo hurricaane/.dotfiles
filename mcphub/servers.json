@@ -1,5 +1,11 @@
 {
   "mcpServers": {
+    "fetch": {
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "command": "uvx"
+    },
     "filesystem": {
       "args": [
         "-y",
@@ -7,35 +13,7 @@
         "/home/yannick-dossou/Code"
       ],
       "command": "npx"
-    },
-    "sequential-thinking": {
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "command": "npx"
-    },
-    "playwright": {
-      "args": [
-        "@playwright/mcp@latest"
-      ],
-      "command": "npx"
-    },
-    "Context7": {
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ],
-      "command": "npx"
-    },
-    "fetch": {
-      "args": [
-        "mcp-server-fetch"
-      ],
-      "command": "uvx"
     }
   },
-  "nativeMCPServers": [
-    
-  ]
+  "nativeMCPServers": []
 }

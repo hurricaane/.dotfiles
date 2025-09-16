@@ -15,7 +15,7 @@ return {
     -- Terminal Configuration
     terminal = {
       split_side = "right", -- "left" or "right"
-      split_width_percentage = 0.30,
+      split_width_percentage = 0.35,
       provider = "snacks", -- "auto", "snacks", or "native"
       auto_close = true,
     },

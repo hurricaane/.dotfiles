@@ -10,9 +10,13 @@ abbr --add -- tk 'tmux kill-server'
 abbr --add -- cx 'chmod +x'
 abbr --add -- lg lazygit
 abbr --add -- cl 'clear -x'
+abbr --add -- tt taskwarrior-tui
+abbr --add -- bwc bw_copy
+abbr --add -- bwu bw_unlock
 
 # Stuff
-abbr --add -- tf tofu
+abbr --add -- tfr terraform
+abbr --add -- tfu tofu
 abbr --add -- k kubectl
 abbr --add -- kx kubectx
 abbr --add -- kns kubens
@@ -77,6 +81,7 @@ abbr --add -- gw 'git worktree'
 abbr --add -- zkc 'zk config'
 abbr --add -- zkd 'zk daily'
 abbr --add -- zke 'zk edlast'
+abbr --add -- zkf 'zk fleeting'
 abbr --add -- zkj 'zk journal'
 abbr --add -- zkl 'zk ls'
 abbr --add -- zkm 'zk moc'

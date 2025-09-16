@@ -46,6 +46,15 @@ paths = ["moc"]
 [group.moc.note]
 filename = "{{slug title}}"
 extension = "md"
+template = "moc.md"
+
+[group.fleeting]
+paths = ["fleeting"]
+
+[group.fleeting.note]
+filename = "{{format-date now '%Y-%m-%d'}}-fleeting-note"
+extension = "md"
+template = "fleeting.md"
 
 [format.markdown]
 # Enable support for #hashtags
@@ -94,7 +103,10 @@ journal = "zk edit --sort created- $ZK_NOTEBOOK_DIR/journal --interactive"
 rm = "zk list --interactive --quiet --format path --delimiter0 $argv | xargs -0 rm -vf --"
 
 # Create Map of Content note
-moc = 'zk new --no-input "$ZK_NOTEBOOK_DIR/moc" --title "$*"'
+moc = 'zk new --no-input "$ZK_NOTEBOOK_DIR/moc" --title "$argv"'
+
+# Create fleeting note
+fleeting = 'zk new --no-input "$ZK_NOTEBOOK_DIR/fleeting"'
 
 [lsp]
 [lsp.diagnostics]
