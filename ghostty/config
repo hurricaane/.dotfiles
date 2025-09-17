@@ -1,27 +1,56 @@
 # Font
 # font-family = FiraCode Nerd Font
 font-family = "CaskaydiaCove Nerd Font"
-font-size = 12
+font-size = 10
 
 # Appearance
-theme = tokyonight_moon
-mouse-hide-while-typing = true
-window-decoration = false
-background-opacity = 0.8
 # TODO: Check if this is supported on linux
-# background-blur-radius = 20
-shell-integration-features = cursor,sudo,no-title
-window-padding-x = 5
-window-padding-y = 5,0
-cursor-style = bar
 adjust-cell-height = 30%
-title = "Ghostty"
+# background-blur-radius = 20
+background-opacity = 0.98
+cursor-style = bar
+mouse-hide-while-typing = true
+# theme = tokyonight_moon
+window-decoration = false
+window-padding-x = 14
+window-padding-y = 14
+
+# Color scheme from omarchy theme
+background = 1a1b26
+foreground = a9b1d6
+
+# Normal colors
+palette = 0=#32344a
+palette = 1=#f7768e
+palette = 2=#9ece6a
+palette = 3=#e0af68
+palette = 4=#7aa2f7
+palette = 5=#ad8ee6
+palette = 6=#449dab
+palette = 7=#787c99
+
+# Bright colors
+palette = 8=#444b6a
+palette = 9=#ff7a93
+palette = 10=#b9f27c
+palette = 11=#ff9e64
+palette = 12=#7da6ff
+palette = 13=#bb9af7
+palette = 14=#0db9d7
+palette = 15=#acb0d0
+
+# Selection color
+selection-background = 7aa2f7
+
+# Terminal settings
+shell-integration-features = cursor,sudo,no-title
+term = xterm-256color
 
 # Keybindings
 keybind = ctrl+]=reload_config
+keybind = f11=toggle_fullscreen
 
 # General
+command = /usr/bin/fish --login --interactive
 confirm-close-surface = false
 window-inherit-working-directory = true
-command = /usr/bin/fish --login --interactive
-# shell-integration = zsh

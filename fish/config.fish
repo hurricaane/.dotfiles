@@ -111,8 +111,11 @@ fish_add_path /nix/var/nix/profiles/default/bin
 fish_add_path "$HOME/.nix-profile/bin"
 
 # pnpm
-set -gx PNPM_HOME "/home/yannick-dossou/.local/share/pnpm"
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# Cargo
+fish_add_path "$HOME/.cargo/bin"

@@ -1,3 +1,1 @@
-
-# Turso
-export PATH="$PATH:/home/yannick-dossou/.turso"
+export PATH="$PATH:$HOME/.turso"
