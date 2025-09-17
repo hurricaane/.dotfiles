@@ -18,6 +18,7 @@
 # $character
 # """
 
+command_timeout = 200
 format = """
 $os\
 $directory\
@@ -26,6 +27,7 @@ $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
+$fill\
 $kubernetes\
 $docker_context\
 $package\
@@ -69,6 +71,8 @@ symbol = " "
 
 [directory]
 truncation_length = 0
+repo_root_style = "bold bright-cyan"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 
 [golang]
 format = '[$symbol($version )]($style)'
@@ -89,6 +93,27 @@ symbol = "✖ "
 
 [os]
 disabled = false
+style = "bold bright-blue"
 
 [os.symbols]
+Arch = "  "
 EndeavourOS = "  "
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "italic bright-purple"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "bright-red"
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked = "? "
+modified = " "
+stashed = ""
+staged = ""
+renamed = ""
+deleted = ""
