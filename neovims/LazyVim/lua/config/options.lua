@@ -17,3 +17,6 @@ vim.opt.spelllang = { "en", "fr_fr" }
 
 -- eslint
 vim.g.lazyvim_eslint_auto_format = true
+
+-- rounded borders
+vim.opt.winborder = "rounded"
