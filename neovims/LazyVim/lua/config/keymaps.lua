@@ -59,6 +59,3 @@ map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Go to las
 -- Tabs
 map("n", "<leader><tab>j", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- Normal mode in terminal
-map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal mode" })

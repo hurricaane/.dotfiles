@@ -5,6 +5,7 @@ abbr --add -- s sesh-sessions
 abbr --add -- ta 'tmux attach'
 abbr --add -- tl 'tmux ls'
 abbr --add -- tk 'tmux kill-server'
+abbr --add -- ef 'exec fish'
 
 # Utilities
 abbr --add -- cx 'chmod +x'

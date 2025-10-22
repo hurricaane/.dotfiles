@@ -1,5 +1,15 @@
 {
   "mcpServers": {
+    "context7": {
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "command": "npx",
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "6000"
+      }
+    },
     "fetch": {
       "args": [
         "mcp-server-fetch"
@@ -11,6 +21,19 @@
         "-y",
         "@modelcontextprotocol/server-filesystem",
         "~/Code"
+      ],
+      "command": "npx"
+    },
+    "playwright": {
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "command": "npx"
+    },
+    "sequentialthinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
       ],
       "command": "npx"
     }

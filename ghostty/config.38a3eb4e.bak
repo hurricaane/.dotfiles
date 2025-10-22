@@ -49,11 +49,8 @@ term = xterm-256color
 # Keybindings
 keybind = ctrl+]=reload_config
 keybind = f11=toggle_fullscreen
-keybind = shift+insert=paste_from_clipboard
-keybind = control+insert=copy_to_clipboard
 
 # General
 command = /usr/bin/fish --login --interactive
 confirm-close-surface = false
 window-inherit-working-directory = true
-keybind = shift+enter=text:\x1b\r

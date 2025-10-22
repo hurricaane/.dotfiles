@@ -24,6 +24,38 @@ if status is-interactive
 
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/share/bob/nvim-bin
+
+    # Auto-start tmux or attach to existing session using sesh
+    if type -q tmux
+        # Avoid starting tmux inside tmux or via SSH
+        if not set -q TMUX; and not set -q SSH_TTY
+            # Check if any tmux sessions exist
+            set existing_sessions (tmux list-sessions 2>/dev/null)
+
+            if test -n "$existing_sessions"
+                # At least one tmux session exists → attach to the first one
+                set first_session (echo $existing_sessions | head -n 1 | awk -F: '{print $1}')
+                echo (set_color cyan)"🔗 Attaching to existing tmux session: $first_session"(set_color normal)
+                sleep 0.3
+                tmux attach -t $first_session
+            else
+                # No tmux session exists → start sesh selection
+                echo (set_color yellow)"⚡ No tmux sessions found — launching sesh..."(set_color normal)
+                echo ""
+                set session (sesh list -t -c -z | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+                if test -z "$session"
+                    set session home
+                    echo (set_color yellow)"⚠️  No session selected — connecting to 'home'"(set_color normal)
+                else
+                    echo (set_color cyan)"🔗 Connecting to session: $session"(set_color normal)
+                end
+                sleep 0.2
+                sesh connect "$session"
+            end
+
+            exit
+        end
+    end
 end
 
 # Disable fish greeting

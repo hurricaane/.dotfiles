@@ -14,8 +14,8 @@ path = "~/dotfiles"
 
 [[session]]
 name = "downloads"
-# path = "~/Downloads"
-path = "~/Téléchargements"
+path = "~/Downloads"
+# path = "~/Téléchargements"
 
 [[session]]
 name = "tmux config"
@@ -40,9 +40,9 @@ path = "~/.config/yazi"
 startup_command = "nvim yazi.toml"
 preview_command = "bat --color=always ~/.config/yazi/yazi.toml"
 
-# [[session]]
-# name = "hyprland config"
-# path = "~/.config/hypr"
+[[session]]
+name = "hyprland config"
+path = "~/.config/hypr"
 
 [[session]]
 name = "fish config"

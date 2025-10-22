@@ -7,8 +7,7 @@ return {
   config = function()
     require("mcphub").setup()
     require("which-key").add({
-      { "<leader>a", group = "AI/Claude" },
-      { "<leader>am", "<cmd>MCPHub<CR>", desc = "Open MCP Hub" },
+      { "<leader>m", "<cmd>MCPHub<CR>", desc = "Open MCP Hub" },
     })
   end,
 }
