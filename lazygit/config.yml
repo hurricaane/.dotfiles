@@ -1,9 +1,8 @@
 git:
   branchLogCmd: 'git log --graph --color=always --oneline --decorate --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
-  paging:
-    colorArg: always
-    pager: delta --dark --side-by-side --paging=never
-
+  pagers:
+    - colorArg: always
+      pager: delta --dark --side-by-side --paging=never
 gui:
   nerdFontsVersion: "3"
   showIcons: true
@@ -32,7 +31,6 @@ gui:
       - "#c53b53"
     defaultFgColor:
       - "#c8d3f5"
-
 services:
   "gitlab.thalesdigital.io": "gitlab:gitlab.thalesdigital.io"
   "gitlab.octo.tools": "gitlab:gitlab.octo.tools"
