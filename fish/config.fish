@@ -63,6 +63,7 @@ set -U fish_greeting
 
 # Environment variables
 set -Ux EDITOR nvim
+set -Ux SUDO_EDITOR nvim
 set -Ux ZK_NOTEBOOK_DIR "$HOME/Documents/Notes"
 
 # Starship

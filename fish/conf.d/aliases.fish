@@ -2,10 +2,10 @@
 # ░█░░░░█░░▀▀█░░█░░░█░░█░█░█░█
 # ░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀▀▀
 
-alias ls 'eza --header --icons'
+alias ls 'eza -lh --group-directories-first --icons=auto'
 alias l 'eza --long --header --icons --git'
 alias ll 'eza --long --header --icons --git'
-alias la 'eza --long --header --icons --all --git'
+alias la 'eza --long --header --group-directories-first --icons=auto --all --git'
 
 # ░█▀▄░█▀█░▀█▀
 # ░█▀▄░█▀█░░█░

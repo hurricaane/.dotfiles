@@ -12,8 +12,6 @@ abbr --add -- cx 'chmod +x'
 abbr --add -- lg lazygit
 abbr --add -- cl 'clear -x'
 abbr --add -- tt taskwarrior-tui
-abbr --add -- bwc bw_copy
-abbr --add -- bwu bw_unlock
 
 # Stuff
 abbr --add -- tfr terraform
