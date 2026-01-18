@@ -1,3 +1,5 @@
+# See https://git-scm.com/docs/git-config
+
 [user]
   email = dossouyannick@gmail.com
   name = Yannick Dossou
@@ -80,6 +82,10 @@
 
 [merge]
   conflictstyle = zdiff3
+
+[rerere]
+  enabled = true
+  autoupdate = true
 
 [alias]
   clone-for-worktrees = "!bash $HOME/dotfiles/scripts/git-clone-bare-for-worktrees.sh"
