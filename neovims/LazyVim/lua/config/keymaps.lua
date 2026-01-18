@@ -48,14 +48,6 @@ end, { desc = "Scroll half a page up", noremap = true, silent = true })
 --   vim.opt.spelllang = input
 -- end, { desc = "Set spelllang for current buffer" })
 
--- Navigate between windows / splits
-local nvim_tmux_nav = require("nvim-tmux-navigation")
-map("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft, { desc = "Go to Left Window", noremap = true })
-map("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown, { desc = "Go to Lower Window", noremap = true })
-map("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp, { desc = "Go to Upper Window", noremap = true })
-map("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight, { desc = "Go to Right Window", noremap = true })
-map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Go to last active Window", noremap = true })
-
 -- Tabs
 map("n", "<leader><tab>j", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
