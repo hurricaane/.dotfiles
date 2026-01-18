@@ -1,23 +1,20 @@
+# Dynamic theme color
+config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
 # Font
-# font-family = FiraCode Nerd Font
 font-family = "CaskaydiaCove Nerd Font"
 font-size = 10
 
 # Appearance
 # TODO: Check if this is supported on linux
 adjust-cell-height = 30%
-# background-blur-radius = 20
 background-opacity = 0.98
 cursor-style = bar
 mouse-hide-while-typing = true
-# theme = tokyonight_moon
 window-decoration = false
 window-padding-x = 14
 window-padding-y = 14
-
-# Color scheme from omarchy theme
-background = 1a1b26
-foreground = a9b1d6
+resize-overlay = never
+gtk-toolbar-style = flat
 
 # Normal colors
 palette = 0=#32344a
@@ -43,7 +40,8 @@ palette = 15=#acb0d0
 selection-background = 7aa2f7
 
 # Terminal settings
-shell-integration-features = cursor,sudo,no-title
+# shell-integration-features = cursor,sudo,no-title
+shell-integration-features = no-cursor,ssh-env,no-title,sudo
 term = xterm-256color
 
 # Keybindings
