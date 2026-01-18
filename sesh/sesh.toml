@@ -1,12 +1,11 @@
 blacklist = ["scratch"]
 
 [default_session]
-preview_command = "eza --long --header --icons --all --git --color=always {}"
+preview_command = "eza --long --header --icons --all --group-directories-first --git --color=always {}"
 
 [[session]]
 name = "home"
 path = "~"
-disable_startup_command = true
 
 [[session]]
 name = "dotfiles"
@@ -30,31 +29,32 @@ startup_command = "nvim"
 
 [[session]]
 name = "sesh config"
-path = "~/.config/sesh"
+path = "~/dotfiles/sesh"
 startup_command = "nvim sesh.toml"
-preview_command = "bat --color=always ~/.config/sesh/sesh.toml"
+preview_command = "bat --color=always ~/dotfiles/sesh/sesh.toml"
 
 [[session]]
 name = "yazi config"
-path = "~/.config/yazi"
+path = "~/dotfiles/yazi"
 startup_command = "nvim yazi.toml"
-preview_command = "bat --color=always ~/.config/yazi/yazi.toml"
+preview_command = "bat --color=always ~/dotfiles/yazi/yazi.toml"
 
 [[session]]
 name = "hyprland config"
-path = "~/.config/hypr"
+path = "~/dotfiles/hypr"
+startup_command = "nvim"
 
 [[session]]
 name = "fish config"
-path = "~/.config/fish"
+path = "~/dotfiles/fish"
 startup_command = "nvim"
-preview_command = "bat --color=always ~/.config/fish/config.fish"
-
-[[session]]
-name = "coding/code"
-path = "~/Code/"
+preview_command = "bat --color=always ~/dotfiles/fish/config.fish"
 
 [[session]]
 name = "ghostty config"
 path = "~/dotfiles/ghostty"
 startup_command = "nvim config"
+
+[[session]]
+name = "Freelancing"
+path = "~/Work/Freelance"
