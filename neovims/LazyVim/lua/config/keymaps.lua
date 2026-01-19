@@ -51,3 +51,11 @@ end, { desc = "Scroll half a page up", noremap = true, silent = true })
 -- Tabs
 map("n", "<leader><tab>j", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- Move lines
+map("n", "<A-J>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-K>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("i", "<A-J>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-K>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-J>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-K>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
