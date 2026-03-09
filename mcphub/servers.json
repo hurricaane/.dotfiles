@@ -20,13 +20,15 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "~/Code"
+        "~/Work"
       ],
-      "command": "npx"
+      "command": "npx",
+      "disabled": false
     },
-    "playwright": {
+    "memory": {
       "args": [
-        "@playwright/mcp@latest"
+        "-y",
+        "@modelcontextprotocol/server-memory"
       ],
       "command": "npx"
     },
