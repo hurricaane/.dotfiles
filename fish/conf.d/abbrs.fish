@@ -24,7 +24,7 @@ abbr --add -- kget 'kubectl get'
 # Git
 abbr --add -- gaa 'git add --all'
 abbr --add -- ga 'git add'
-abbr --add -- gan 'git add -N'
+abbr --add -- gan 'git add -N .'
 abbr --add -- gapa 'git add --patch'
 abbr --add -- gb 'git branch'
 abbr --add -- gbup 'git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD) (git rev-parse --abbrev-ref HEAD)'
