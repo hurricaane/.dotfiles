@@ -34,7 +34,9 @@
 # worktree-path = "~/worktrees/{{ repo }}/{{ branch | sanitize }}"
 #
 # `~` expands to the home directory. Relative paths are relative to the repository root.
-#
+
+worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+
 # ## LLM commit messages
 #
 # Generate commit messages automatically during merge. Requires an external CLI tool.
