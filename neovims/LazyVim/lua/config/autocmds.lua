@@ -47,3 +47,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+-- Mini Files relative line numbers
+vim.api.nvim_create_autocmd("User", {
+  group = augroup("mini_files_rln"),
+  pattern = "MiniFilesWindowUpdate",
+  callback = function(args)
+    local win = vim.wo[args.data.win_id]
+    win.number = true
+    win.relativenumber = true
+  end,
+})
