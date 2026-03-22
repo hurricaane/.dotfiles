@@ -37,6 +37,42 @@
 
 worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 
+[commit.generation]
+command = "MAX_THINKING_TOKENS=0 claude -p --model=haiku --tools='' --disable-slash-commands --setting-sources='' --system-prompt=''"
+template = """
+Write a commit message for the staged changes below.
+
+<format>
+- Subject line under 50 chars
+- For material changes, add a blank line then a body paragraph explaining the change
+- Output only the commit message, no quotes or code blocks
+</format>
+
+<style>
+- Imperative mood: "Add feature" not "Added feature"
+- Use conventional commits
+- Describe the change, not the intent or benefit
+</style>
+
+<diffstat>
+{{ git_diff_stat }}
+</diffstat>
+
+<diff>
+{{ git_diff }}
+</diff>
+
+<context>
+Branch: {{ branch }}
+{% if recent_commits %}<recent_commits>
+{% for commit in recent_commits %}- {{ commit }}
+{% endfor %}</recent_commits>{% endif %}
+</context>
+
+"""
+
+[projects]
+
 # ## LLM commit messages
 #
 # Generate commit messages automatically during merge. Requires an external CLI tool.
@@ -49,8 +85,8 @@ worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 #
 # Persistent flag values for `wt list`. Override on command line as needed.
 #
-# [list]
-# summary = false    # Enable LLM branch summaries (requires [commit.generation])
+[list]
+summary = true # Enable LLM branch summaries (requires [commit.generation])
 #
 # full = false       # Show CI, main…± diffstat, and LLM summaries (--full)
 # branches = false   # Include branches without worktrees (--branches)
@@ -60,19 +96,19 @@ worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 #
 # Shared by `wt step commit`, `wt step squash`, and `wt merge`.
 #
-# [commit]
-# stage = "all"      # What to stage before commit: "all", "tracked", or "none"
+[commit]
+stage = "all" # What to stage before commit: "all", "tracked", or "none"
 #
 # ### Merge
 #
 # All flags are on by default. Set to false to change default behavior.
 #
-# [merge]
-# squash = true      # Squash commits into one (--no-squash to preserve history)
-# commit = true      # Commit uncommitted changes first (--no-commit to skip)
-# rebase = true      # Rebase onto target before merge (--no-rebase to skip)
-# remove = true      # Remove worktree after merge (--no-remove to keep)
-# verify = true      # Run project hooks (--no-verify to skip)
+[merge]
+squash = false # Squash commits into one (--no-squash to preserve history)
+commit = true  # Commit uncommitted changes first (--no-commit to skip)
+rebase = true  # Rebase onto target before merge (--no-rebase to skip)
+remove = true  # Remove worktree after merge (--no-remove to keep)
+verify = true  # Run project hooks (--no-verify to skip)
 #
 # ### Switch picker
 #
