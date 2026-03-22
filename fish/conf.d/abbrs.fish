@@ -1,6 +1,8 @@
 # My goto
 abbr --add -- v nvim
 abbr --add -- nv nvim
+abbr --add -- vc "nvim -c 'lua Snacks.picker.files({ root = false, layout = \"default\" })'"
+abbr --add -- nvc "nvim -c 'lua Snacks.picker.files({ root = false, layout = \"default\" })'"
 abbr --add -- s sesh-sessions
 abbr --add -- ta 'tmux attach'
 abbr --add -- tl 'tmux ls'
