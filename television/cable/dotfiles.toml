@@ -14,6 +14,6 @@ enter = "actions:edit"
 
 [actions.edit]
 description = "Edit the selected dotfile"
-command = "${EDITOR:-vim} '{}'"
-shell = "bash"
+command = "(set -q EDITOR; and echo $EDITOR; or echo vim) '{}'"
+shell = "fish"
 mode = "execute"

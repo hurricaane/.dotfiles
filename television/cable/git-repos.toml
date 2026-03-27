@@ -26,6 +26,6 @@ mode = "execute"
 
 [actions.edit]
 description = "Open the repository in editor"
-command = "${EDITOR:-vim} '{}'"
-shell = "bash"
+command = "(set -q EDITOR; and echo $EDITOR; or echo vim) '{}'"
+shell = "fish"
 mode = "execute"

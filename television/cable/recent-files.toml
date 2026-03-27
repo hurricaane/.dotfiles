@@ -18,6 +18,6 @@ enter = "actions:edit"
 
 [actions.edit]
 description = "Open the selected file in editor"
-command = "${EDITOR:-vim} '{}'"
-shell = "bash"
+command = "(set -q EDITOR; and echo $EDITOR; or echo vim) '{}'"
+shell = "fish"
 mode = "execute"

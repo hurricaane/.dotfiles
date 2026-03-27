@@ -27,7 +27,7 @@ requirements = ["awk", "perl"]
 
 [source]
 command = '''
-UNICODE_FILE="/usr/share/unicode/ucd/UnicodeData.txt"
+set UNICODE_FILE "/usr/share/unicode/ucd/UnicodeData.txt"
 awk -F';' '
   $2 !~ /^</ { print $1 "|" $2 }
 ' "$UNICODE_FILE" \

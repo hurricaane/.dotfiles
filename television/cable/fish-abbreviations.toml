@@ -1,0 +1,14 @@
+[metadata]
+name = "fish-abbreviations"
+description = "A channel to select from fish shell abbreviations"
+requirements = ["fish"]
+
+[source]
+command = "fish -c 'abbr --show'"
+output = "{split: :3}"
+
+[preview]
+command = "fish -c 'abbr --show | grep -F \" -- {split: :3} \"'"
+
+[ui.preview_panel]
+size = 30
