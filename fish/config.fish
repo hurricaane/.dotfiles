@@ -5,6 +5,7 @@ set -Ux SUDO_EDITOR nvim
 set -Ux ZK_NOTEBOOK_DIR "$HOME/Documents/Notes"
 set -Ux STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
 set -Ux PYENV_ROOT $HOME/.pyenv
+set -Ux BAT_THEME "Catppuccin Mocha"
 
 # ─── Interactive session ───────────────────────────────────────────────────────
 if status is-interactive
