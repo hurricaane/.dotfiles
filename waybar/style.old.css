@@ -1,0 +1,165 @@
+@import "../omarchy/current/theme/waybar.css";
+
+* {
+  background: transparent;
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 12px;
+}
+
+window#waybar {
+  background: @background;
+  border: 1px solid rgba(180, 190, 254, 0.12);
+  border-radius: 12px;
+}
+
+.modules-left {
+  padding-left: 8px;
+}
+
+.modules-right {
+  padding-right: 8px;
+}
+
+/* Workspaces */
+#workspaces button {
+  all: initial;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 12px;
+  color: #6c7086;
+  padding: 0 6px;
+  margin: 0 1px;
+  min-width: 9px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+  color: #b4befe;
+  background: rgba(180, 190, 254, 0.1);
+}
+
+#workspaces button.empty {
+  opacity: 0.35;
+}
+
+#workspaces button:hover {
+  color: #cdd6f4;
+  background: rgba(205, 214, 244, 0.08);
+}
+
+/* Clock */
+#clock {
+  color: #cdd6f4;
+  font-weight: 500;
+  padding: 0 6px;
+}
+
+/* Media player */
+#mpris {
+  color: #cba6f7;
+  padding: 0 8px;
+  margin-left: 4px;
+}
+
+/* CPU */
+#cpu {
+  color: #89b4fa;
+  min-width: 12px;
+  margin: 0 6px;
+}
+
+/* Battery */
+#battery {
+  color: #a6e3a1;
+  margin: 0 6px;
+}
+
+#battery.warning {
+  color: #f9e2af;
+}
+
+#battery.critical {
+  color: #f38ba8;
+}
+
+/* Network */
+#network {
+  color: #89dceb;
+  margin: 0 6px;
+}
+
+/* Audio */
+#pulseaudio {
+  color: #f9e2af;
+  margin: 0 6px;
+}
+
+#pulseaudio.muted {
+  color: #6c7086;
+}
+
+/* Bluetooth */
+#bluetooth {
+  color: #89b4fa;
+  margin: 0 6px;
+}
+
+/* Tray */
+#tray {
+  margin: 0 6px;
+}
+
+/* Omarchy button */
+#custom-omarchy {
+  color: #cba6f7;
+  margin: 0 6px 0 2px;
+  font-size: 14px;
+}
+
+/* Indicators */
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  min-width: 12px;
+  margin-left: 4px;
+  font-size: 10px;
+}
+
+#custom-screenrecording-indicator.active,
+#custom-voxtype.recording,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #f38ba8;
+}
+
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 4px;
+}
+
+#custom-update {
+  font-size: 10px;
+  color: #f9e2af;
+  margin: 0 4px;
+}
+
+#custom-expand-icon {
+  margin-right: 6px;
+  color: #6c7086;
+}
+
+tooltip {
+  background: #1e1e2e;
+  border: 1px solid rgba(180, 190, 254, 0.15);
+  border-radius: 8px;
+  padding: 4px 8px;
+  color: #cdd6f4;
+}
+
+.hidden {
+  opacity: 0;
+}

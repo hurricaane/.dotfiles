@@ -1,0 +1,24 @@
+/* Catppuccin Mocha — semantic palette */
+@define-color accent #cba6f7;
+@define-color accent-alt #b4befe;
+@define-color fg #cdd6f4;
+@define-color fg-muted #7f849c;
+@define-color fg-subtle #585b70;
+@define-color bg #1e1e2e;
+@define-color bg-glass rgba(30, 30, 46, 0.55);
+@define-color bg-surface #313244;
+@define-color bg-elevated #45475a;
+@define-color border #45475a;
+@define-color border-glass rgba(205, 214, 244, 0.06);
+@define-color border-top-glass rgba(205, 214, 244, 0.12);
+@define-color color-ok #a6e3a1;
+@define-color color-warn #f9e2af;
+@define-color color-urgent #f38ba8;
+@define-color color-info #89b4fa;
+@define-color color-music #94e2d5;
+@define-color color-network #89dceb;
+@define-color color-battery #a6e3a1;
+@define-color color-cpu #89b4fa;
+@define-color color-audio #f9e2af;
+@define-color color-bluetooth #89b4fa;
+@define-color color-memory #fab387;

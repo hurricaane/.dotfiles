@@ -46,3 +46,7 @@ path = "~/dotfiles/yazi"
 [[session]]
 name = "fish configuration"
 path = "~/dotfiles/fish"
+
+[[session]]
+name = "waybar configuration"
+path = "~/dotfiles/waybar"

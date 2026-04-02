@@ -1,30 +1,41 @@
 {
-  // Global settings
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "margin-top": 10,
-  "spacing": 20,
-  // Layout - Center island
-  "modules-center": [
+  "spacing": 4,
+  "height": 32,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "modules-left": [
     "custom/omarchy",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
     "clock",
     "custom/update",
     "custom/voxtype",
     "custom/screenrecording-indicator",
     "custom/idle-indicator",
     "custom/notification-silencing-indicator",
-    "hyprland/workspaces",
-    "mpris",
+    "mpris"
+  ],
+  "modules-right": [
     "group/tray-expander",
     "bluetooth",
     "network",
     "pulseaudio",
     "cpu",
-    "memory",
     "battery"
   ],
-  // Built-in modules configuration
+  "mpris": {
+    "format": "󰝚 {artist} — {title}",
+    "format-paused": "󰏤 {artist} — {title}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "max-length": 40,
+    "tooltip": false
+  },
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
@@ -39,7 +50,8 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "10": "0"
+      "10": "0",
+      "active": "󱓻"
     },
     "persistent-workspaces": {
       "1": [],
@@ -49,32 +61,30 @@
       "5": []
     }
   },
-  "clock": {
-    "format": "{:%H:%M}",
-    "format-alt": "{:%A %d %B %Y}",
-    "tooltip": true,
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select",
-    "calendar": {
-      "mode": "month",
-      "weeks-pos": "left",
-      "format": {
-        "months": "<span color='#cba6f7'><b>{}</b></span>",
-        "weekdays": "<span color='#7f849c'>{}</span>",
-        "weeks": "<span color='#585b70'>{}</span>",
-        "days": "<span color='#cdd6f4'>{}</span>",
-        "today": "<span color='#f38ba8'><b>{}</b></span>"
-      }
-    },
-    "actions": {
-      "on-scroll-up": "shift_down",
-      "on-scroll-down": "shift_up"
-    }
+  "custom/omarchy": {
+    "format": "<span font='omarchy'>\ue900</span>",
+    "on-click": "omarchy-menu",
+    "on-click-right": "xdg-terminal-exec",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+  "custom/update": {
+    "format": "",
+    "exec": "omarchy-update-available",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available",
+    "signal": 7,
+    "interval": 21600
   },
   "cpu": {
     "interval": 5,
     "format": "󰍛 {usage}%",
     "on-click": "omarchy-launch-or-focus-tui btop"
+  },
+  "clock": {
+    "format": "{:L%A %H:%M}",
+    "format-alt": "{:L%d %B W%V %Y}",
+    "tooltip": false,
+    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
   },
   "network": {
     "format-icons": [
@@ -92,14 +102,13 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
-    "spacing": 1,
     "on-click": "omarchy-launch-wifi"
   },
   "battery": {
-    "format": "{capacity}% {icon}",
-    "format-discharging": "{capacity}% {icon}",
-    "format-charging": "{capacity}% {icon}",
-    "format-plugged": "{capacity}% ",
+    "format": "{icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
     "format-icons": {
       "charging": [
         "󰢜",
@@ -126,14 +135,14 @@
         "󰁹"
       ]
     },
-    "format-full": "{capacity}% 󰂅",
+    "format-full": "󰂅",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
     "on-click": "omarchy-menu power",
     "states": {
-      "warning": 30,
-      "critical": 15
+      "warning": 20,
+      "critical": 10
     }
   },
   "bluetooth": {
@@ -146,19 +155,19 @@
     "on-click": "omarchy-launch-bluetooth"
   },
   "pulseaudio": {
-    "format": "{volume}% {icon}",
+    "format": "{icon}",
     "on-click": "omarchy-launch-audio",
     "on-click-right": "pamixer -t",
-    "tooltip-format": "Playing at {volume}%",
+    "tooltip-format": "Volume: {volume}%",
     "scroll-step": 5,
-    "format-muted": "",
+    "format-muted": "",
     "format-icons": {
-      "headphone": "",
-      "headset": "",
+      "headphone": "",
+      "headset": "",
       "default": [
-        "",
-        "",
-        ""
+        "",
+        "",
+        ""
       ]
     }
   },
@@ -173,46 +182,9 @@
       "tray"
     ]
   },
-  "tray": {
-    "icon-size": 12,
-    "spacing": 17
-  },
-  "mpris": {
-    "format": "󰝚 {artist} — {title}",
-    "format-paused": "󰏤 {artist} — {title}",
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl next",
-    "max-length": 40,
-    "tooltip": false
-  },
-  "memory": {
-    "interval": 5,
-    "format": "󰾆 {percentage}%",
-    "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
-    "on-click": "omarchy-launch-or-focus-tui btop"
-  },
-  // Custom modules configuration
-  "custom/omarchy": {
-    "format": "<span font='omarchy'>\ue900</span>",
-    "on-click": "omarchy-menu",
-    "on-click-right": "xdg-terminal-exec",
-    "tooltip": false
-  },
-  "custom/update": {
-    "format": "",
-    "exec": "omarchy-update-available",
-    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
-    "tooltip-format": "Omarchy update available",
-    "signal": 7,
-    "interval": 21600
-  },
   "custom/expand-icon": {
-    "format": "",
-    "tooltip": false,
-    "on-scroll-up": "",
-    "on-scroll-down": "",
-    "on-scroll-left": "",
-    "on-scroll-right": ""
+    "format": "",
+    "tooltip": false
   },
   "custom/screenrecording-indicator": {
     "on-click": "omarchy-cmd-screenrecord",
@@ -244,5 +216,9 @@
     "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
     "signal": 10,
     "return-type": "json"
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 17
   }
 }
