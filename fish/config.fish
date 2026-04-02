@@ -89,16 +89,14 @@ if status is-interactive
             else
                 echo (set_color yellow)"⚡ No tmux sessions found — launching sesh..."(set_color normal)
                 echo ""
-                # Use Television instead of fzf
                 set session (tv sesh)
                 if test -z "$session"
-                    set session home
-                    echo (set_color yellow)"⚠️  No session selected — connecting to 'home'"(set_color normal)
+                    echo (set_color red)"No session selected — staying in shell"(set_color normal)
                 else
                     echo (set_color cyan)"🔗 Connecting to session: $session"(set_color normal)
+                    sleep 0.2
+                    sesh connect "$session"
                 end
-                sleep 0.2
-                sesh connect "$session"
             end
             exit
         end
