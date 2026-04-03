@@ -147,23 +147,28 @@ tooltip label {
   font-weight: 600;
   letter-spacing: -1px;
   border: 1px solid rgba(166, 227, 161, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 #battery.warning {
   background-color: @color-warn;
   color: @bg;
   border-color: rgba(249, 226, 175, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 #battery.critical {
   background-color: @color-urgent;
   color: @bg;
   border-color: rgba(243, 139, 168, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 #battery.charging {
-  background-color: @color-ok;
+  background: linear-gradient(#f5e0dc 0%, #f5c2e7 50%, #eba0ac 100%);
   color: @bg;
+  border: solid 1px #000000;
+  transition: all 0.3s ease-in-out;
 }
 
 /* ── Omarchy button ────────────────────────────────────────────────── */
