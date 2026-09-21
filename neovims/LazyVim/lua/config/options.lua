@@ -17,3 +17,15 @@ vim.opt.spelllang = { "en", "fr_fr" }
 
 -- eslint
 vim.g.lazyvim_eslint_auto_format = true
+
+-- filetypes
+vim.filetype.add({
+  pattern = {
+    [".*%.ba?k$"] = function(path, bufnr)
+      local original = path:gsub("%.ba?k$", "")
+      local ft = vim.filetype.match({ filename = original })
+
+      return ft or "text"
+    end,
+  },
+})

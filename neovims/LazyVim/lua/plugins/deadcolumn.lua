@@ -1,4 +1,4 @@
 return {
-  "Bekaboo/deadcolumn.nvim",
-  opts = {},
+  -- "Bekaboo/deadcolumn.nvim",
+  -- opts = {},
 }

@@ -2,4 +2,5 @@
 return {
   "pearofducks/ansible-vim",
   "olrtg/nvim-emmet",
+  "tpope/vim-abolish",
 }

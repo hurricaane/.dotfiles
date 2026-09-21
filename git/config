@@ -26,6 +26,10 @@
   mnemonicPrefix = true
   renames = true
   interHunkContext = 10
+	tool = codediff
+
+[difftool "codediff"]
+	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff file $LOCAL $REMOTE\"
 
 [commit]
   verbose = true
@@ -80,7 +84,26 @@
 
 [merge]
   conflictstyle = zdiff3
+	tool = codediff
+
+[mergetool "codediff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff merge \\\"$MERGED\\\"\"
 
 [alias]
   clone-for-worktrees = "!bash $HOME/dotfiles/scripts/git-clone-bare-for-worktrees.sh"
   init-for-worktrees = "!bash $HOME/dotfiles/scripts/git-init-bare-for-worktrees.sh"
+  glmr = "push --push-option merge_request.create --push-option merge_request.target=main --push-option merge_request.assign=yaou --push-option merge_request.remove_source_branch"
+
+[credential]
+	helper = 
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = gpg
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

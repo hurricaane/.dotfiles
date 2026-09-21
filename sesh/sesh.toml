@@ -1,3 +1,4 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
 blacklist = ["scratch"]
 
 [default_session]
@@ -58,3 +59,7 @@ path = "~/Code/"
 name = "ghostty config"
 path = "~/dotfiles/ghostty"
 startup_command = "nvim config"
+
+[[session]]
+name = "Mode Produit"
+path = "~/Code/Missions/ModeProduit/"
