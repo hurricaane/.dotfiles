@@ -37,7 +37,7 @@ path = "~/dotfiles/hypr"
 
 [[session]]
 name = "nvim configuration"
-path = "~/dotfiles/neovims/LazyVim"
+path = "~/dotfiles/nvim/"
 
 [[session]]
 name = "yazi configuration"
