@@ -1,5 +1,5 @@
 # Dynamic theme color
-config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 # Font
 font-family = "CaskaydiaCove Nerd Font"
 font-size = 10
