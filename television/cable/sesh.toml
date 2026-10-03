@@ -18,6 +18,8 @@ command = [
 ]
 ansi = true
 output = "{strip_ansi|split: :1..|join: }"
+frecency = false
+no_sort = true
 
 [preview]
 command = "sesh preview '{strip_ansi|split: :1..|join: }'"
