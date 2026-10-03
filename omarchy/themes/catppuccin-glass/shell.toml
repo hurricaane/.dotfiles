@@ -1,0 +1,54 @@
+# Glass surfaces ported from the Omarchy 3 theme (walker, mako, swayosd, hyprlock)
+# Alpha is applied to backgrounds only, so text stays opaque.
+
+[bar]
+background = "#1a1b1e"
+background-alpha = 0.4 # replace with the @bg-glass opacity of your old waybar config
+text = "#cdd6f4"
+
+# Bar panels (Wi-Fi, calendar, audio...): they cannot be blurred, so keep them fairly opaque
+[popups]
+background = "#1a1b1e"
+background-alpha = 0.4
+text = "#eaeaef"
+border = "#ffffff"
+border-alpha = 0.33
+border-width = 1
+
+[tooltip]
+background = "#1a1b1e"
+background-alpha = 0.35
+text = "#eaeaef"
+border = "#ffffff"
+border-alpha = 0.33
+border-width = 1
+
+# Blurred by the layer rule below: alpha must stay above its ignore_alpha (0.2)
+[notifications]
+background = "#1a1b1e"
+background-alpha = 0.55
+text = "#eaeaef"
+border = "#ffffff"
+border-alpha = 0.5
+border-width = 1
+
+# Blurred by the layer rule below: card above ignore_alpha (0.3), scrim below it
+[menu]
+background = "#1a1b1e"
+background-alpha = 0.45
+text = "#cdd6f4"
+border = "#ffffff"
+border-alpha = 0.5
+border-width = 1
+scrim = "#101114"
+scrim-alpha = 0.15
+selected-background = "#f0f0f0"
+selected-background-alpha = 0.2
+selected-text = "#cdd6f4"
+
+[lock]
+background = "#181824"
+background-alpha = 0.8
+text = "#cdd6f4"
+border = "#cdd6f4"
+border-active = "#449dab"
