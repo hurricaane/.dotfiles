@@ -2,6 +2,7 @@
 set -U fish_greeting
 set -Ux EDITOR nvim
 set -Ux SUDO_EDITOR nvim
+set -Ux VISUAL "$HOME/.local/share/bob/nvim-bin/nvim"
 set -Ux ZK_NOTEBOOK_DIR "$HOME/Documents/Notes"
 set -Ux STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
 set -Ux PYENV_ROOT $HOME/.pyenv
@@ -81,25 +82,17 @@ if status is-interactive
     # ── Auto-start: attach to existing tmux session or launch sesh via tv ──────
     if type -q tmux
         if not set -q TMUX; and not set -q SSH_TTY
-            set existing_sessions (tmux list-sessions 2>/dev/null)
+            set existing_sessions (tmux list-sessions -F '#{session_name}' 2>/dev/null)
             if test -n "$existing_sessions"
-                set first_session (echo $existing_sessions | head -n 1 | awk -F: '{print $1}')
+                set first_session $existing_sessions[1]
                 echo (set_color cyan)"🔗 Attaching to existing tmux session: $first_session"(set_color normal)
                 sleep 0.3
-                tmux attach -t $first_session
+                exec tmux attach -t $first_session
             else
                 echo (set_color yellow)"⚡ No tmux sessions found — launching sesh..."(set_color normal)
                 echo ""
-                set session (tv sesh)
-                if test -z "$session"
-                    echo (set_color red)"No session selected — staying in shell"(set_color normal)
-                else
-                    echo (set_color cyan)"🔗 Connecting to session: $session"(set_color normal)
-                    sleep 0.2
-                    sesh connect "$session"
-                end
+                tv sesh
             end
-            exit
         end
     end
 
@@ -125,3 +118,10 @@ function sesh-sessions
     end
     sesh connect "$session"
 end
+
+# pnpm
+set -gx PNPM_HOME "/home/yannick/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
