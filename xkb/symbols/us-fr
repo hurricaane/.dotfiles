@@ -1,0 +1,44 @@
+// QWERTY US + caractères français sur AltGr (Alt droit).
+// Les touches normales restent celles du US basic : ' et " ne sont PAS mortes.
+// Récapitulatif (touche : normal / Shift / AltGr / AltGr+Shift)
+//
+//   e   e  E   AltGr é    AltGr+Shift É
+//   w   w  W   AltGr è    AltGr+Shift È
+//   a   a  A   AltGr à    AltGr+Shift À
+//   u   u  U   AltGr ù    AltGr+Shift Ù
+//   c   c  C   AltGr ç    AltGr+Shift Ç
+//   o   o  O   AltGr œ    AltGr+Shift Œ
+//   [   [  {   AltGr «    (rien)
+//   ]   ]  }   AltGr »    (rien)
+//   '   '  "   AltGr ’    AltGr+Shift ¨ (morte : puis e/i/u -> ë ï ü)
+//   2   2  @   AltGr ²    (rien)
+//   3   3  #   AltGr ³    (rien)
+//   5   5  %   AltGr €    (rien)
+//   6   6  ^   AltGr ^ (morte : puis a/e/i/o/u -> â ê î ô û)    (rien)
+//   .   .  >   AltGr …    (rien)
+//
+// Toutes les autres touches n'ont rien sur AltGr.
+
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "us(basic)"
+    include "level3(ralt_switch)"
+    name[Group1] = "English (US, French AltGr)";
+
+    //                 base        Shift         AltGr                 AltGr+Shift
+    key <AD03> { [ e,            E,            eacute,               Eacute   ] };
+    key <AD02> { [ w,            W,            egrave,               Egrave   ] };
+    key <AC01> { [ a,            A,            agrave,               Agrave   ] };
+    key <AD07> { [ u,            U,            ugrave,               Ugrave   ] };
+    key <AB03> { [ c,            C,            ccedilla,             Ccedilla ] };
+    key <AD09> { [ o,            O,            oe,                   OE       ] };
+
+    key <AD11> { [ bracketleft,  braceleft,    guillemotleft,        NoSymbol ] };
+    key <AD12> { [ bracketright, braceright,   guillemotright,       NoSymbol ] };
+    key <AC11> { [ apostrophe,   quotedbl,     rightsinglequotemark, dead_diaeresis ] };
+    key <AE02> { [ 2,            at,           twosuperior,          NoSymbol ] };
+    key <AE03> { [ 3,            numbersign,   threesuperior,        NoSymbol ] };
+    key <AE05> { [ 5,            percent,      EuroSign,             NoSymbol ] };
+    key <AE06> { [ 6,            asciicircum,  dead_circumflex,      NoSymbol ] };
+    key <AB09> { [ period,       greater,      ellipsis,             NoSymbol ] };
+};
