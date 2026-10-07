@@ -52,3 +52,5 @@ o.bind("SUPER + SHIFT + T", "Toggle touchpad", "~/dotfiles/hypr/scripts/toggle-t
 o.bind("SUPER + H", nil, "voxtype record toggle")
 -- Emojis (works with Logitech keyboard)
 o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
+-- Switch keyboard layout
+o.bind("SUPER + SHIFT + K", "Switch keyboard layout", "hyprctl switchxkblayout all next")

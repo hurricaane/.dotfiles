@@ -58,8 +58,8 @@
 
 hl.config({
 	input = {
-		kb_layout = "us",
-		kb_variant = "intl",
+		kb_layout = "us-fr,us",
+		kb_variant = ",intl",
 		kb_options = "ctrl:nocaps",
 
 		repeat_rate = 40,
