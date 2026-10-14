@@ -11,6 +11,10 @@ vim.keymap.del("n", "<C-Left>")
 vim.keymap.del("n", "<C-Right>")
 vim.keymap.del("n", "<leader>gd")
 vim.keymap.del("n", "L")
+vim.keymap.del("n", "<leader>gi")
+vim.keymap.del("n", "<leader>gI")
+vim.keymap.del("n", "<leader>gp")
+vim.keymap.del("n", "<leader>gP")
 
 -- Better up/down + jumplist
 map({ "n", "x" }, "j", function()
@@ -62,3 +66,7 @@ map("n", "<leader><tab>k", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Normal mode in terminal
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal mode" })
+
+-- Atlas keys
+map("n", "<leader>gi", "<cmd>Atlas issues gitlab<CR>", { desc = "Open Gitlab issues" })
+map("n", "<leader>gp", "<cmd>Atlas pulls gitlab<CR>", { desc = "Open Gitlab pull requests" })
