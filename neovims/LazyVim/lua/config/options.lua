@@ -13,7 +13,7 @@ vim.opt.sessionoptions =
   { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds", "localoptions" }
 
 -- set default language to english
-vim.opt.spelllang = { "en", "fr_fr" }
+vim.opt.spelllang = { "en", "fr" }
 
 -- eslint
 vim.g.lazyvim_eslint_auto_format = true
