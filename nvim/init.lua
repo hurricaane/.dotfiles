@@ -71,6 +71,17 @@ Config.now(function()
       transparent = true,
       solid = false,
     },
+    -- Bump subtle elements: default surface0/1 shades vanish on a transparent background
+    custom_highlights = function(colors)
+      return {
+        SnacksIndent = { fg = colors.surface2 },
+        LineNr       = { fg = colors.overlay0 },
+        Whitespace   = { fg = colors.surface2 },
+        WinSeparator = { fg = colors.surface2 },
+        -- Catppuccin style guide: selection = overlay2 at 20-30% opacity
+        Visual       = { bg = require("catppuccin.utils.colors").darken(colors.overlay2, 0.25, colors.base), bold = true },
+      }
+    end,
     integrations = {
       blink_cmp = true,
       gitsigns = {
