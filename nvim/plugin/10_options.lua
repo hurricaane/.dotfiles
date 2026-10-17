@@ -127,7 +127,9 @@ end
 Config.new_autocmd({ "FocusGained", "TermClose", "TermLeave" }, "*", check_reload_file, "Reload file if focus changed")
 
 -- Highlight text on yank
-local hl_yank = function() (vim.hl or vim.highlight).on_yank() end
+local hl_yank = function()
+  if vim.hl and vim.hl.hl_op then vim.hl.hl_op() else (vim.hl or vim.highlight).on_yank() end
+end
 Config.new_autocmd("TextYankPost", "*", hl_yank, "Highlight text on yank")
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist

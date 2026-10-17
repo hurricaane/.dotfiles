@@ -19,6 +19,26 @@
           "id": "omarchy.weather"
         },
         {
+          "id": "quickshell.spotify",
+          "deviceName": "Omarchy Spotify",
+          "idleShutdownMinutes": 15,
+          "showMiniPlayer": "On",
+          "showVinylRecord": "On",
+          "shortcutPlayer": "Omarchy Music app",
+          "shortcutHints": "Off",
+          "showLyrics": "On",
+          "showArtwork": "On",
+          "showTrackTitle": "On",
+          "showArtistName": "Off",
+          "showPausedTrack": "On",
+          "scrollBarText": "Off",
+          "scrollSpeed": "1",
+          "maxBarTextWidth": "240",
+          "fixedBarWidth": "Off",
+          "audioQuality": "320 kbps",
+          "clientId": ""
+        },
+        {
           "id": "omarchy.system-update"
         }
       ],

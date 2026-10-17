@@ -8,16 +8,16 @@ text = "#cdd6f4"
 
 # Bar panels (Wi-Fi, calendar, audio...): they cannot be blurred, so keep them fairly opaque
 [popups]
-background = "#1a1b1e"
-background-alpha = 0.4
+background = "#121214"
+background-alpha = 0.75
 text = "#eaeaef"
 border = "#ffffff"
 border-alpha = 0.33
 border-width = 1
 
 [tooltip]
-background = "#1a1b1e"
-background-alpha = 0.35
+background = "#121214"
+background-alpha = 0.75
 text = "#eaeaef"
 border = "#ffffff"
 border-alpha = 0.33
@@ -25,8 +25,8 @@ border-width = 1
 
 # Blurred by the layer rule below: alpha must stay above its ignore_alpha (0.2)
 [notifications]
-background = "#1a1b1e"
-background-alpha = 0.55
+background = "#121214"
+background-alpha = 0.75
 text = "#eaeaef"
 border = "#ffffff"
 border-alpha = 0.5
@@ -34,14 +34,14 @@ border-width = 1
 
 # Blurred by the layer rule below: card above ignore_alpha (0.3), scrim below it
 [menu]
-background = "#1a1b1e"
-background-alpha = 0.45
+background = "#121214"
+background-alpha = 0.7
 text = "#cdd6f4"
 border = "#ffffff"
 border-alpha = 0.5
 border-width = 1
 scrim = "#101114"
-scrim-alpha = 0.15
+scrim-alpha = 0.25
 selected-background = "#f0f0f0"
 selected-background-alpha = 0.2
 selected-text = "#cdd6f4"

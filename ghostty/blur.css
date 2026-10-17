@@ -1,0 +1,5 @@
+/* GTK 4.24+ asks the compositor for blur via ext-background-effect, so
+   Hyprland only blurs where the app requests it. Request it for the window. */
+window {
+  backdrop-filter: blur(10px);
+}

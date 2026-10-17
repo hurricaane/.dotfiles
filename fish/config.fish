@@ -78,6 +78,8 @@ if status is-interactive
 
     # ── Theme ──────────────────────────────────────────────────────────────────
     fish_config theme choose catppuccin-mocha --color-theme=dark
+    # Brighter ghost text so it stays readable over transparent backgrounds
+    set -g fish_color_autosuggestion 9399b2
 
     # ── Auto-start: attach to existing tmux session or launch sesh via tv ──────
     if type -q tmux

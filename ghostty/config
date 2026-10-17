@@ -8,6 +8,8 @@ font-size = 10
 # TODO: Check if this is supported on linux
 adjust-cell-height = 30%
 background-opacity = 0.98
+# Faint (dim) text defaults to 50% opacity, unreadable on the glass theme
+faint-opacity = 0.8
 cursor-style = bar
 mouse-hide-while-typing = true
 window-decoration = false
@@ -15,6 +17,8 @@ window-padding-x = 14
 window-padding-y = 14
 resize-overlay = never
 gtk-toolbar-style = flat
+# Restore Hyprland blur (needed since GTK 4.24)
+gtk-custom-css = blur.css
 
 # Terminal settings
 # shell-integration-features = cursor,sudo,no-title

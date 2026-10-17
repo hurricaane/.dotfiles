@@ -79,6 +79,7 @@ hl.layer_rule({ match = { namespace = "omarchy-bar" }, blur = true, ignore_alpha
 hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel" }, blur = true, ignore_alpha = 0.2 })
 hl.layer_rule({ match = { namespace = "omarchy-menu" }, blur = true, ignore_alpha = 0.3 })
 hl.layer_rule({ match = { namespace = "omarchy-notifications" }, blur = true, ignore_alpha = 0.2 })
+hl.layer_rule({ match = { namespace = "omarchy-clipboard" }, blur = true, ignore_alpha = 0.3 })
 
 -- Animation curves (catppuccin-glass)
 hl.curve("water", { type = "bezier", points = { { 0.22, 0.9 }, { 0.36, 1.0 } } })
