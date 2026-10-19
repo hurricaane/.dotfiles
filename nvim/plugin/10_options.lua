@@ -85,6 +85,9 @@ vim.o.tabstop       = 2             -- Show tab as this number of spaces
 vim.o.virtualedit   = "block"       -- Allow going past end of line in blockwise mode
 vim.o.iskeyword = "@,48-57,_,192-255,-" -- Treat dash as `word` textobject part
 
+-- Over SSH there is no local clipboard tool: copy through the terminal with OSC 52
+if Config.is_ssh then vim.g.clipboard = "osc52" end
+
 -- Pattern for a start of numbered list (used in `gw`). This reads as
 -- "Start of list item is: at least one special character (digit, -, +, *)
 -- possibly followed by punctuation (. or `)`) followed by at least one space".
@@ -128,6 +131,7 @@ Config.new_autocmd({ "FocusGained", "TermClose", "TermLeave" }, "*", check_reloa
 
 -- Highlight text on yank
 local hl_yank = function()
+  ---@diagnostic disable-next-line: deprecated
   if vim.hl and vim.hl.hl_op then vim.hl.hl_op() else (vim.hl or vim.highlight).on_yank() end
 end
 Config.new_autocmd("TextYankPost", "*", hl_yank, "Highlight text on yank")
@@ -192,4 +196,82 @@ local ft_configs = {
 for _, cfg in ipairs(ft_configs) do
   Config.new_autocmd("FileType", cfg.ft, cfg.cb, cfg.desc)
 end
+
+-- Packages: check for updates on startup (shown in lualine)
+local check_pack_updates = function() require("config.pack").check() end
+Config.new_autocmd("VimEnter", "*", check_pack_updates, "Check for package updates")
+
+-- Packages: refresh the update count once after a bulk update/delete
+local pack_refresh_scheduled = false
+local refresh_pack_updates = function()
+  if pack_refresh_scheduled then return end
+  pack_refresh_scheduled = true
+  vim.schedule(function()
+    pack_refresh_scheduled = false
+    require("config.pack").count()
+  end)
+end
+Config.new_autocmd("PackChanged", "*", refresh_pack_updates, "Refresh package update count")
+
+-- Remote: quit the headless server started by `:RemoteStart` once its last UI leaves
+-- (`:qa` fails if there are unsaved changes, so the server stays alive in that case)
+if vim.env.NVIM_APPNAME == "nvim-remote" then
+  local quit_without_ui = function()
+    vim.defer_fn(function() if #vim.api.nvim_list_uis() == 0 then pcall(vim.cmd.qa) end end, 100)
+  end
+  Config.new_autocmd("UILeave", "*", quit_without_ui, "Quit remote server without UI")
+end
+
+-- User commands ==============================================================
+-- Packages (see `lua/config/pack.lua`)
+local pack_update = function(opts) vim.pack.update(nil, { force = opts.bang }) end
+vim.api.nvim_create_user_command("PackUpdate", pack_update, { bang = true, desc = "Update packages (! to skip confirmation)" })
+
+local pack_check = function()
+  require("config.pack").check(function(n)
+    vim.notify(n == 0 and "Packages are up to date" or n .. " package(s) can be updated")
+  end)
+end
+vim.api.nvim_create_user_command("PackCheck", pack_check, { desc = "Check for package updates" })
+
+local pack_delete = function(opts)
+  local pack = require("config.pack")
+  if #opts.fargs > 0 then return pack.delete(opts.fargs) end
+  vim.ui.select(pack.names(), { prompt = "Delete package" }, function(name)
+    if name then pack.delete({ name }) end
+  end)
+end
+local pack_complete = function(arg_lead)
+  return vim.tbl_filter(function(n) return vim.startswith(n, arg_lead) end, require("config.pack").names())
+end
+vim.api.nvim_create_user_command("PackDelete", pack_delete, { nargs = "*", complete = pack_complete, desc = "Delete packages" })
+
+local pack_clean = function()
+  local pack = require("config.pack")
+  local names = pack.unused()
+  if #names == 0 then return vim.notify("No unused packages") end
+  pack.delete(names)
+end
+vim.api.nvim_create_user_command("PackClean", pack_clean, { desc = "Delete packages not in the config anymore" })
+
+-- Remote (see `lua/config/remote.lua`)
+local remote_start = function(opts)
+  local remote = require("config.remote")
+  local host, path = opts.fargs[1], opts.fargs[2]
+  if host then return remote.start(host, path, opts.bang) end
+  vim.ui.select(remote.hosts(), { prompt = "SSH host" }, function(choice)
+    if choice then remote.start(choice, nil, opts.bang) end
+  end)
+end
+local remote_complete = function(arg_lead, line)
+  -- Only complete the first argument (host)
+  if #vim.split(line, "%s+") > 2 then return {} end
+  return vim.tbl_filter(function(h) return vim.startswith(h, arg_lead) end, require("config.remote").hosts())
+end
+vim.api.nvim_create_user_command("RemoteStart", remote_start, {
+  nargs = "*",
+  bang = true,
+  complete = remote_complete,
+  desc = "Open this config on an SSH host: [host] [path] (! to update Neovim nightly there)",
+})
 -- stylua: ignore end

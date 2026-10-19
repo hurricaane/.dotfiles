@@ -31,12 +31,6 @@ end
 map("n", "<C-d>", function() better_movement("<C-d>") end, { desc = "Scroll half a page down", remap = false, silent = true })
 map("n", "<C-u>", function() better_movement("<C-u>") end, { desc = "Scroll half a page up",   remap = false, silent = true })
 
--- Change windows with <Ctrl-hjkl>
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window",  remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
-
 -- Move with <M-HJKL> in insert mode
 map("i", "<M-H>", "<Left>",  { desc = "Left",  remap = true })
 map("i", "<M-J>", "<Down>",  { desc = "Down",  remap = true })
@@ -78,7 +72,9 @@ Config.leader_groups = {
   { "<Leader>g",  group = "Git",          icon = " " },
   { "<Leader>gh", group = "Hunks",        icon = " " },
   { "<Leader>l",  group = "Language",     icon = " " },
+  { "<Leader>p",  group = "Packages",     icon = "󰏗 " },
   { "<Leader>s",  group = "Session",      icon = " " },
+  { "<Leader>w",  group = "Windows",      icon = "󱇛 ", proxy = "<C-w>" },
 }
 
 -- Buffers
@@ -92,6 +88,7 @@ map_leader("bo", function() Snacks.bufdelete.other() end,                       
 local edit_plugin_file = function(filename)
   return string.format("<Cmd>edit %s/plugin/%s<CR>", vim.fn.stdpath("config"), filename)
 end
+---@diagnostic disable-next-line: undefined-global
 local explore_at_file = function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end
 local explore_quickfix = function()
   vim.cmd(vim.fn.getqflist({ winid = true }).winid ~= 0 and "cclose" or "copen")
@@ -152,9 +149,21 @@ map_leader("lS", function() Snacks.picker.lsp_references() end,                 
 map_leader("lt", function() Snacks.picker.lsp_type_definitions() end,                                          { desc = "Type definition" })
 xmap_leader("lf", function() require("conform").format() end,                                                  { desc = "Format selection" })
 
+-- Packages
+map_leader("pc", "<Cmd>PackCheck<CR>",   { desc = "Check for updates" })
+map_leader("pC", "<Cmd>PackClean<CR>",   { desc = "Clean unused packages" })
+map_leader("pd", "<Cmd>PackDelete<CR>",  { desc = "Delete package" })
+map_leader("pu", "<Cmd>PackUpdate<CR>",  { desc = "Update packages" })
+map_leader("pU", "<Cmd>PackUpdate!<CR>", { desc = "Update packages (no confirm)" })
+
 -- Session (Persistence)
 map_leader("ss", function() require("persistence").load() end,                { desc = "Restore session" })
 map_leader("sS", function() require("persistence").select() end,              { desc = "Select session" })
 map_leader("sl", function() require("persistence").load({ last = true }) end, { desc = "Restore last session" })
 map_leader("sd", function() require("persistence").stop() end,                { desc = "Stop persistence" })
+
+-- Windows: `<Leader>w` acts as `<C-w>` (e.g. `<Leader>wh`, `<Leader>wv`), which frees
+-- <C-hjkl> for tmux. `remap` lets which-key show the `<C-w>` popup
+map_leader("w",  "<C-w>",                          { desc = "Windows", remap = true })
+map_leader("wm", function() Snacks.zen.zoom() end, { desc = "Toggle zoom" })
 -- stylua: ignore end

@@ -59,6 +59,10 @@ Config.on_packchanged = function(plugin_name, kinds, callback, desc)
   Config.new_autocmd("PackChanged", "*", f, desc)
 end
 
+-- Whether Neovim runs on another machine through SSH (like with `:RemoteStart`).
+-- Use it to skip what only makes sense locally
+Config.is_ssh = vim.env.SSH_CONNECTION ~= nil
+
 -- Colorscheme ================================================================
 Config.now(function()
   vim.pack.add({

@@ -559,6 +559,7 @@ now(function()
 			completion = {
 				list = { selection = { preselect = false } },
 				menu = {
+					---@diagnostic disable-next-line: unused-local
 					auto_show = function(ctx)
 						return vim.fn.getcmdtype() == ":"
 					end,
@@ -625,14 +626,24 @@ now(function()
 			lualine_x = {
 				-- stylua: ignore start
 				{
+					---@diagnostic disable-next-line: undefined-field
 					function() return require("noice").api.status.command.get() end,
+					---@diagnostic disable-next-line: undefined-field
 					cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
 					color = function() return { fg = Snacks.util.color("Statement") } end,
 				},
 				{
+					---@diagnostic disable-next-line: undefined-field
 					function() return require("noice").api.status.mode.get() end,
+					---@diagnostic disable-next-line: undefined-field
 					cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
 					color = function() return { fg = Snacks.util.color("Constant") } end,
+				},
+				{
+					function() return Config.icons.kinds.Package .. require("config.pack").updates end,
+					cond = function() return require("config.pack").updates > 0 end,
+					color = function() return { fg = Snacks.util.color("Special") } end,
+					on_click = function() vim.cmd("PackUpdate") end,
 				},
 				-- stylua: ignore end
 				{
@@ -758,6 +769,7 @@ end)
 -- Inc Rename =================================================================
 later(function()
 	add({ "https://github.com/smjonas/inc-rename.nvim" })
+	---@diagnostic disable-next-line: missing-parameter
 	require("inc_rename").setup()
 end)
 
@@ -836,6 +848,7 @@ later(function()
 		preview = {
 			icon_provider = "mini",
 		},
+		---@diagnostic disable-next-line: missing-fields
 		markdown_inline = {
 			tags = {
 				default = {
@@ -848,13 +861,17 @@ later(function()
 				enable = true,
 			},
 		},
+		---@diagnostic disable-next-line: missing-fields
 		markdown = {
+			---@diagnostic disable-next-line: missing-fields
 			list_items = {
 				shift_width = function(buffer, item)
 					local parent_indent = math.max(1, item.indent - vim.bo[buffer].shiftwidth)
 					return item.indent * (1 / (parent_indent * 2))
 				end,
+				---@diagnostic disable-next-line: missing-fields
 				marker_minus = {
+					---@diagnostic disable-next-line: assign-type-mismatch
 					add_padding = function(_, item)
 						return item.indent > 1
 					end,
@@ -867,9 +884,33 @@ end)
 -- Helpview ===================================================================
 now(function()
 	add({ "https://github.com/OXY2DEV/helpview.nvim" })
+	---@diagnostic disable-next-line: missing-fields
 	require("helpview").setup({
 		preview = {
 			icon_provider = "mini",
 		},
 	})
 end)
+
+-- Ghost Text =================================================================
+-- The browser extension talks to the local machine: useless over SSH.
+-- Loaded with `now` because the plugin starts its server on `UIEnter`
+if not Config.is_ssh then
+	now(function()
+		add({ "https://github.com/subnut/nvim-ghost.nvim" })
+		-- Filetype per website (pattern is the domain). Not `Config.new_autocmd`: the
+		-- plugin only triggers autocommands of its own `nvim_ghost_user_autocommands` group
+		vim.api.nvim_create_autocmd("User", {
+			group = vim.api.nvim_create_augroup("nvim_ghost_user_autocommands", { clear = false }),
+			pattern = { "*github.com", "*reddit.com" },
+			command = "setfiletype markdown",
+			desc = "Use markdown for GhostText buffers",
+		})
+	end)
+	-- The plugin exports $NVIM_LISTEN_ADDRESS for its server, but every child process
+	-- inherits it, including the new instance started by `:restart` ("ch N was closed by
+	-- the peer"). Its server only reads it on start (`UIEnter`), so drop it afterwards
+	later(function()
+		vim.env.NVIM_LISTEN_ADDRESS = nil
+	end)
+end
