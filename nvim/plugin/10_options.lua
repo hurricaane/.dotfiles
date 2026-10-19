@@ -63,6 +63,24 @@ vim.o.cursorlineopt  = "screenline,number" -- Show cursor line per screen line
 vim.o.fillchars = "eob: ,fold:╌"
 vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:> "
 
+-- Tabline: " <icon> <name> " per tab (clickable), without the close button
+Config.tabline = function()
+  local s = ""
+  for i, tab in ipairs(vim.api.nvim_list_tabpages()) do
+    local win = vim.api.nvim_tabpage_get_win(tab)
+    local buf = vim.api.nvim_win_get_buf(win)
+    local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
+    local icon = vim.b[buf].ghosttext and "󰊠" or nil
+    if name == "" then name, icon = "[No Name]", icon or "" end
+    if icon == nil and _G.MiniIcons then icon = MiniIcons.get("file", name) end
+    local modified = vim.bo[buf].modified and vim.bo[buf].buftype == "" and " ●" or ""
+    local hl = tab == vim.api.nvim_get_current_tabpage() and "%#TabLineSel#" or "%#TabLine#"
+    s = s .. hl .. "%" .. i .. "T " .. (icon or "") .. " " .. name .. modified .. " "
+  end
+  return s .. "%#TabLineFill#%T"
+end
+vim.o.tabline = "%!v:lua.Config.tabline()"
+
 -- Folds (see `:h fold-commands`, `:h zM`, `:h zR`, `:h zA`, `:h zj`)
 vim.o.foldlevel   = 10       -- Fold nothing by default; set to 0 or 1 to fold
 vim.o.foldmethod  = "indent" -- Fold based on indent level

@@ -958,13 +958,40 @@ end)
 if not Config.is_ssh then
 	now(function()
 		add({ "https://github.com/subnut/nvim-ghost.nvim" })
-		-- Filetype per website (pattern is the domain). Not `Config.new_autocmd`: the
-		-- plugin only triggers autocommands of its own `nvim_ghost_user_autocommands` group
+		-- Filetype per website (Lua pattern matched against the domain), `ghosttext`
+		-- otherwise (see 'after/ftplugin/ghosttext.lua')
+		local filetypes = {
+			["github%.com$"] = "markdown",
+			["reddit%.com$"] = "markdown",
+		}
+		-- Not `Config.new_autocmd`: the plugin only triggers autocommands of its own
+		-- `nvim_ghost_user_autocommands` group, with the domain as pattern. It runs
+		-- in the GhostText buffer once the first text arrives from the browser
 		vim.api.nvim_create_autocmd("User", {
 			group = vim.api.nvim_create_augroup("nvim_ghost_user_autocommands", { clear = false }),
-			pattern = { "*github.com", "*reddit.com" },
-			command = "setfiletype markdown",
-			desc = "Use markdown for GhostText buffers",
+			pattern = "*",
+			callback = function(ev)
+				-- `User` autocommands fire on every `:doautocmd User`, whatever the group:
+				-- only handle the plugin's scratch buffer with a domain as event name
+				local is_ghost_buf = vim.bo.buftype == "nofile" and vim.bo.bufhidden == "wipe"
+				if not (is_ghost_buf and ev.match:find("^[%w%-%.]+%.%a+$")) then return end
+				local filetype = "ghosttext"
+				for pattern, ft in pairs(filetypes) do
+					if ev.match:find(pattern) then filetype = ft end
+				end
+				vim.bo.filetype = filetype
+				vim.b.ghosttext = ev.match
+				-- Name the buffer (shown in the tabline). Names must be unique
+				if vim.api.nvim_buf_get_name(0) == "" then
+					local name, i = "GhostText", 1
+					while vim.fn.bufexists(name) == 1 do
+						i = i + 1
+						name = "GhostText " .. i
+					end
+					vim.api.nvim_buf_set_name(0, name)
+				end
+			end,
+			desc = "Set filetype and name of GhostText buffers",
 		})
 	end)
 	-- The plugin exports $NVIM_LISTEN_ADDRESS for its server, but every child process
