@@ -13,5 +13,5 @@ vim.b.minisurround_config = {
 		},
 	},
 }
--- Automatically wrap text at column 80
-vim.api.nvim_set_option_value("textwidth", 80, {})
+-- Wrap long lines visually (paragraphs are written on a single line)
+vim.opt_local.wrap = true

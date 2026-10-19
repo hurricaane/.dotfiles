@@ -214,16 +214,31 @@ now_if_args(function()
 			[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
 		},
 	})
-	vim.treesitter.language.register("bash", "kitty")
-	local filetypes = {}
-	for _, lang in ipairs(languages) do
-		for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-			table.insert(filetypes, ft)
+	-- Helm charts: templates and values files next to a `Chart.yaml` (used by `helm_ls`)
+	local in_chart = function(ft)
+		return function(path)
+			if vim.fs.root(path, "Chart.yaml") then
+				return ft
+			end
 		end
 	end
-  -- stylua: ignore
-  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-	Config.new_autocmd("FileType", filetypes, ts_start, "Start tree-sitter")
+	vim.filetype.add({
+		pattern = {
+			[".*/templates/.*%.ya?ml"] = in_chart("helm"),
+			[".*/templates/.*%.tpl"] = in_chart("helm"),
+			[".*/values.*%.ya?ml"] = in_chart("yaml.helm-values"),
+		},
+	})
+	vim.treesitter.language.register("bash", "kitty")
+	-- Resolve the language from the filetype, so compound filetypes like
+	-- `yaml.ansible` or `yaml.ghaction` also start the `yaml` parser
+	local ts_start = function(ev)
+		local lang = vim.treesitter.language.get_lang(ev.match)
+		if vim.tbl_contains(languages, lang) then
+			vim.treesitter.start(ev.buf, lang)
+		end
+	end
+	Config.new_autocmd("FileType", nil, ts_start, "Start tree-sitter")
 	-- Treesitter textobjects move
 	require("nvim-treesitter-textobjects").setup({
 		move = {
@@ -248,9 +263,21 @@ now_if_args(function()
 	add({ "https://github.com/neovim/nvim-lspconfig" })
 end)
 
--- Schemastore for JSON and YAML files
+-- Schemas for JSON and YAML files: SchemaStore catalog + schema-companion, which
+-- matches Kubernetes manifests (and CRDs) by their `apiVersion`/`kind`.
+-- Loaded with `now`: `after/lsp/yamlls.lua` and `after/lsp/helm_ls.lua` require it
 now(function()
-	add({ "https://github.com/b0o/SchemaStore.nvim" })
+	add({
+		"https://github.com/b0o/SchemaStore.nvim",
+		"https://github.com/nvim-lua/plenary.nvim",
+		"https://github.com/cenk1cenk2/schema-companion.nvim",
+	})
+	require("schema-companion").setup()
+end)
+
+-- Ansible: detect playbooks, roles and group/host vars as `yaml.ansible` (for `ansiblels`)
+now_if_args(function()
+	add({ "https://github.com/mfussenegger/nvim-ansible" })
 end)
 
 -- Lazydev
@@ -279,7 +306,6 @@ now(function()
 			"ansible-language-server",
 			"bash-language-server",
 			"clangd",
-			"copilot-language-server",
 			"docker-compose-language-service",
 			"dockerfile-language-server",
 			"emmet-language-server",
@@ -304,6 +330,7 @@ now(function()
 			"yaml-language-server",
 			-- Linters
 			"actionlint",
+			"ansible-lint", -- Used by ansiblels, bundles ansible-core
 			"cmakelang",
 			"cmakelint",
 			"golangci-lint",
@@ -312,7 +339,6 @@ now(function()
 			"ruff",
 			"shellcheck",
 			"sqlfluff",
-			"tflint",
 			-- Formatters
 			"gofumpt",
 			"goimports",
@@ -376,7 +402,9 @@ now_if_args(function()
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = buffer,
 			callback = function()
-				vim.cmd("EslintFixAll")
+				if Config.autoformat_enabled(buffer) then
+					vim.cmd("EslintFixAll")
+				end
 			end,
 			desc = "ESLint fix all on save",
 		})
@@ -395,7 +423,7 @@ later(function()
 		},
 		format_on_save = function(bufnr)
 			local ignore_filetypes = {}
-			if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+			if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) or not Config.autoformat_enabled(bufnr) then
 				return
 			end
 			return { timeout_ms = 3000, lsp_format = "fallback" }
@@ -442,6 +470,15 @@ later(function()
 	local lint = require("lint")
 
 	lint.linters["markdownlint-cli2"].args = { "--config", "~/.markdownlint.yaml", "--" }
+
+	-- golangci-lint: always add the `gosec` security linter on top of the project's
+	-- `.golangci.yml`. A function, so the linter (which runs `golangci-lint version`
+	-- to build its arguments) is only resolved on the first Go lint
+	lint.linters.golangcilint = function()
+		local linter = vim.deepcopy(require("lint.linters.golangcilint"))
+		table.insert(linter.args, 2, "--enable=gosec")
+		return linter
+	end
 
   -- stylua: ignore
 	lint.linters_by_ft = {
@@ -837,6 +874,29 @@ later(function()
 	require("screenkey").setup({
 		win_opts = {
 			border = "rounded",
+		},
+	})
+end)
+
+-- Smear Cursor ===============================================================
+later(function()
+	add({ "https://github.com/sphamba/smear-cursor.nvim" })
+	require("smear_cursor").setup({
+		-- Ghostty draws legacy computing symbols itself: smoother smear on a transparent background
+		legacy_computing_symbols_support = true,
+		transparent_bg_fallback_color = "#1e1e2e", -- Catppuccin Mocha base
+	})
+end)
+
+-- Cloak ======================================================================
+-- Hide secret values while sharing the screen (`:CloakToggle`, `:CloakPreviewLine`).
+-- Loaded with `now` so a file opened at startup is cloaked right away
+now(function()
+	add({ "https://github.com/laytan/cloak.nvim" })
+	require("cloak").setup({
+		cloak_length = 8, -- Don't reveal the length of the secrets
+		patterns = {
+			{ file_pattern = { ".env*", "*.env" }, cloak_pattern = "(=).+", replace = "%1" },
 		},
 	})
 end)

@@ -59,6 +59,22 @@ Config.on_packchanged = function(plugin_name, kinds, callback, desc)
   Config.new_autocmd("PackChanged", "*", f, desc)
 end
 
+-- Format on save, toggled with `<Leader>uf` (global) / `<Leader>uF` (buffer) like
+-- LazyVim: `vim.b.autoformat` wins over `vim.g.autoformat`, enabled by default
+Config.autoformat_enabled = function(buf)
+  buf = (buf == nil or buf == 0) and vim.api.nvim_get_current_buf() or buf
+  if vim.b[buf].autoformat ~= nil then return vim.b[buf].autoformat end
+  return vim.g.autoformat == nil or vim.g.autoformat
+end
+Config.autoformat_set = function(enable, buffer_only)
+  if buffer_only then
+    vim.b.autoformat = enable
+  else
+    vim.g.autoformat = enable
+    vim.b.autoformat = nil
+  end
+end
+
 -- Whether Neovim runs on another machine through SSH (like with `:RemoteStart`).
 -- Use it to skip what only makes sense locally
 Config.is_ssh = vim.env.SSH_CONNECTION ~= nil

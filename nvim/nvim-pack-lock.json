@@ -17,6 +17,10 @@
       "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "cloak.nvim": {
+      "rev": "648aca6d33ec011dc3166e7af3b38820d01a71e4",
+      "src": "https://github.com/laytan/cloak.nvim"
+    },
     "codediff.nvim": {
       "rev": "09d9ebef2cc5a5c04db7a349cd6c61bdf84ecc8e",
       "src": "https://github.com/esmuellert/codediff.nvim"
@@ -81,6 +85,10 @@
       "rev": "10fc361835c856ba4233ef5ea135b919bf3dce97",
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
+    "nvim-ansible": {
+      "rev": "c7f595d568b588942d4d0c37b5cd6cae3764a148",
+      "src": "https://github.com/mfussenegger/nvim-ansible"
+    },
     "nvim-ghost.nvim": {
       "rev": "bdba2a8ad0eec84379d65e7aa9b76a17b11b653a",
       "src": "https://github.com/subnut/nvim-ghost.nvim"
@@ -113,13 +121,25 @@
       "rev": "b20b2a7887bd39c1a356980b45e03250f3dce49c",
       "src": "https://github.com/folke/persistence.nvim"
     },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
     "rainbow-delimiters.nvim": {
       "rev": "b55decda611755171bc5bf8f4c99603a75de4b41",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim"
     },
+    "schema-companion.nvim": {
+      "rev": "b55ca0d99036950b71344d179af0499d8cfa7719",
+      "src": "https://github.com/cenk1cenk2/schema-companion.nvim"
+    },
     "screenkey.nvim": {
       "rev": "740e238d1f143cb5f3a9d932f9c5142d3581b986",
       "src": "https://github.com/NStefan002/screenkey.nvim"
+    },
+    "smear-cursor.nvim": {
+      "rev": "f6cb57c342268177f719acc3968b9d8de3ecc969",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
