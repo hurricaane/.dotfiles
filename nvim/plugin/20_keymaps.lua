@@ -13,23 +13,18 @@ end
 -- General mappings ===========================================================
 -- Better j and k + add movement to the jumplist
 local better_jk = function(key)
-  if vim.v.count > 0 then
-    return "m'" .. vim.v.count .. key
-  else
-    return "g" .. tostring(key)
+  -- Evaluated on each keypress (expr mapping), so `v:count` is the typed count
+  return function()
+    if vim.v.count > 0 then return "m'" .. vim.v.count .. key end
+    return "g" .. key
   end
 end
-map({ "n", "x" }, "j", better_jk("j"), { desc = "Better 'j' movement + add count to jumplist", silent = true })
-map({ "n", "x" }, "k", better_jk("k"), { desc = "Better 'k' movement + add count to jumplist", silent = true })
+map({ "n", "x" }, "j", better_jk("j"), { desc = "Better 'j' movement + add count to jumplist", expr = true, silent = true })
+map({ "n", "x" }, "k", better_jk("k"), { desc = "Better 'k' movement + add count to jumplist", expr = true, silent = true })
 
--- Center screen on <C-u> and <C-d> movements + add movement to jumplist
-local better_movement = function(movement)
-  vim.api.nvim_feedkeys("m'", "n", false)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(movement, true, false, true), "n", false)
-  vim.api.nvim_feedkeys("m'zz", "n", false)
-end
-map("n", "<C-d>", function() better_movement("<C-d>") end, { desc = "Scroll half a page down", remap = false, silent = true })
-map("n", "<C-u>", function() better_movement("<C-u>") end, { desc = "Scroll half a page up",   remap = false, silent = true })
+-- Center screen on <C-u> and <C-d> movements
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll half a page down", silent = true })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll half a page up",   silent = true })
 
 -- Move with <M-HJKL> in insert mode
 map("i", "<M-H>", "<Left>",  { desc = "Left",  remap = true })
