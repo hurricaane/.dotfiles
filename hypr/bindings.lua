@@ -47,7 +47,7 @@ hl.bind(
 	{ locked = true, description = "Previous track" }
 )
 -- Toggle touchpad
-o.bind("SUPER + SHIFT + T", "Toggle touchpad", "~/dotfiles/hypr/scripts/toggle-touchpad.sh")
+o.bind("CTRL + SEMICOLON", "Toggle touchpad", "~/dotfiles/hypr/scripts/toggle-touchpad.sh")
 -- Voice activation (works with Logitech Keyboard)
 o.bind("SUPER + H", nil, "voxtype record toggle")
 -- Emojis (works with Logitech keyboard)

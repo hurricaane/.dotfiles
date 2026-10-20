@@ -76,6 +76,18 @@ hl.config({
 	},
 })
 
+-- Re-apply the touchpad toggle (scripts/toggle-touchpad.sh) on every reload.
+-- The file holds device names as plain lines, passed to hl.device as data.
+local touchpad_state = io.open(os.getenv("HOME") .. "/.local/state/toggle-touchpad/disabled-devices", "r")
+if touchpad_state then
+	for name in touchpad_state:lines() do
+		if name ~= "" then
+			hl.device({ name = name, enabled = false })
+		end
+	end
+	touchpad_state:close()
+end
+
 -- Vitesse de scroll du touchpad selon l'application
 o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
 o.window("com.mitchellh.ghostty", { scroll_touchpad = 0.2 })
