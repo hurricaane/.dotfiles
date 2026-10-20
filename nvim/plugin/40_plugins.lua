@@ -272,6 +272,7 @@ now(function()
 		"https://github.com/nvim-lua/plenary.nvim",
 		"https://github.com/cenk1cenk2/schema-companion.nvim",
 	})
+	---@diagnostic disable-next-line: missing-parameter
 	require("schema-companion").setup()
 end)
 
@@ -575,6 +576,8 @@ now(function()
 			enabled = true,
 			window = { border = "rounded" },
 		},
+
+		snippets = { preset = "mini_snippets" },
 
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
@@ -974,10 +977,14 @@ if not Config.is_ssh then
 				-- `User` autocommands fire on every `:doautocmd User`, whatever the group:
 				-- only handle the plugin's scratch buffer with a domain as event name
 				local is_ghost_buf = vim.bo.buftype == "nofile" and vim.bo.bufhidden == "wipe"
-				if not (is_ghost_buf and ev.match:find("^[%w%-%.]+%.%a+$")) then return end
+				if not (is_ghost_buf and ev.match:find("^[%w%-%.]+%.%a+$")) then
+					return
+				end
 				local filetype = "ghosttext"
 				for pattern, ft in pairs(filetypes) do
-					if ev.match:find(pattern) then filetype = ft end
+					if ev.match:find(pattern) then
+						filetype = ft
+					end
 				end
 				vim.bo.filetype = filetype
 				vim.b.ghosttext = ev.match

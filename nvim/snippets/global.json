@@ -1,0 +1,67 @@
+{
+  "Current datetime": {
+    "prefix": "cdtm",
+    "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+    "description": "Current datetime - ISO (yyyy-mm-dd HH:MM:SS)"
+  },
+  "Current date": {
+    "prefix": "cdate",
+    "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+    "description": "Current date - ISO (yyyy-mm-dd)"
+  },
+  "Current datetime (FR)": {
+    "prefix": "cdtmfr",
+    "body": "$CURRENT_DATE/$CURRENT_MONTH/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+    "description": "Current datetime - FR (dd/mm/yyyy HH:MM:SS)"
+  },
+  "Current date (FR)": {
+    "prefix": "cdatefr",
+    "body": "$CURRENT_DATE/$CURRENT_MONTH/$CURRENT_YEAR",
+    "description": "Current date - FR (dd/mm/yyyy)"
+  },
+  "Current time": {
+    "prefix": "ctime",
+    "body": "$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+    "description": "Current time (HH:MM:SS)"
+  },
+  "TODO comment": {
+    "prefix": "todo",
+    "body": "$LINE_COMMENT TODO: $0",
+    "description": "TODO comment in the buffer's comment style"
+  },
+  "FIXME comment": {
+    "prefix": "fixme",
+    "body": "$LINE_COMMENT FIXME: $0",
+    "description": "FIXME comment"
+  },
+  "NOTE comment": {
+    "prefix": "note",
+    "body": "$LINE_COMMENT NOTE: $0",
+    "description": "NOTE comment"
+  },
+  "Signed TODO": {
+    "prefix": "todoy",
+    "body": "$LINE_COMMENT TODO(yannick, $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE): $0",
+    "description": "TODO with author and date"
+  },
+  "UUID": {
+    "prefix": "uuid",
+    "body": "$UUID",
+    "description": "Random UUID v4"
+  },
+  "File name": {
+    "prefix": "fname",
+    "body": "$TM_FILENAME",
+    "description": "Current file name"
+  },
+  "Clipboard": {
+    "prefix": "clip",
+    "body": "$CLIPBOARD",
+    "description": "Paste register contents"
+  },
+  "Section divider": {
+    "prefix": "sect",
+    "body": "$LINE_COMMENT $0",
+    "description": "Section header like the ones in your plugin/*.lua files"
+  }
+}

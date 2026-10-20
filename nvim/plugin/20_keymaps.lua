@@ -92,10 +92,18 @@ end
 ---@diagnostic disable-next-line: undefined-global
 local explore_at_file = function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end
 local explore_quickfix = function()
+  ---@diagnostic disable-next-line: assign-type-mismatch
   vim.cmd(vim.fn.getqflist({ winid = true }).winid ~= 0 and "cclose" or "copen")
 end
 local explore_locations = function()
+  ---@diagnostic disable-next-line: assign-type-mismatch
   vim.cmd(vim.fn.getloclist(0, { winid = true }).winid ~= 0 and "lclose" or "lopen")
+end
+-- Function to complete section header snippet - adds ==== up until column 79
+local pad_section_header = function()
+  local line = vim.api.nvim_get_current_line():gsub("%s*=*%s*$", "")
+  local pad = 79 - vim.fn.strdisplaywidth(line) - 1
+  if pad > 0 then vim.api.nvim_set_current_line(line .. " " .. string.rep("=", pad)) end
 end
 map_leader("ed", function() MiniFiles.open() end,              { desc = "Open current working directory" })
 map_leader("ef", explore_at_file,                              { desc = "Open directory of the current file" })
@@ -107,6 +115,7 @@ map_leader("eo", edit_plugin_file("10_options.lua"),           { desc = "Edit op
 map_leader("ep", edit_plugin_file("40_plugins.lua"),           { desc = "Edit plugins config" })
 map_leader("eq", explore_quickfix,                             { desc = "Open quickfix list" })
 map_leader("eQ", explore_locations,                            { desc = "Open location list" })
+map_leader("e=", pad_section_header,                           { desc = "Pad section header to col 79" })
 
 -- Fuzzy Find - Picker
 map_leader("f:", function() Snacks.picker.command_history() end,    { desc = "Command history" })

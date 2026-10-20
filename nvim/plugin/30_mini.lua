@@ -177,3 +177,25 @@ later(function()
 		},
 	})
 end)
+
+-- Mini snippets
+later(function()
+	local config_path = vim.fn.stdpath("config")
+	local lang_patterns = {
+		markdown_inline = { "markdown.json" },
+	}
+
+	local snippets = require("mini.snippets")
+	snippets.setup({
+		snippets = {
+			-- Global snippets
+			snippets.gen_loader.from_file(config_path .. "/snippets/global.json"),
+			-- Snippets per filetype/language
+			snippets.gen_loader.from_lang({ lang_patterns = lang_patterns }),
+		},
+		mappings = {
+			-- Automatically expand snippet without waiting for blink popup
+			expand = "<C-s>",
+		},
+	})
+end)
