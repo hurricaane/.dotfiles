@@ -22,7 +22,7 @@ vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
 
 vim.o.mouse       = "a"            -- Enable mouse
 vim.o.mousescroll = "ver:25,hor:6" -- Customize mouse scroll
-vim.o.spelllang   = "en,fr_fr"     -- Set spell languages
+vim.o.spelllang   = "en,fr"        -- Set spell languages
 vim.o.switchbuf   = "usetab"       -- Use already opened buffers when switching
 vim.o.timeoutlen  = 300            -- Lower than default (1000) to quickly trigger which-key
 vim.o.undofile    = true           -- Enable persistent undo
