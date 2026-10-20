@@ -169,10 +169,12 @@ map_leader("sS", function() require("persistence").select() end,              { 
 map_leader("sl", function() require("persistence").load({ last = true }) end, { desc = "Restore last session" })
 map_leader("sd", function() require("persistence").stop() end,                { desc = "Stop persistence" })
 
--- Utilities: toggles and UI helpers, as in LazyVim. Run `later`, once Snacks is
--- loaded (`plugin/40_plugins.lua`). which-key shows the state of each toggle
+-- Utilities: toggles and UI helpers
 Config.later(function()
   local toggle = Snacks.toggle
+  local map_toggle = function(suffix, t) t:map("<Leader>" .. suffix) end
+
+  -- Custom toggles (plugins and settings Snacks has no helper for)
   local autoformat = function(buffer_only)
     return toggle({
       name = "Auto Format (" .. (buffer_only and "Buffer" or "Global") .. ")",
@@ -183,43 +185,58 @@ Config.later(function()
       set = function(state) Config.autoformat_set(state, buffer_only) end,
     })
   end
-  autoformat():map("<Leader>uf")
-  autoformat(true):map("<Leader>uF")
-  toggle.option("wrap", { name = "Wrap" }):map("<Leader>uw")
-  toggle.option("spell", { name = "Spelling" }):map("<Leader>us")
-  toggle.option("relativenumber", { name = "Relative Number" }):map("<Leader>uL")
-  toggle.line_number():map("<Leader>ul")
-  toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" }):map("<Leader>uc")
-  toggle.diagnostics():map("<Leader>ud")
-  toggle.inlay_hints():map("<Leader>uh")
-  toggle.treesitter():map("<Leader>uT")
-  toggle.indent():map("<Leader>ug")
-  toggle.dim():map("<Leader>uD")
-  toggle.zen():map("<Leader>uz")
-  toggle({
-    name = "Mini Pairs",
-    get = function() return not vim.g.minipairs_disable end,
-    set = function(state) vim.g.minipairs_disable = not state end,
-  }):map("<Leader>up")
-  toggle({
+  local cloak = toggle({
+    name = "Cloak",
+    get = function() return require("cloak").opts.enabled end,
+    set = function(state) require("cloak")[state and "enable" or "disable"]() end,
+  })
+  local conceal = toggle.option("conceallevel", {
+    name = "Conceal Level",
+    off = 0,
+    on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
+  })
+  local git_signs = toggle({
     name = "Git Signs",
     get = function() return require("gitsigns.config").config.signcolumn end,
     set = function(state) require("gitsigns").toggle_signs(state) end,
-  }):map("<Leader>uG")
-  toggle({
+  })
+  local markview = toggle({
     name = "Markview",
     get = function() return (require("markview.state").get_buffer_state(vim.api.nvim_get_current_buf(), false) or {}).enable == true end,
     set = function(state) require("markview.actions")[state and "enable" or "disable"]() end,
-  }):map("<Leader>um")
-end)
-map_leader("uC", function() Snacks.picker.colorschemes() end,                          { desc = "Colorschemes" })
-map_leader("ui", vim.show_pos,                                                         { desc = "Inspect position" })
-map_leader("uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect tree" })
-map_leader("un", function() Snacks.notifier.hide() end,                                { desc = "Dismiss notifications" })
-map_leader("ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",               { desc = "Redraw / clear hlsearch / diff update" })
+  })
+  local mini_pairs = toggle({
+    name = "Mini Pairs",
+    get = function() return not vim.g.minipairs_disable end,
+    set = function(state) vim.g.minipairs_disable = not state end,
+  })
 
--- Windows: `<Leader>w` acts as `<C-w>` (e.g. `<Leader>wh`, `<Leader>wv`), which frees
--- <C-hjkl> for tmux. `remap` lets which-key show the `<C-w>` popup
+  map_toggle("uc", conceal)
+  map_leader("uC", function() Snacks.picker.colorschemes() end,                          { desc = "Colorschemes" })
+  map_toggle("ud", toggle.diagnostics())
+  map_toggle("uD", toggle.dim())
+  map_toggle("uf", autoformat())
+  map_toggle("uF", autoformat(true))
+  map_toggle("ug", toggle.indent())
+  map_toggle("uG", git_signs)
+  map_toggle("uh", toggle.inlay_hints())
+  map_leader("ui", vim.show_pos,                                                         { desc = "Inspect position" })
+  map_leader("uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect tree" })
+  map_toggle("uk", cloak)
+  map_leader("uK", "<Cmd>CloakPreviewLine<CR>",                                          { desc = "Reveal secret on line" })
+  map_toggle("ul", toggle.line_number())
+  map_toggle("uL", toggle.option("relativenumber", { name = "Relative Number" }))
+  map_toggle("um", markview)
+  map_leader("un", function() Snacks.notifier.hide() end,                                { desc = "Dismiss notifications" })
+  map_toggle("up", mini_pairs)
+  map_leader("ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",               { desc = "Redraw / clear hlsearch / diff update" })
+  map_toggle("us", toggle.option("spell", { name = "Spelling" }))
+  map_toggle("uT", toggle.treesitter())
+  map_toggle("uw", toggle.option("wrap", { name = "Wrap" }))
+  map_toggle("uz", toggle.zen())
+end)
+
+-- Windows
 map_leader("w",  "<C-w>",                          { desc = "Windows", remap = true })
 map_leader("wm", function() Snacks.zen.zoom() end, { desc = "Toggle zoom" })
 -- stylua: ignore end

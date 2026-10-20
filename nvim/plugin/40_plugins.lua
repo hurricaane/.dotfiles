@@ -512,6 +512,15 @@ now(function()
 		"https://github.com/rafamadriz/friendly-snippets",
 	})
 	require("blink.cmp").setup({
+		-- No completion in files cloak hides while it is on: cloak only disables
+		-- nvim-cmp, so blink's buffer source would show the secrets in the menu
+		enabled = function()
+			if vim.fn.mode() == "c" then return true end
+			local name = vim.fn.expand("%:t")
+			local is_env = name:match("^%.env") ~= nil or name:match("%.env$") ~= nil
+			return not (is_env and require("cloak").opts.enabled)
+		end,
+
 		keymap = {
 			preset = "default",
 			["<C-p>"] = {},
