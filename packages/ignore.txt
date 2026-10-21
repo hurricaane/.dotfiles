@@ -1,0 +1,13 @@
+# Installed on purpose but not part of the setup: ignored by `just pkg-diff`.
+# Hardware-specific, or installed by Omarchy itself.
+
+efibootmgr
+fprintd
+intel-ucode
+linux
+linux-headers
+omarchy
+omarchy-keyring
+omarchy-settings
+sudo
+xpadneo-dkms

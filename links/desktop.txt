@@ -1,0 +1,6 @@
+# Symlinks for the desktop profile only (Hyprland/Omarchy machines).
+
+ghostty     ~/.config/ghostty
+hypr        ~/.config/hypr
+omarchy     ~/.config/omarchy
+xkb         ~/.config/xkb

@@ -9,6 +9,7 @@ abbr --add -- tl 'tmux ls'
 abbr --add -- tk 'tmux kill-server'
 abbr --add -- ef 'exec fish'
 abbr --add -- wm workmux
+abbr --add -- dots 'just -f ~/dotfiles/justfile'
 
 # Utilities
 abbr --add -- cx 'chmod +x'
