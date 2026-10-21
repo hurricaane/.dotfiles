@@ -171,11 +171,12 @@ map_leader("lY", function() require("schema-companion").select_matching_schema()
 xmap_leader("lf", function() require("conform").format() end,                                                  { desc = "Format selection" })
 
 -- Packages
-map_leader("pc", "<Cmd>PackCheck<CR>",   { desc = "Check for updates" })
-map_leader("pC", "<Cmd>PackClean<CR>",   { desc = "Clean unused packages" })
-map_leader("pd", "<Cmd>PackDelete<CR>",  { desc = "Delete package" })
-map_leader("pu", "<Cmd>PackUpdate<CR>",  { desc = "Update packages" })
-map_leader("pU", "<Cmd>PackUpdate!<CR>", { desc = "Update packages (no confirm)" })
+map_leader("pc", "<Cmd>PackCheck<CR>",            { desc = "Check for updates" })
+map_leader("pC", "<Cmd>PackClean<CR>",            { desc = "Clean unused packages" })
+map_leader("pd", "<Cmd>PackDelete<CR>",           { desc = "Delete package" })
+map_leader("pl", "<Cmd>packupdate ++offline<CR>", { desc = "List packages" })
+map_leader("pu", "<Cmd>PackUpdate<CR>",           { desc = "Update packages" })
+map_leader("pU", "<Cmd>PackUpdate!<CR>",          { desc = "Update packages (no confirm)" })
 
 -- Session (Persistence)
 map_leader("ss", function() require("persistence").load() end,                { desc = "Restore session" })
