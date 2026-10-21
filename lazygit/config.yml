@@ -34,3 +34,11 @@ gui:
 services:
   "gitlab.thalesdigital.io": "gitlab:gitlab.thalesdigital.io"
   "gitlab.octo.tools": "gitlab:gitlab.octo.tools"
+customCommands:
+  # Commit the staged changes with a message written by Claude Haiku,
+  # opened in the editor first to review it (quit without saving to cancel)
+  - key: "<c-k>"
+    context: "files"
+    description: "Commit with AI message (Haiku)"
+    output: terminal
+    command: 'git commit -e -m "$("$HOME/dotfiles/scripts/ai-commit-msg.sh")"'
