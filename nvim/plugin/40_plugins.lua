@@ -239,17 +239,33 @@ now_if_args(function()
 		end
 	end
 	Config.new_autocmd("FileType", nil, ts_start, "Start tree-sitter")
-	-- Treesitter textobjects move
-	require("nvim-treesitter-textobjects").setup({
-		move = {
-			enable = true,
-			set_jumps = true,
-			goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-			goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-			goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
-			goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
-		},
-	})
+	-- Treesitter textobjects move: the `main` branch doesn't create keymaps from `setup()`.
+	-- `]x`/`[x` go to the next/previous start, `]X`/`[X` to the end
+	require("nvim-treesitter-textobjects").setup({ move = { set_jumps = true } })
+	local objects = {
+		f = { capture = "@function.outer", name = "function" },
+		c = { capture = "@class.outer", name = "class" },
+		a = { capture = "@parameter.inner", name = "parameter" },
+	}
+	local moves = {
+		{ "]", "", "goto_next_start", "Next %s start" },
+		{ "]", "upper", "goto_next_end", "Next %s end" },
+		{ "[", "", "goto_previous_start", "Previous %s start" },
+		{ "[", "upper", "goto_previous_end", "Previous %s end" },
+	}
+	for key, object in pairs(objects) do
+		for _, m in ipairs(moves) do
+			local lhs = m[1] .. (m[2] == "upper" and key:upper() or key)
+			local rhs = function()
+				-- Keep the built-in `]c`/`[c` (next/previous change) in diff windows
+				if key == "c" and m[2] == "" and vim.wo.diff then
+					return vim.cmd.normal({ vim.v.count1 .. lhs, bang = true })
+				end
+				require("nvim-treesitter-textobjects.move")[m[3]](object.capture, "textobjects")
+			end
+			vim.keymap.set({ "n", "x", "o" }, lhs, rhs, { desc = m[4]:format(object.name) })
+		end
+	end
 end)
 
 -- Autotag ====================================================================
@@ -1017,3 +1033,31 @@ if not Config.is_ssh then
 		vim.env.NVIM_LISTEN_ADDRESS = nil
 	end)
 end
+
+-- Claude Code ================================================================
+later(function()
+	add({ "https://github.com/coder/claudecode.nvim" })
+	require("claudecode").setup({ terminal = { provider = "none" } })
+
+	-- Focus the pane running `claude` in the current tmux window after a send
+	local focus_claude_pane = function()
+		if not vim.env.TMUX then
+			return
+		end
+		local panes = vim.fn.systemlist({ "tmux", "list-panes", "-t", vim.env.TMUX_PANE, "-F", "#{pane_id} #{pane_tty}" })
+		for _, pane in ipairs(panes) do
+			local id, tty = pane:match("^(%S+) (%S+)$")
+			if id and id ~= vim.env.TMUX_PANE then
+				for _, args in ipairs(vim.fn.systemlist({ "ps", "-o", "args=", "-t", tty })) do
+					-- Program name only: `nvim ~/.claude/...` must not match
+					local program = vim.fs.basename(args:match("^%S+") or "")
+					if program == "claude" then
+						vim.fn.system({ "tmux", "select-pane", "-t", id })
+						return
+					end
+				end
+			end
+		end
+	end
+	Config.new_autocmd("User", "ClaudeCodeSendComplete", focus_claude_pane, "Focus the Claude Code tmux pane")
+end)

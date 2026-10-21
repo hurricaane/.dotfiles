@@ -48,8 +48,10 @@ map("n", "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next re
 map("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev reference" })
 
 -- Flash
-map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
-map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+map({ "n", "x", "o" }, "s", function() require("flash").jump() end,              { desc = "Flash" })
+map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end,        { desc = "Flash Treesitter" })
+map("o",               "r", function() require("flash").remote() end,            { desc = "Remote Flash" })
+map({ "o", "x" },      "R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
 
 -- Todo Comments
 map("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next Todo" })
@@ -61,6 +63,7 @@ map("n", "<Esc>", "<Cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 -- Leader mappings ============================================================
 -- Create a global table with information about Leader groups
 Config.leader_groups = {
+  { "<Leader>a",  group = "AI",           icon = "󰚩 " },
   { "<Leader>b",  group = "Buffers",      icon = " " },
   { "<Leader>e",  group = "Explore/Edit", icon = " " },
   { "<Leader>f",  group = "Find",         icon = " " },
@@ -72,6 +75,17 @@ Config.leader_groups = {
   { "<Leader>u",  group = "Utilities",    icon = "󰔡 " },
   { "<Leader>w",  group = "Windows",      icon = "󱇛 ", proxy = "<C-w>" },
 }
+
+-- AI (Claude Code)
+map_leader("aa", "<Cmd>ClaudeCodeDiffAccept<CR>",    { desc = "Accept diff" })
+map_leader("ad", "<Cmd>ClaudeCodeDiffDeny<CR>",      { desc = "Deny diff" })
+map_leader("aD", "<Cmd>ClaudeCodeCloseAllDiffs<CR>", { desc = "Close all pending diffs" })
+map_leader("af", "<Cmd>ClaudeCodeAdd %<CR>",         { desc = "Add current file" })
+xmap_leader("as", "<Cmd>ClaudeCodeSend<CR>",         { desc = "Send selection" })
+map_leader("aS", "<Cmd>ClaudeCodeStatus<CR>",        { desc = "Connection status" })
+Config.new_autocmd("FileType", "minifiles", function(ev)
+  map("n", "<Leader>af", "<Cmd>ClaudeCodeTreeAdd<CR>", { buffer = ev.buf, desc = "Add file to Claude" })
+end, "Add mini.files entry to Claude Code")
 
 -- Buffers
 map_leader("ba", "<Cmd>b#<CR>",                                                             { desc = "Go to alternate buffer" })
