@@ -2,6 +2,15 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "skillOverrides": {
+    "copywriting": "off",
+    "humanizer": "off",
+    "find-skills": "off",
+    "graphify": "off",
+    "craft": "off",
+    "better-auth-best-practices": "off",
+    "create-auth-skill": "off"
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -62,7 +71,7 @@
     "typescript-lsp@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": false,
     "stripe@claude-plugins-official": false,
-    "worktrunk@worktrunk": true
+    "workmux-status@workmux": true
   },
   "extraKnownMarketplaces": {
     "worktrunk": {
@@ -70,18 +79,17 @@
         "source": "github",
         "repo": "max-sixty/worktrunk"
       }
+    },
+    "workmux": {
+      "source": {
+        "source": "github",
+        "repo": "raine/workmux"
+      }
     }
   },
   "tui": "fullscreen",
   "editorMode": "vim",
-  "vimInsertModeRemaps": { "jk": "<Esc>" },
-  "skillOverrides": {
-    "copywriting": "off",
-    "humanizer": "off",
-    "find-skills": "off",
-    "graphify": "off",
-    "craft": "off",
-    "better-auth-best-practices": "off",
-    "create-auth-skill": "off"
+  "vimInsertModeRemaps": {
+    "jk": "<Esc>"
   }
 }

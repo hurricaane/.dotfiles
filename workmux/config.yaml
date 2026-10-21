@@ -1,0 +1,50 @@
+# Global Configuration ========================================================
+mode: session
+nerdfont: true
+window_prefix: "{project}/"
+
+# Worktree Configuration ======================================================
+worktree_dir: ../.worktrees/{project}
+base_branch: auto
+worktree_naming: full
+merge_strategy: rebase
+merge_keep: false
+
+# AI Configuration ==========================================================================
+agent: claude
+status_icons:
+  working: "#[fg=#cba6f7,bold]󱙺 #[fg=default]"
+  waiting: "#[fg=#f38ba8,bold] #[fg=default]"
+  done: "#[fg=#94e2d5,bold]󰡕 #[fg=default]"
+
+# Default Window Configuration ================================================
+windows:
+  - name: editor
+    panes:
+      - command: nvim
+      - command: <agent>
+        split: horizontal
+        percentage: 35
+        focus: true
+  - name: shell
+
+# Dashboard Theme =============================================================
+theme:
+  scheme: default
+  mode: dark
+  custom:
+    current_row_bg: "#313244" # surface0, selected row
+    highlight_row_bg: "#45475a" # surface1, hover/highlight
+    current_worktree_fg: "#89b4fa" # blue, same as your active tmux window
+    text: "#cdd6f4" # text
+    dimmed: "#7f849c" # overlay1, same as your inactive windows
+    border: "#585b70" # surface2, quiet panel borders
+    header: "#cba6f7" # mauve
+    accent: "#cba6f7" # mauve
+    keycap: "#b4befe" # lavender, key hints
+    help_border: "#b4befe" # lavender
+    help_muted: "#6c7086" # overlay0
+    info: "#74c7ec" # sapphire
+    success: "#a6e3a1" # green, same as your "done" icon
+    warning: "#f9e2af" # yellow, same as your "working" icon
+    danger: "#f38ba8" # red
