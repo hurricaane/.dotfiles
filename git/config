@@ -8,6 +8,8 @@
   compression = 9
   preloadindex = true
   pager = delta
+  # Global hooks (secret scan), which then run each repo's own hooks
+  hooksPath = ~/.config/git/hooks
 
 [advice]
   addEmptyPathspec = false
@@ -90,3 +92,8 @@
 [alias]
   clone-for-worktrees = "!bash $HOME/dotfiles/scripts/git-clone-bare-for-worktrees.sh"
   init-for-worktrees = "!bash $HOME/dotfiles/scripts/git-init-bare-for-worktrees.sh"
+
+# Machine-specific settings (commit signing key...), not tracked in dotfiles.
+# Last, so it can override anything above; ignored when the file is missing.
+[include]
+  path = config.local

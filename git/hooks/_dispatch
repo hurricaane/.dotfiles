@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Global git hooks, enabled with `core.hooksPath` in git/config.
+# Every hook name in this folder is a symlink to this script, which:
+#   1. runs the checks below that apply to every repo (secret scan before commits)
+#   2. hands over to the repo's own hook in .git/hooks, which git skips once
+#      core.hooksPath is set
+# Repos that set their own core.hooksPath (husky) bypass this folder entirely.
+# Skip everything for one commit with `git commit --no-verify`.
+
+hook=$(basename "$0")
+
+if [ "$hook" = "pre-commit" ]; then
+  if command -v gitleaks >/dev/null; then
+    if ! gitleaks git --pre-commit --staged --redact --verbose --no-banner --log-level warn; then
+      echo "gitleaks: secrets found in the staged changes, commit blocked." >&2
+      echo "False positive? Add its fingerprint to .gitleaksignore, or commit with --no-verify." >&2
+      exit 1
+    fi
+  else
+    echo "warning: gitleaks is not installed, skipping the secret scan" >&2
+  fi
+fi
+
+repo_hook="$(git rev-parse --git-common-dir)/hooks/$hook"
+if [ -x "$repo_hook" ]; then
+  exec "$repo_hook" "$@"
+fi
