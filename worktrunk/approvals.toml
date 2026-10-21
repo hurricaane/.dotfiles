@@ -1,4 +1,0 @@
-[projects."github.com/hurricaane/christiane-wedding"]
-approved-commands = [
-    "pnpm i",
-]
