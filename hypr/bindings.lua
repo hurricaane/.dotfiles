@@ -54,3 +54,40 @@ o.bind("SUPER + H", nil, "voxtype record toggle")
 o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 -- Switch keyboard layout
 o.bind("SUPER + SHIFT + K", "Switch keyboard layout", "hyprctl switchxkblayout all next")
+
+-- Navigation mode: SUPER+N enters, hjkl focus, SHIFT+hjkl swap, CTRL+hjkl resize,
+-- Escape/Super exits.
+-- The active border turns peach while the mode is on.
+o.bind("SUPER + N", "Navigation mode (hjkl)", hl.dsp.submap("nav"))
+
+hl.define_submap("nav", function()
+	o.bind("H", "Focus left", hl.dsp.focus({ direction = "l" }))
+	o.bind("J", "Focus down", hl.dsp.focus({ direction = "d" }))
+	o.bind("K", "Focus up", hl.dsp.focus({ direction = "u" }))
+	o.bind("L", "Focus right", hl.dsp.focus({ direction = "r" }))
+	o.bind("SHIFT + H", "Swap left", hl.dsp.window.swap({ direction = "l" }))
+	o.bind("SHIFT + J", "Swap down", hl.dsp.window.swap({ direction = "d" }))
+	o.bind("SHIFT + K", "Swap up", hl.dsp.window.swap({ direction = "u" }))
+	o.bind("SHIFT + L", "Swap right", hl.dsp.window.swap({ direction = "r" }))
+	o.bind("ESCAPE", "Exit navigation mode", hl.dsp.submap("reset"))
+	-- Resize with CapsLock (ctrl:nocaps) held; repeats while the key is held down.
+	o.bind("CTRL + H", "Narrower", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+	o.bind("CTRL + J", "Taller", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
+	o.bind("CTRL + K", "Shorter", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
+	o.bind("CTRL + L", "Wider", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+	-- SUPER exits on press, not release: the release of the SUPER held for SUPER+N would exit instantly.
+	-- Non-consuming so a follow-up SUPER+key still reaches the normal bindings.
+	o.bind("Super_L", "Exit navigation mode", hl.dsp.submap("reset"), { ignore_mods = true, non_consuming = true })
+end)
+
+-- Save the theme's border on entry so theme changes are respected on exit.
+local nav_saved_border
+hl.on("keybinds.submap", function(name)
+	if name == "nav" then
+		nav_saved_border = nav_saved_border or hl.get_config("general.col.active_border")
+		hl.config({ general = { col = { active_border = "rgba(fab387ff)" } } })
+	elseif nav_saved_border then
+		hl.config({ general = { col = { active_border = nav_saved_border } } })
+		nav_saved_border = nil
+	end
+end)
