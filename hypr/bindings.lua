@@ -54,6 +54,8 @@ o.bind("SUPER + H", nil, "voxtype record toggle")
 o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 -- Switch keyboard layout
 o.bind("SUPER + SHIFT + K", "Switch keyboard layout", "hyprctl switchxkblayout all next")
+-- Open sealwax
+o.bind("SUPER + SHIFT + E", "Open email client - Sealwax", "sealwax")
 
 -- Navigation mode: SUPER+N enters, hjkl focus, SHIFT+hjkl swap, CTRL+hjkl resize,
 -- Escape/Super exits.
