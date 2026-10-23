@@ -6,8 +6,8 @@ bat         ~/.config/bat
 fish        ~/.config/fish
 git         ~/.config/git
 lazygit     ~/.config/lazygit
-LazyVim     ~/.config/LazyVim
-mcphub      ~/.config/mcphub
+# LazyVim     ~/.config/LazyVim     (legacy Neovim config, replaced by nvim)
+# mcphub      ~/.config/mcphub      (only used by the legacy LazyVim config)
 nvim        ~/.config/nvim
 rtk         ~/.config/rtk
 sesh        ~/.config/sesh

@@ -22,6 +22,7 @@ if status is-interactive
     fish_add_path "$HOME/.cargo/bin"
     fish_add_path "$HOME/.bun/bin"
     fish_add_path "$HOME/.local/share/pnpm"
+    fish_add_path "$HOME/.local/share/pnpm/bin"
 
     # ── Homebrew ───────────────────────────────────────────────────────────────
     if test -d /home/linuxbrew/.linuxbrew
@@ -120,10 +121,3 @@ function sesh-sessions
     end
     sesh connect "$session"
 end
-
-# pnpm
-set -gx PNPM_HOME "/home/yannick/.local/share/pnpm"
-if not string match -q -- "$PNPM_HOME/bin" $PATH
-  set -gx PATH "$PNPM_HOME/bin" $PATH
-end
-# pnpm end

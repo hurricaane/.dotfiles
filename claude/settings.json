@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/yannick/.atuin/bin/atuin hook claude-code"
+            "command": "$HOME/.atuin/bin/atuin hook claude-code"
           }
         ]
       }
@@ -38,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/yannick/.atuin/bin/atuin hook claude-code"
+            "command": "$HOME/.atuin/bin/atuin hook claude-code"
           }
         ]
       }
@@ -49,7 +49,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/yannick/.atuin/bin/atuin hook claude-code"
+            "command": "$HOME/.atuin/bin/atuin hook claude-code"
           }
         ]
       }

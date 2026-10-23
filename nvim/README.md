@@ -102,7 +102,7 @@ On 0.12 everything works except the **package update counter**. Without `rev_to`
 The config lives in the dotfiles repo and is symlinked into place:
 
 ```sh
-ln -s ~/dotfiles/nvim ~/.config/nvim
+ln -s ~/dotfiles/nvim ~/.config/nvim   # or `just link` from the dotfiles root
 nvim
 ```
 
