@@ -78,15 +78,18 @@ The greeting is turned off. In interactive shells, `PATH` gets `~/.local/bin`, b
 
 ### Tool integrations
 
-| Tool       | What it adds                                                                                                                                       |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| atuin      | Shell history database. Its default bindings are off (`ATUIN_NOBIND`), see [Key bindings](#key-bindings)                                           |
-| fzf        | `fzf --fish` key bindings                                                                                                                          |
-| zoxide     | Replaces `cd` (`zoxide init fish --cmd cd`)                                                                                                        |
-| direnv     | Loads `.envrc` files, evaluated on each prompt (`direnv_fish_mode eval_on_arrow`)                                                                  |
-| bat-extras | `batman` as `MANPAGER`, `batpipe` as `LESSOPEN` (colored `less`)                                                                                   |
-| Television | Shell integration: `Ctrl-t` smart autocomplete, channel picked from the command line (see [television](../television/README.md#shell-integration)) |
-| mise       | Activated by the system (`/usr/share/fish/vendor_conf.d`), not by this config                                                                      |
+| Tool       | What it adds                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------- |
+| atuin      | Shell history database. Its default bindings are off (`ATUIN_NOBIND`), see [Key bindings]               |
+| fzf        | `fzf --fish` key bindings                                                                               |
+| zoxide     | Replaces `cd` (`zoxide init fish --cmd cd`)                                                             |
+| direnv     | Loads `.envrc` files, evaluated on each prompt (`direnv_fish_mode eval_on_arrow`)                       |
+| bat-extras | `batman` as `MANPAGER`, `batpipe` as `LESSOPEN` (colored `less`)                                        |
+| Television | Shell integration: `Ctrl-t` smart autocomplete, channel picked from the command line (see [television]) |
+| mise       | Activated by the system (`/usr/share/fish/vendor_conf.d`), not by this config                           |
+
+[Key bindings]: #key-bindings
+[television]: ../television/README.md#shell-integration
 
 ### Prompt
 

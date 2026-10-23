@@ -24,7 +24,7 @@ Only `tmux.conf` is linked, to `~/.config/tmux/tmux.conf`. It sources the theme 
 
 - tmux **3.2** or later (`%hidden` variables). Written for tmux 3.8.
 - `fish` (default shell), `wl-copy` (copy mode), and for the popups: `sesh`, `tv`, `lazygit`, `workmux`
-- [tpm](https://github.com/tmux-plugins/tpm) for the plugins
+- [tpack](https://github.com/tmuxpack/tpack) for the plugins (`tpack-bin` in `packages/cli.txt`)
 - A Nerd Font for the icons
 
 ## Installation
@@ -32,7 +32,7 @@ Only `tmux.conf` is linked, to `~/.config/tmux/tmux.conf`. It sources the theme 
 ```sh
 mkdir -p ~/.config/tmux
 ln -s ~/dotfiles/tmux/tmux.conf ~/.config/tmux/tmux.conf   # or `just link`
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+yay -S tpack-bin                                           # or `just install`
 ```
 
 Then start tmux and press `prefix I` to install the plugins.
@@ -86,7 +86,9 @@ Then start tmux and press `prefix I` to install the plugins.
 | `f` / `F`  | Floating pane / its menu (tmux-floax)         |
 | `o` / `i`  | Copy mode at the previous / next shell prompt |
 | `r`        | Reload the config                             |
-| `I`        | Install plugins (tpm)                         |
+| `I` / `U`  | Install / update plugins (tpack)              |
+| `M-u`      | Remove plugins no longer in the config        |
+| `T`        | tpack TUI: install, update, browse plugins    |
 
 ### Copy mode
 
@@ -112,7 +114,7 @@ Bound on the prefix, all with rounded borders and a colored title:
 
 ## Plugins
 
-Managed with [tpm](https://github.com/tmux-plugins/tpm):
+Managed with [tpack](https://github.com/tmuxpack/tpack), a drop-in replacement for tpm (same `@plugin` syntax and keys). `tpack install`, `tpack update all` and `tpack clean` do the same from a shell:
 
 - [tmux-sensible](https://github.com/tmux-plugins/tmux-sensible): common defaults
 - [tmux-floax](https://github.com/omerxx/tmux-floax): a floating pane that keeps its content, toggled with `prefix f` (90 % of the screen)

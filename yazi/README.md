@@ -45,20 +45,33 @@ yazi/
 
 ## Plugins
 
-| Plugin                                                                         | Use                                                  |
-| ------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| [full-border](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi)   | Rounded border around the whole UI                   |
-| [git](https://github.com/yazi-rs/plugins/tree/main/git.yazi)                   | Git status of each file in the list                  |
-| [bunny](https://github.com/stelcodes/bunny.yazi)                               | Bookmarks ("hops") to jump to                        |
-| [relative-motions](https://github.com/dedukun/relative-motions.yazi)           | Vim-like relative line numbers and counts (`5j`)     |
-| [starship](https://github.com/Rolv-Apneseth/starship.yazi)                     | Starship prompt in the header                        |
-| [smart-enter](https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi)   | `l` enters a directory or opens a file               |
-| [smart-paste](https://github.com/yazi-rs/plugins/tree/main/smart-paste.yazi)   | `p` pastes into the hovered directory                |
-| [jump-to-char](https://github.com/yazi-rs/plugins/tree/main/jump-to-char.yazi) | `f` jumps to the next file starting with a character |
-| [mount](https://github.com/yazi-rs/plugins/tree/main/mount.yazi)               | Mount / unmount / eject drives                       |
-| [chmod](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi)               | Change permissions of the selected files             |
-| [ouch](https://github.com/ndtoan96/ouch.yazi)                                  | Archive preview and compression                      |
-| [piper](https://github.com/yazi-rs/plugins/tree/main/piper.yazi)               | Uses a shell command as a previewer (glow, eza)      |
+| Plugin             | Use                                                  |
+| ------------------ | ---------------------------------------------------- |
+| [full-border]      | Rounded border around the whole UI                   |
+| [git]              | Git status of each file in the list                  |
+| [bunny]            | Bookmarks ("hops") to jump to                        |
+| [relative-motions] | Vim-like relative line numbers and counts (`5j`)     |
+| [starship]         | Starship prompt in the header                        |
+| [smart-enter]      | `l` enters a directory or opens a file               |
+| [smart-paste]      | `p` pastes into the hovered directory                |
+| [jump-to-char]     | `f` jumps to the next file starting with a character |
+| [mount]            | Mount / unmount / eject drives                       |
+| [chmod]            | Change permissions of the selected files             |
+| [ouch]             | Archive preview and compression                      |
+| [piper]            | Uses a shell command as a previewer (glow, eza)      |
+
+[full-border]: https://github.com/yazi-rs/plugins/tree/main/full-border.yazi
+[git]: https://github.com/yazi-rs/plugins/tree/main/git.yazi
+[bunny]: https://github.com/stelcodes/bunny.yazi
+[relative-motions]: https://github.com/dedukun/relative-motions.yazi
+[starship]: https://github.com/Rolv-Apneseth/starship.yazi
+[smart-enter]: https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi
+[smart-paste]: https://github.com/yazi-rs/plugins/tree/main/smart-paste.yazi
+[jump-to-char]: https://github.com/yazi-rs/plugins/tree/main/jump-to-char.yazi
+[mount]: https://github.com/yazi-rs/plugins/tree/main/mount.yazi
+[chmod]: https://github.com/yazi-rs/plugins/tree/main/chmod.yazi
+[ouch]: https://github.com/ndtoan96/ouch.yazi
+[piper]: https://github.com/yazi-rs/plugins/tree/main/piper.yazi
 
 The status bar also shows the **symlink target** of the hovered file (left) and its **owner and group** (right).
 
