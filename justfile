@@ -27,6 +27,10 @@ check:
     -./link.sh -c
     @just pkg-diff
 
+# Rebuild venvs, uv tools, Mason packages and npm tools on the current Python and Node, before `mise prune` (`just mise-rebuild -n` for a dry run)
+mise-rebuild *args:
+    ./scripts/mise-rebuild.sh {{ args }}
+
 # Install the packages for this machine's profile
 install:
     grep -ho '^[^#[:space:]]\+' {{ lists }} | yay -S --needed -

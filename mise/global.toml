@@ -1,10 +1,22 @@
 [tools]
+bun = "latest"
 claude = "latest"
 codex = "latest"
 gemini = { version = "latest", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "latest"
+gitleaks = "latest"
+go = "latest"
+helm = "latest"
+kind = "latest"
+kubectl = "latest"
 node = "26"
 opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
+opentofu = "latest"
+pnpm = "latest"
+python = "3.14"
+rust = "stable"
+terraform = "latest"
+uv = "latest"
 
 [settings.upgrade]
 auto_prune = false

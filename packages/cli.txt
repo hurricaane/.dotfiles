@@ -12,16 +12,11 @@ dotnet-runtime-9.0
 execstack
 fish
 git-delta
-github-cli
-gitleaks
-go
 libqalculate
 lua51-luautf8
 neovim
 ouch
 pass
-pnpm
-rust
 sesh-bin
 stripe-cli-bin
 superfile
@@ -34,3 +29,6 @@ wget
 xmlstarlet
 yazi
 yq
+k9s
+kubectx
+stern

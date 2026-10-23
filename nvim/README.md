@@ -341,7 +341,7 @@ These use the nvim-lspconfig defaults: `bashls` (Bash / sh), `clangd` (C / C++),
 
 These have overrides in `after/lsp/<server>.lua`:
 
-- `ansiblels` (Ansible, `yaml.ansible`): `ansible`, `python` and `ansible-lint` come from the project's pyenv version (`.python-version`), else from the ansible-core bundled with Mason's `ansible-lint`, else from `PATH`.
+- `ansiblels` (Ansible, `yaml.ansible`): `ansible`, `python` and `ansible-lint` come from the project's virtualenv (`$VIRTUAL_ENV`, set by mise), else from the ansible-core bundled with Mason's `ansible-lint`, else from `PATH`.
 - `eslint` (JS / TS / Vue): `workingDirectories = auto`, fix all on save.
 - `gopls` (Go): gofumpt, staticcheck, codelenses (incl. govulncheck), every inlay hint, extra analyses, semantic tokens workaround.
 - `helm_ls` (Helm, `helm` and `yaml.helm-values`): schema-companion with Kubernetes matching for templates.

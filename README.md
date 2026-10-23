@@ -60,7 +60,6 @@ These aren't installed by `just install`, because they come from their own insta
 | Tool                                             | Used by                                               | Install                                                   |
 | ------------------------------------------------ | ----------------------------------------------------- | --------------------------------------------------------- |
 | [atuin](https://atuin.sh)                        | fish history (`Ctrl-r`, `/`), Claude Code hooks       | `curl --proto '=https' -sSf https://setup.atuin.sh \| sh` |
-| [pyenv](https://github.com/pyenv/pyenv)          | fish (`pyenv init`), Neovim's ansiblels               | `curl https://pyenv.run \| bash`                          |
 | [rtk](https://github.com/rtk-ai/rtk)             | Claude Code hook that condenses command output        | see its README                                            |
 | [Claude Code](https://code.claude.com)           | Neovim (claudecode.nvim), workmux, `ai-commit-msg.sh` | `mise install` (see [mise](mise/README.md))               |
 | [workmux](https://github.com/raine/workmux)      | tmux (`prefix w`), fish abbr `wm`                     | see its README                                            |
@@ -110,6 +109,7 @@ The fish abbreviation `dots` runs `just -f ~/dotfiles/justfile` from anywhere: `
 | `just pkg-add <list> <pkgs…>` | Install packages and add them to `packages/<list>.txt`                   |
 | `just pkg-rm <pkgs…>`         | Uninstall packages and remove them from every list                       |
 | `just pkg-diff`               | Packages installed but in no list, and packages listed but not installed |
+| `just mise-rebuild [-n]`      | Rebuild what uses an old Python/Node, before `mise prune`                |
 
 ## How it works
 

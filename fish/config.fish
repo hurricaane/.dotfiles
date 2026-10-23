@@ -5,14 +5,12 @@ set -Ux SUDO_EDITOR nvim
 set -Ux VISUAL "$HOME/.local/share/bob/nvim-bin/nvim"
 set -Ux ZK_NOTEBOOK_DIR "$HOME/Documents/Notes"
 set -Ux STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
-set -Ux PYENV_ROOT $HOME/.pyenv
 set -Ux BAT_THEME "Catppuccin Mocha"
 
 # ─── Interactive session ───────────────────────────────────────────────────────
 if status is-interactive
 
     # ── PATH setup (do this first so everything below finds its binaries) ──────
-    fish_add_path $PYENV_ROOT/bin
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/share/bob/nvim-bin
     fish_add_path /usr/local/go/bin
@@ -20,9 +18,6 @@ if status is-interactive
     fish_add_path /nix/var/nix/profiles/default/bin
     fish_add_path "$HOME/.nix-profile/bin"
     fish_add_path "$HOME/.cargo/bin"
-    fish_add_path "$HOME/.bun/bin"
-    fish_add_path "$HOME/.local/share/pnpm"
-    fish_add_path "$HOME/.local/share/pnpm/bin"
 
     # ── Homebrew ───────────────────────────────────────────────────────────────
     if test -d /home/linuxbrew/.linuxbrew
@@ -40,10 +35,6 @@ if status is-interactive
         set -gx INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
     end
 
-    # ── pnpm / bun env vars (export, not just PATH) ───────────────────────────
-    set -gx PNPM_HOME "$HOME/.local/share/pnpm"
-    set -gx BUN_INSTALL "$HOME/.bun"
-
     # ── Tool initialisations ───────────────────────────────────────────────────
     set -gx ATUIN_NOBIND true
     atuin init fish | source
@@ -55,9 +46,6 @@ if status is-interactive
 
     batman --export-env | source
     eval (batpipe)
-
-    pyenv init - fish | source
-    pyenv virtualenv-init - | source
 
     tv init fish | source # Television shell integration
 
