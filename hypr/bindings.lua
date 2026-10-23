@@ -41,11 +41,7 @@ hl.unbind("SUPER + SHIFT + ALT + G")
 o.bind("SUPER + SHIFT + G", "WhatsApp", [[omarchy-launch-or-focus-webapp WhatsApp "https://web.whatsapp.com/"]])
 o.bind("SUPER + SHIFT + ALT + G", "Signal", [[omarchy-launch-or-focus ^signal$ "uwsm-app -- signal-desktop"]])
 -- Media - previous track
-hl.bind(
-	"SHIFT + XF86AudioNext",
-	hl.dsp.exec_cmd("playerctl previous"),
-	{ locked = true, description = "Previous track" }
-)
+o.bind("SHIFT + XF86AudioNext", "Previous track", "omarchy-shell media previous", { locked = true })
 -- Toggle touchpad
 o.bind("CTRL + SEMICOLON", "Toggle touchpad", "~/dotfiles/hypr/scripts/toggle-touchpad.sh")
 -- Voice activation (works with Logitech Keyboard)
