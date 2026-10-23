@@ -1,6 +1,11 @@
 # Symlinks for the desktop profile only (Hyprland/Omarchy machines).
 
-ghostty     ~/.config/ghostty
-hypr        ~/.config/hypr
-omarchy     ~/.config/omarchy
-xkb         ~/.config/xkb
+ghostty                      ~/.config/ghostty
+hypr                         ~/.config/hypr
+omarchy                      ~/.config/omarchy
+xkb                          ~/.config/xkb
+
+# Not linked: tool not installed or replaced, or the target is managed elsewhere
+# waybar                     ~/.config/waybar    (replaced by Omarchy shell)
+# wezterm                    ~/.config/wezterm
+# xremap                     ~/.config/xremap

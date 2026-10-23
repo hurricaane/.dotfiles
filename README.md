@@ -62,7 +62,7 @@ These aren't installed by `just install`, because they come from their own insta
 | [atuin](https://atuin.sh)                        | fish history (`Ctrl-r`, `/`), Claude Code hooks       | `curl --proto '=https' -sSf https://setup.atuin.sh \| sh` |
 | [pyenv](https://github.com/pyenv/pyenv)          | fish (`pyenv init`), Neovim's ansiblels               | `curl https://pyenv.run \| bash`                          |
 | [rtk](https://github.com/rtk-ai/rtk)             | Claude Code hook that condenses command output        | see its README                                            |
-| [Claude Code](https://code.claude.com)           | Neovim (claudecode.nvim), workmux, `ai-commit-msg.sh` | `mise use -g claude` or the official installer            |
+| [Claude Code](https://code.claude.com)           | Neovim (claudecode.nvim), workmux, `ai-commit-msg.sh` | `mise install` (see [mise](mise/README.md))               |
 | [workmux](https://github.com/raine/workmux)      | tmux (`prefix w`), fish abbr `wm`                     | see its README                                            |
 | [fisher](https://github.com/jorgebucaran/fisher) | fish plugins                                          | see [fish](fish/README.md)                                |
 | [tpm](https://github.com/tmux-plugins/tpm)       | tmux plugins                                          | see [tmux](tmux/README.md)                                |
@@ -163,6 +163,7 @@ Each folder has its own README with the details of the configuration.
 | [yazi](https://yazi-rs.github.io)                          | [yazi](yazi/README.md)             | File manager: plugins for git, archives, bookmarks, relative motions |
 | [bat](https://github.com/sharkdp/bat)                      | [bat](bat/README.md)               | `cat` with syntax highlighting, Catppuccin themes                    |
 | [RTK](https://github.com/rtk-ai/rtk)                       | [rtk](rtk/README.md)               | Condenses command output for AI agents                               |
+| [mise](https://mise.jdx.dev)                               | [mise](mise/README.md)             | Global tool versions: Node, gh and the AI agent CLIs                 |
 
 ### Editor
 

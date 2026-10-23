@@ -2,43 +2,41 @@
 # Lines starting with # are ignored. ~ expands to $HOME.
 
 # ~/.config/<app>
-bat         ~/.config/bat
-fish        ~/.config/fish
-git         ~/.config/git
-lazygit     ~/.config/lazygit
-# LazyVim     ~/.config/LazyVim     (legacy Neovim config, replaced by nvim)
-# mcphub      ~/.config/mcphub      (only used by the legacy LazyVim config)
-nvim        ~/.config/nvim
-rtk         ~/.config/rtk
-sesh        ~/.config/sesh
-starship    ~/.config/starship
-television  ~/.config/television
-workmux     ~/.config/workmux
-yazi        ~/.config/yazi
+bat                          ~/.config/bat
+fish                         ~/.config/fish
+git                          ~/.config/git
+lazygit                      ~/.config/lazygit
+mise/global.toml             ~/.config/mise/config.toml
+nvim                         ~/.config/nvim
+rtk                          ~/.config/rtk
+sesh                         ~/.config/sesh
+starship                     ~/.config/starship
+television                   ~/.config/television
+workmux                      ~/.config/workmux
+yazi                         ~/.config/yazi
 
 # Single files (the rest of the target dir is managed by the app)
-tmux/tmux.conf      ~/.config/tmux/tmux.conf
-.markdownlint.yaml  ~/.markdownlint.yaml
+tmux/tmux.conf               ~/.config/tmux/tmux.conf
+.markdownlint.yaml           ~/.markdownlint.yaml
 
 # Claude Code
-claude/CLAUDE.md                ~/.claude/CLAUDE.md
-claude/RTK.md                   ~/.claude/RTK.md
-claude/settings.json            ~/.claude/settings.json
-claude/statusline.sh            ~/.claude/statusline.sh
-claude/ctxline.js               ~/.claude/ctxline.js
-claude/themes                   ~/.claude/themes
-claude/skills/craft             ~/.claude/skills/craft
-claude/skills/graphify          ~/.claude/skills/graphify
-claude/skills/humanizer         ~/.claude/skills/humanizer
-claude/skills/ui-ux-pro-max     ~/.claude/skills/ui-ux-pro-max
+claude/CLAUDE.md             ~/.claude/CLAUDE.md
+claude/RTK.md                ~/.claude/RTK.md
+claude/settings.json         ~/.claude/settings.json
+claude/statusline.sh         ~/.claude/statusline.sh
+claude/ctxline.js            ~/.claude/ctxline.js
+claude/themes                ~/.claude/themes
+claude/skills/craft          ~/.claude/skills/craft
+claude/skills/graphify       ~/.claude/skills/graphify
+claude/skills/humanizer      ~/.claude/skills/humanizer
+claude/skills/ui-ux-pro-max  ~/.claude/skills/ui-ux-pro-max
 
-# Not linked: tool not installed, or the target is managed elsewhere
-# gh-dash     ~/.config/gh-dash
-# opencode    ~/.config/opencode     (real dir with node_modules)
-# task/taskrc ~/.taskrc
-# waybar      ~/.config/waybar       (replaced by Omarchy shell)
-# wezterm     ~/.config/wezterm
-# xremap      ~/.config/xremap
-# zk          ~/.config/zk
-# zshrc/.zshrc        ~/.zshrc
-# zshrc/.zsh_aliases  ~/.zsh_aliases
+# Not linked: tool not installed or replaced, or the target is managed elsewhere
+# gh-dash                    ~/.config/gh-dash
+# LazyVim                    ~/.config/LazyVim   (legacy Neovim config, replaced by nvim)
+# mcphub                     ~/.config/mcphub    (only used by the legacy LazyVim config)
+# opencode                   ~/.config/opencode  (real dir with node_modules)
+# task/taskrc                ~/.taskrc
+# zk                         ~/.config/zk
+# zshrc/.zshrc               ~/.zshrc
+# zshrc/.zsh_aliases         ~/.zsh_aliases
