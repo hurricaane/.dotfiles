@@ -1010,6 +1010,36 @@ end)
 if not Config.is_ssh then
 	now(function()
 		add({ "https://github.com/subnut/nvim-ghost.nvim" })
+		-- On quit, the plugin notifies its helper with `rpcnotify(0, ...)`, which crashes
+		-- Neovim once 5+ RPC channels are open (`broadcast_event()` grows a 4-slot stack
+		-- array with `kv_push`, so `realloc` on the stack). Each GhostText session opens
+		-- two channels. Redefine the plugin's function to notify each channel by id,
+		-- which skips the broadcast. Its script-local GET helper is reached via `<SNR>`
+		local override_session_closed = function()
+			local script = vim.fn.getscriptinfo({ name = "nvim_ghost/helper\\.vim$" })[1]
+			if script == nil then return end
+			vim.cmd(([[
+				function! nvim_ghost#helper#session_closed() abort
+					call <SNR>%d_send_GET_request('/session-closed?session=' .. v:servername)
+					for chan in nvim_list_chans()
+						if chan.mode ==# 'rpc'
+							silent! call rpcnotify(chan.id, 'nvim_ghost_exit_event')
+						endif
+					endfor
+				endfunction
+			]]):format(script.sid))
+			return true
+		end
+		-- The helper script is autoloaded on first use: redefine once it is sourced.
+		-- Returning `true` deletes the autocommand
+		if not override_session_closed() then
+			Config.new_autocmd(
+				"SourcePost",
+				"*/autoload/nvim_ghost/helper.vim",
+				override_session_closed,
+				"Avoid nvim-ghost crashing Neovim on quit"
+			)
+		end
 		-- Filetype per website (Lua pattern matched against the domain), `ghosttext`
 		-- otherwise (see 'after/ftplugin/ghosttext.lua')
 		local filetypes = {
