@@ -63,17 +63,19 @@ map("n", "<Esc>", "<Cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 -- Leader mappings ============================================================
 -- Create a global table with information about Leader groups
 Config.leader_groups = {
-  { "<Leader>a",  group = "AI",           icon = "󰚩 " },
-  { "<Leader>b",  group = "Buffers",      icon = " " },
-  { "<Leader>e",  group = "Explore/Edit", icon = " " },
-  { "<Leader>f",  group = "Find",         icon = " " },
-  { "<Leader>g",  group = "Git",          icon = " " },
-  { "<Leader>gh", group = "Hunks",        icon = " " },
-  { "<Leader>l",  group = "Language",     icon = " " },
-  { "<Leader>p",  group = "Packages",     icon = "󰏗 " },
-  { "<Leader>s",  group = "Session",      icon = " " },
-  { "<Leader>u",  group = "Utilities",    icon = "󰔡 " },
-  { "<Leader>w",  group = "Windows",      icon = "󱇛 ", proxy = "<C-w>" },
+  { "<Leader>a",  group = "AI",               icon = "󰚩 " },
+  { "<Leader>b",  group = "Buffers",          icon = " " },
+  { "<Leader>e",  group = "Explore/Edit",     icon = " " },
+  { "<Leader>f",  group = "Find",             icon = " " },
+  { "<Leader>g",  group = "Git",              icon = " " },
+  { "<Leader>gh", group = "Hunks",            icon = " " },
+  { "<Leader>l",  group = "Language",         icon = " " },
+  { "<Leader>m",  group = "Markdown",         icon = "󰍔 " },
+  { "<Leader>p",  group = "Packages",         icon = "󰏗 " },
+  { "<Leader>s",  group = "Session",          icon = " " },
+  { "<Leader>t",  group = "Table (Markdown)", icon = "󰓫 " },
+  { "<Leader>u",  group = "Utilities",        icon = "󰔡 " },
+  { "<Leader>w",  group = "Windows",          icon = "󱇛 ", proxy = "<C-w>" },
 }
 
 -- AI (Claude Code)

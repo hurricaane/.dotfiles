@@ -969,6 +969,30 @@ later(function()
 	})
 end)
 
+-- Markdown Plus ==============================================================
+-- Only lists, inline formatting, quotes, callouts and tables; keymaps live in `after/ftplugin/markdown.lua`
+Config.on_filetype("markdown", function()
+	add({ "https://github.com/YousefHadder/markdown-plus.nvim" })
+	require("markdown-plus").setup({
+		features = {
+			list_management = true,
+			text_formatting = true,
+			thematic_break = false,
+			headers_toc = false,
+			links = false,
+			images = false,
+			quotes = true,
+			callouts = true,
+			code_block = false,
+			table = true,
+			footnotes = false,
+		},
+		keymaps = { enabled = false },
+		-- Table keymaps have their own switch, separate from `keymaps.enabled`
+		table = { keymaps = { enabled = false } },
+	})
+end)
+
 -- Helpview ===================================================================
 now(function()
 	add({ "https://github.com/OXY2DEV/helpview.nvim" })
