@@ -35,11 +35,18 @@ hl.unbind("SUPER + SHIFT + ALT + E")
 -- invert WhatsApp and Signal bindings
 hl.unbind("SUPER + SHIFT + G")
 hl.unbind("SUPER + SHIFT + ALT + G")
+-- File managers: yazi as the main one, Strata as GUI fallback (was: Nautilus / Nautilus in cwd)
+hl.unbind("SUPER + SHIFT + F")
+hl.unbind("SUPER + ALT + SHIFT + F")
 
 -- Bindings
 -- Whatsapp and Signal
 o.bind("SUPER + SHIFT + G", "WhatsApp", [[omarchy-launch-or-focus-webapp WhatsApp "https://web.whatsapp.com/"]])
 o.bind("SUPER + SHIFT + ALT + G", "Signal", [[omarchy-launch-or-focus ^signal$ "uwsm-app -- signal-desktop"]])
+-- File managers
+o.bind("SUPER + SHIFT + F", "File manager (yazi)", { tui = "yazi" })
+-- Strata: keyboard-first GUI file manager, for what a TUI can't do (drag and drop into GUI apps…)
+o.bind("SUPER + SHIFT + ALT + F", "File manager (Strata)", { launch = "strata" })
 -- Media - previous track
 o.bind("SHIFT + XF86AudioNext", "Previous track", "omarchy-shell media previous", { locked = true })
 -- Toggle touchpad
