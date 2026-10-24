@@ -15,7 +15,7 @@ disable_startup_command = true
 [[session]]
 name = "downloads"
 path = "~/Downloads"
-disable_startup_command = true
+startup_command = "y"
 
 [[session]]
 name = "tmux configuration"
