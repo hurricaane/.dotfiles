@@ -3,6 +3,7 @@
 ghostty                      ~/.config/ghostty
 hypr                         ~/.config/hypr
 omarchy                      ~/.config/omarchy
+strata                       ~/.config/strata
 xkb                          ~/.config/xkb
 
 # Not linked: tool not installed or replaced, or the target is managed elsewhere

@@ -19,6 +19,7 @@ solaar
 spotify
 spotifyd
 steam
+strata-bin
 tidemail-bin
 tk
 ttf-cascadia-code-nerd
