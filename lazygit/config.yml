@@ -34,7 +34,8 @@ gui:
       - "#c8d3f5"
 customCommands:
   # Commit the staged changes with a message written by Claude Haiku,
-  # opened in the editor first to review it (quit without saving to cancel)
+  # opened in the editor first to review it. Cancel with :cq or by emptying the
+  # message; quitting without saving still commits, since -m already wrote it
   - key: "<c-k>"
     context: "files"
     description: "Commit with AI message (Haiku)"
