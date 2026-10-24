@@ -2,6 +2,13 @@
 
 A [Yazi](https://github.com/sxyazi/yazi) plugin based about vim motions.
 
+> [!NOTE]
+> This is a fork of [dedukun/relative-motions.yazi](https://github.com/dedukun/relative-motions.yazi), which is no longer actively maintained. Changes:
+>
+> - Works with Yazi 26: uses `ya.emit` instead of the removed `ya.mgr_emit` (upstream, the motion key does nothing).
+> - The hovered line is one uniform highlight, from the number to the end of the line; other numbers have no background.
+> - Long names are truncated with an ellipsis, and drag and drop works in the current pane, as in Yazi's own file list.
+
 <https://github.com/dedukun/relative-motions.yazi/assets/25795432/04fb186a-5efe-442d-8d7b-2dccb6eee408>
 
 ## Requirements
@@ -11,7 +18,7 @@ A [Yazi](https://github.com/sxyazi/yazi) plugin based about vim motions.
 ## Installation
 
 ```sh
-ya pkg add dedukun/relative-motions
+ya pkg add hurricaane/relative-motions
 ```
 
 ## Configuration

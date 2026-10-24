@@ -29,6 +29,11 @@ vim
 wget
 xmlstarlet
 yazi
+7zip
+glow
+mediainfo
+perl-image-exiftool
+resvg
 yq
 k9s
 kubectx

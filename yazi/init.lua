@@ -1,7 +1,13 @@
 -- Full border plugin
 require("full-border"):setup({
-	---@diagnostic disable-next-line: undefined-global
-	type = ui.Border.ROUNDED,
+	set = "rounded",
+})
+
+-- MIME types from file extensions instead of file(1), much faster in large directories.
+-- Unknown extensions still fall back to file(1).
+require("mime-ext"):setup()
+require("mime-ext.local"):setup({
+	fallback_file1 = true,
 })
 
 -- Git plugin
@@ -19,7 +25,7 @@ require("bunny"):setup({
 		{ key = { "h", "k" }, path = "~/Desktop", desc = "Desktop" },
 		{ key = { "h", "d" }, path = "~/Downloads/", desc = "Downloads" },
 		{ key = { "h", "D" }, path = "~/Documents/", desc = "Documents" },
-		{ key = { "h", "p" }, path = "~/Pictures/", desc = "Documents" },
+		{ key = { "h", "p" }, path = "~/Pictures/", desc = "Pictures" },
 		{ key = { "l", "s" }, path = "~/.local/share", desc = "Local share" },
 		{ key = { "l", "b" }, path = "~/.local/bin", desc = "Local bin" },
 		{ key = { "l", "t" }, path = "~/.local/state", desc = "Local state" },
@@ -41,7 +47,10 @@ require("relative-motions"):setup({
 })
 
 -- Starship plugin
-require("starship"):setup()
+-- Uses a single-line starship config: the header only shows the first line
+require("starship"):setup({
+	config_file = "~/.config/yazi/starship.toml",
+})
 
 -- Smart enter plugin
 require("smart-enter"):setup({

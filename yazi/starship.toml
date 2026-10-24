@@ -1,0 +1,30 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Single-line prompt for the yazi header (starship.yazi only shows the first line).
+# Styles mirror ~/.config/starship/starship.toml.
+add_newline = false
+format = "$directory$git_branch$git_status"
+
+[directory]
+truncation_length = 0
+repo_root_style = "bold bright-cyan"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "italic bright-purple"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "bright-red"
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked = "? "
+modified = " "
+stashed = "[ ${count}](bright-blue)"
+staged = "[󰐘 ${count}](bright-green)"
+renamed = ""
+deleted = " "
