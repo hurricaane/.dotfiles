@@ -10,6 +10,21 @@ default:
     @just --list
     @echo "Profile: {{ machine }}"
 
+# Split packages into repo (incl. [omarchy]) and AUR, and install each with the matching omarchy helper
+[private]
+pkg-install +pkgs:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    wanted=$(printf '%s\n' {{ pkgs }} | sort -u)
+    repo=$(pacman -Slq | sort -u)
+    mapfile -t official < <(comm -12 <(echo "$wanted") <(echo "$repo"))
+    mapfile -t aur < <(comm -23 <(echo "$wanted") <(echo "$repo"))
+    if (( ${#official[@]} )); then omarchy pkg add "${official[@]}"; fi
+    if (( ${#aur[@]} )); then
+      echo "From AUR: ${aur[*]}"
+      omarchy pkg aur add "${aur[@]}"
+    fi
+
 # Set this machine's profile: cli (terminal tools only) or desktop (everything)
 profile name:
     @[[ "{{ name }}" =~ ^(cli|desktop)$ ]] || { echo "profile must be cli or desktop" >&2; exit 1; }
@@ -33,17 +48,17 @@ mise-rebuild *args:
 
 # Install the packages for this machine's profile
 install:
-    grep -ho '^[^#[:space:]]\+' {{ lists }} | yay -S --needed -
+    just pkg-install $(grep -ho '^[^#[:space:]]\+' {{ lists }})
 
 # Install packages and add them to a list, e.g. `just pkg-add cli ripgrep`
 pkg-add list +pkgs:
     @[[ -f "packages/{{ list }}.txt" ]] || { echo "no such list: packages/{{ list }}.txt" >&2; exit 1; }
-    yay -S --needed {{ pkgs }}
+    just pkg-install {{ pkgs }}
     for p in {{ pkgs }}; do grep -qx "$p" packages/{{ list }}.txt || echo "$p" >> packages/{{ list }}.txt; done
 
 # Uninstall packages and remove them from every list
 pkg-rm +pkgs:
-    yay -Rns {{ pkgs }}
+    omarchy pkg drop {{ pkgs }}
     for p in {{ pkgs }}; do sed -i "/^$p\$/d" packages/*.txt; done
 
 # Compare the package lists with what is installed (skips Omarchy's packages and packages/ignore.txt)
