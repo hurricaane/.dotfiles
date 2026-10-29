@@ -1,0 +1,119 @@
+# format = """
+# $directory\
+# $git_branch\
+# $git_status\
+# $fill\
+# $lua\
+# $python\
+# $nodejs\
+# $golang\
+# $rust\
+# $terraform\
+# $kubernetes\
+# $aws\
+# $docker_context\
+# $jobs\
+# $cmd_duration\
+# $line_break\
+# $character
+# """
+
+command_timeout = 200
+format = """
+$os\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$fill\
+$kubernetes\
+$docker_context\
+$package\
+$c\
+$cmake\
+$deno\
+$dotnet\
+$gleam\
+$golang\
+$helm\
+$java\
+$gradle\
+$lua\
+$nodejs\
+$php\
+$pulumi\
+$python\
+$ruby\
+$rust\
+$terraform\
+$typst\
+$vagrant\
+$zig\
+$nix_shell\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$cmd_duration\
+$jobs\
+$status\
+$container\
+$shell\
+$line_break\
+$character
+"""
+
+[fill]
+symbol = " "
+
+[directory]
+truncation_length = 0
+repo_root_style = "bold bright-cyan"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+
+[golang]
+format = '[$symbol($version )]($style)'
+
+[aws]
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[cmd_duration]
+format = '[$duration]($style)'
+
+[kubernetes]
+disabled = false
+
+[status]
+disabled = false
+format = '[$symbol$status]($style) '
+symbol = "✖ "
+
+[os]
+disabled = false
+style = "bold bright-blue"
+
+[os.symbols]
+Arch = "  "
+EndeavourOS = "  "
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "italic bright-purple"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "bright-red"
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked = "? "
+modified = " "
+stashed = "[ ${count}](bright-blue) "
+staged = "[󰐘 ${count}](bright-green)"
+renamed = ""
+deleted = " "

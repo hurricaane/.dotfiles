@@ -1,119 +1,200 @@
-# format = """
-# $directory\
-# $git_branch\
-# $git_status\
-# $fill\
-# $lua\
-# $python\
-# $nodejs\
-# $golang\
-# $rust\
-# $terraform\
-# $kubernetes\
-# $aws\
-# $docker_context\
-# $jobs\
-# $cmd_duration\
-# $line_break\
-# $character
-# """
+"$schema" = 'https://starship.rs/config-schema.json'
 
-command_timeout = 200
+palette = "catppuccin_mocha"
+
+# Left: who / where / git state
+# Right: project stact, infra context, sessions state
 format = """
-$os\
+$username\
+$hostname\
 $directory\
 $git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
 $git_status\
 $fill\
-$kubernetes\
-$docker_context\
-$package\
-$c\
-$cmake\
-$deno\
-$dotnet\
-$gleam\
-$golang\
-$helm\
-$java\
-$gradle\
-$lua\
-$nodejs\
-$php\
-$pulumi\
 $python\
-$ruby\
-$rust\
+$golang\
+$nodejs\
 $terraform\
-$typst\
-$vagrant\
-$zig\
-$nix_shell\
+$helm\
+$kubernetes\
 $aws\
-$gcloud\
-$openstack\
-$azure\
-$nats\
+${env_var.SCW_PROFILE}\
+$docker_context\
+$sudo\
 $cmd_duration\
 $jobs\
 $status\
-$container\
-$shell\
 $line_break\
-$character
-"""
+$character"""
 
-[fill]
-symbol = " "
+#-------------------------------------------------------------------------------
+# Identity
+#-------------------------------------------------------------------------------
+
+[username]
+show_always = false
+style_user = "bold peach"
+style_root = "bold red"
+format = '[$user]($style)@'
+
+[hostname]
+ssh_only = true
+ssh_symbol = "󰣀 "
+style = "bold peach"
+format = '[$ssh_symbol$hostname]($style) '
+
+#-------------------------------------------------------------------------------
+# Directory
+#-------------------------------------------------------------------------------
 
 [directory]
-truncation_length = 0
-repo_root_style = "bold bright-cyan"
-repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 4
+style = "fg:base bg:blue bold"
+read_only_style = "fg:base bg:blue bold"
+format = "[](fg:blue)[  $path ]($style)[$read_only]($read_only_style)[](fg:blue)"
+read_only = "  "
+home_symbol = " ~"
+
+#-------------------------------------------------------------------------------
+# Git
+#-------------------------------------------------------------------------------
+
+[git_branch]
+symbol = " "
+style = "fg:base bg:teal bold"
+truncation_length = 30
+truncation_symbol = "…"
+format = " [](fg:teal)[$symbol $branch ]($style)"
+
+[git_status]
+style = "fg:base bg:teal bold"
+format = "[ $ahead_behind$all_status]($style)[](fg:teal)"
+up_to_date = "󰡕 "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇡${ahead_count}⇣${behind_count} "
+untracked = "${count}󱕠 "
+stashed = " "
+modified = "${count}󰔤 "
+staged = "${count}󰯖 "
+renamed = "${count} "
+deleted = "${count}󱕞 "
+conflicted = "${count} "
+
+[fill]
+symbol = "━"
+style = "fg:lavender"
+
+#-------------------------------------------------------------------------------
+# Languages
+#-------------------------------------------------------------------------------
+
+[python]
+symbol = "󰌠 "
+style = "fg:base bg:yellow bold"
+pyenv_version_name = false
+format = '[](fg:yellow)[$symbol ${version}( \($virtualenv\))]($style)[](fg:yellow) '
 
 [golang]
-format = '[$symbol($version )]($style)'
+symbol = " "
+style = "fg:base bg:sapphire bold"
+format = '[](fg:sapphire)[$symbol $version]($style)[](fg:sapphire) '
 
-[aws]
-format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+[nodejs]
+symbol = "󰎙 "
+style = "fg:base bg:green bold"
+format = '[](fg:green)[$symbol $version]($style)[](fg:green) '
 
-[cmd_duration]
-format = '[$duration]($style)'
+#-------------------------------------------------------------------------------
+# Infra
+#-------------------------------------------------------------------------------
+
+[terraform]
+symbol = "󱁢 "
+style = "fg:base bg:mauve bold"
+format = '[](fg:mauve)[$symbol $workspace]($style)[](fg:mauve) '
+
+[helm]
+symbol = "󰠳 "
+style = "fg:base bg:sky bold"
+format = '[](fg:sky)[$symbol $version]($style)[](fg:sky) '
 
 [kubernetes]
 disabled = false
+symbol = "󱃾 "
+style = "fg:base bg:lavender bold"
+format = '[](fg:lavender)[$symbol $context( \($namespace\))]($style)[](fg:lavender) '
+contexts = [
+  { context_pattern = "admin@tools", context_alias = "tools" },
+  { context_pattern = "admin@app", context_alias = "app" },
+]
+
+[aws]
+symbol = "󰸏 "
+style = "fg:base bg:peach bold"
+expiration_symbol = " "
+format = '[](fg:peach)[$symbol $profile( \($region\))( \[$duration\])]($style)[](fg:peach) '
+
+[env_var.SCW_PROFILE]
+variable = "SCW_PROFILE"
+symbol = "󰅣 "
+style = "fg:base bg:pink bold"
+format = '[](fg:pink)[$symbol $env_value]($style)[](fg:pink) '
+
+[docker_context]
+symbol = "󰡨 "
+style = "fg:base bg:rosewater bold"
+format = '[](fg:rosewater)[$symbol $context]($style)[](fg:rosewater) '
+
+#-------------------------------------------------------------------------------
+# Session
+#-------------------------------------------------------------------------------
+
+[cmd_duration]
+min_time = 2000
+show_milliseconds = false
+style = "fg:base bg:flamingo bold"
+format = " [](fg:flamingo)[  $duration ]($style)[](fg:flamingo)"
+
+[jobs]
+symbol = "󰣖 "
+style = "fg:base bg:overlay1 bold"
+format = '[](fg:overlay1)[$symbol $number]($style)[](fg:overlay1) '
 
 [status]
 disabled = false
-format = '[$symbol$status]($style) '
-symbol = "✖ "
+symbol = " "
+style = "fg:base bg:red bold"
+format = '[](fg:red)[$symbol $status]($style)[](fg:red) '
 
-[os]
-disabled = false
-style = "bold bright-blue"
+[character]
+success_symbol = "  [󱞩](fg:sapphire bold) [󰫢](fg:green)"
+error_symbol = "  [󱞩](fg:sapphire bold) [󰫢](fg:red)"
 
-[os.symbols]
-Arch = "  "
-EndeavourOS = "  "
-
-[git_branch]
-format = "[$symbol$branch]($style) "
-style = "italic bright-purple"
-
-[git_status]
-format = '[$all_status]($style)'
-style = "bright-red"
-ahead = "⇡${count} "
-diverged = "⇕⇡${ahead_count}⇣${behind_count} "
-behind = "⇣${count} "
-conflicted = " "
-up_to_date = " "
-untracked = "? "
-modified = " "
-stashed = "[ ${count}](bright-blue) "
-staged = "[󰐘 ${count}](bright-green)"
-renamed = ""
-deleted = " "
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
