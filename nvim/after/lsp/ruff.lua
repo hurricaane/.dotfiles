@@ -5,9 +5,7 @@ return {
 			logLevel = "error",
 		},
 	},
-	on_attach = function()
-		Snacks.util.lsp.on({ name = "ruff" }, function(_, client)
-			client.server_capabilities.hoverProvider = false
-		end)
+	on_attach = function(client)
+		client.server_capabilities.hoverProvider = false
 	end,
 }

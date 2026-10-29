@@ -409,9 +409,12 @@ now_if_args(function()
 	end)
 
 	-- LSP folding: upgrade from indent to LSP-aware folding when available
-	Snacks.util.lsp.on({ method = "textDocument/foldingRange" }, function()
-		vim.wo.foldmethod = "expr"
-		vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+	-- Local to the buffer in its windows (`:setlocal`), so other buffers keep indent folds
+	Snacks.util.lsp.on({ method = "textDocument/foldingRange" }, function(buffer)
+		for _, win in ipairs(vim.fn.win_findbuf(buffer)) do
+			vim.wo[win][0].foldmethod = "expr"
+			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+		end
 	end)
 
 	-- ESLint fix all on save
@@ -420,7 +423,7 @@ now_if_args(function()
 			buffer = buffer,
 			callback = function()
 				if Config.autoformat_enabled(buffer) then
-					vim.cmd("EslintFixAll")
+					vim.cmd("LspEslintFixAll")
 				end
 			end,
 			desc = "ESLint fix all on save",
@@ -431,6 +434,15 @@ end)
 -- Formatting =================================================================
 later(function()
 	add({ "https://github.com/stevearc/conform.nvim" })
+	-- JS/TS/Vue have no formatter: the LSP fallback asks every server that can format.
+	-- When ESLint is attached it owns the style, so skip vtsls/vue_ls which would fight it
+	local eslint_only = function(bufnr)
+		local has_eslint = #vim.lsp.get_clients({ bufnr = bufnr, name = "eslint" }) > 0
+		local filter = function(client)
+			return client.name == "eslint"
+		end
+		return { filter = has_eslint and filter or nil }
+	end
 	require("conform").setup({
 		default_format_opts = {
 			lsp_format = "fallback",
@@ -450,6 +462,8 @@ later(function()
 			fish               = { "fish_indent" },
       go                 = { "goimports", "gofumpt" },
       hcl                = { "tofu_fmt" },
+      javascript         = eslint_only,
+      javascriptreact    = eslint_only,
 			lua                = { "stylua" },
       markdown           = { "prettier", "markdownlint-cli2", "markdown-toc" },
       ["markdown.mdx"]   = { "prettier", "markdownlint-cli2", "markdown-toc" },
@@ -457,6 +471,9 @@ later(function()
       terraform          = { "tofu_fmt" },
       ["terraform-vars"] = { "tofu_fmt" },
       tf                 = { "tofu_fmt" },
+      typescript         = eslint_only,
+      typescriptreact    = eslint_only,
+      vue                = eslint_only,
 		},
 		formatters = {
 			["markdown-toc"] = {
