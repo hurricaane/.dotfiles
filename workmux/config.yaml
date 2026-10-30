@@ -26,7 +26,6 @@ windows:
         split: vertical
         percentage: 30
         focus: true
-  - name: shell
 
 # Dashboard Theme =============================================================
 theme:
