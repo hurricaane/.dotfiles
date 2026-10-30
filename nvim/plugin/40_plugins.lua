@@ -594,6 +594,8 @@ now(function()
 								return icon .. ctx.icon_gap
 							end,
 							highlight = function(ctx)
+								-- Keep blink's tailwind color swatch highlight
+								if ctx.item.kind_hl then return ctx.kind_hl end
 								local _, hl = require("mini.icons").get("lsp", ctx.kind)
 								return hl
 							end,
