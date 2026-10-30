@@ -23,8 +23,8 @@ windows:
     panes:
       - command: nvim
       - command: <agent>
-        split: horizontal
-        percentage: 35
+        split: vertical
+        percentage: 30
         focus: true
   - name: shell
 
