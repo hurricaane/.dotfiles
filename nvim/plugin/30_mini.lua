@@ -198,4 +198,16 @@ later(function()
 			expand = "<C-s>",
 		},
 	})
+
+	-- Stop all sessions on Normal mode exit, so tabstop markers don't linger
+	local make_stop = function()
+		-- Returning `true` deletes the autocmd, so it only fires once
+		Config.new_autocmd("ModeChanged", "*:n", function()
+			while MiniSnippets.session.get() do
+				MiniSnippets.session.stop()
+			end
+			return true
+		end, "Stop snippet sessions")
+	end
+	Config.new_autocmd("User", "MiniSnippetsSessionStart", make_stop, "Stop snippet sessions on Normal mode")
 end)
