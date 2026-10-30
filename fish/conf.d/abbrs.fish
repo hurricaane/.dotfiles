@@ -10,6 +10,8 @@ abbr --add -- tk 'tmux kill-server'
 abbr --add -- ef 'exec fish'
 abbr --add -- wm workmux
 abbr --add -- dots "just -f $HOME/dotfiles/justfile"
+abbr --add -- c claude
+abbr --add -- ccc "claude --continue"
 
 # Utilities
 abbr --add -- cx 'chmod +x'
