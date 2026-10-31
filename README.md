@@ -57,20 +57,14 @@ yay -S --needed bat eza fd fzf jq lazygit ripgrep starship tmux wl-clipboard zox
 
 These aren't installed by `just install`, because they come from their own installers or from mise:
 
-| Tool           | Used by                                               | Install                                             |
-| -------------- | ----------------------------------------------------- | --------------------------------------------------- |
-| [atuin]        | fish history (`Ctrl-r`, `/`), Claude Code hooks       | [Installation](#installation)                       |
-| [rtk]          | Claude Code hook that condenses command output        | [Installation](#installation)                       |
-| [workmux]      | tmux (`prefix w`), fish abbr `wm`                     | [Installation](#installation)                       |
-| [fisher]       | fish plugins                                          | [After the first install](#after-the-first-install) |
-| [Claude Code]  | Neovim (claudecode.nvim), workmux, `ai-commit-msg.sh` | [After the first install](#after-the-first-install) |
-| Neovim nightly | Neovim (0.12 minimum, 0.13-dev recommended)           | [After the first install](#after-the-first-install) |
-
-[atuin]: https://atuin.sh
-[rtk]: https://github.com/rtk-ai/rtk
-[workmux]: https://github.com/raine/workmux
-[fisher]: https://github.com/jorgebucaran/fisher
-[Claude Code]: https://code.claude.com
+| Tool                                             | Used by                                               | Install                                             |
+| ------------------------------------------------ | ----------------------------------------------------- | --------------------------------------------------- |
+| [atuin](https://atuin.sh)                        | fish history (`Ctrl-r`, `/`), Claude Code hooks       | [Installation](#installation)                       |
+| [rtk](https://github.com/rtk-ai/rtk)             | Claude Code hook that condenses command output        | [Installation](#installation)                       |
+| [workmux](https://github.com/raine/workmux)      | tmux (`prefix w`), fish abbr `wm`                     | [Installation](#installation)                       |
+| [fisher](https://github.com/jorgebucaran/fisher) | fish plugins                                          | [After the first install](#after-the-first-install) |
+| [Claude Code](https://code.claude.com)           | Neovim (claudecode.nvim), workmux, `ai-commit-msg.sh` | [After the first install](#after-the-first-install) |
+| Neovim nightly                                   | Neovim (0.12 minimum, 0.13-dev recommended)           | [After the first install](#after-the-first-install) |
 
 ## Installation
 
@@ -170,67 +164,48 @@ Each folder has its own README with the details of the configuration.
 
 ### Terminal
 
-| Tool         | Config                             | Description                                                          |
-| ------------ | ---------------------------------- | -------------------------------------------------------------------- |
-| [Ghostty]    | [ghostty](ghostty/README.md)       | Terminal emulator: Omarchy theme colors, glass blur, CSI-u key fixes |
-| [fish]       | [fish](fish/README.md)             | Shell: vi mode, abbreviations, tool integrations, tmux auto-attach   |
-| [Starship]   | [starship](starship/README.md)     | Two-sided prompt with git status and language versions               |
-| [tmux]       | [tmux](tmux/README.md)             | Multiplexer: `Ctrl-a` prefix, popups for sesh/lazygit/workmux        |
-| [sesh]       | [sesh](sesh/README.md)             | tmux session manager, with predefined sessions for each config       |
-| [Television] | [television](television/README.md) | Fuzzy finder: channels for sesh, files, git, docker…                 |
-| [yazi]       | [yazi](yazi/README.md)             | File manager: plugins for git, archives, bookmarks, relative motions |
-| [bat]        | [bat](bat/README.md)               | `cat` with syntax highlighting, Catppuccin themes                    |
-| [RTK]        | [rtk](rtk/README.md)               | Condenses command output for AI agents                               |
-| [mise]       | [mise](mise/README.md)             | Global tool versions: Node, gh and the AI agent CLIs                 |
-
-[Ghostty]: https://ghostty.org
-[fish]: https://fishshell.com
-[Starship]: https://starship.rs
-[tmux]: https://github.com/tmux/tmux
-[sesh]: https://github.com/joshmedeski/sesh
-[Television]: https://github.com/alexpasmantier/television
-[yazi]: https://yazi-rs.github.io
-[bat]: https://github.com/sharkdp/bat
-[mise]: https://mise.jdx.dev
+| Tool                                                       | Config                             | Description                                                          |
+| ---------------------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------- |
+| [Ghostty](https://ghostty.org)                             | [ghostty](ghostty/README.md)       | Terminal emulator: Omarchy theme colors, glass blur, CSI-u key fixes |
+| [fish](https://fishshell.com)                              | [fish](fish/README.md)             | Shell: vi mode, abbreviations, tool integrations, tmux auto-attach   |
+| [Starship](https://starship.rs)                            | [starship](starship/README.md)     | Two-sided prompt with git status and language versions               |
+| [tmux](https://github.com/tmux/tmux)                       | [tmux](tmux/README.md)             | Multiplexer: `Ctrl-a` prefix, popups for sesh/lazygit/workmux        |
+| [sesh](https://github.com/joshmedeski/sesh)                | [sesh](sesh/README.md)             | tmux session manager, with predefined sessions for each config       |
+| [Television](https://github.com/alexpasmantier/television) | [television](television/README.md) | Fuzzy finder: channels for sesh, files, git, docker…                 |
+| [yazi](https://yazi-rs.github.io)                          | [yazi](yazi/README.md)             | File manager: plugins for git, archives, bookmarks, relative motions |
+| [bat](https://github.com/sharkdp/bat)                      | [bat](bat/README.md)               | `cat` with syntax highlighting, Catppuccin themes                    |
+| [RTK](https://github.com/rtk-ai/rtk)                       | [rtk](rtk/README.md)               | Condenses command output for AI agents                               |
+| [mise](https://mise.jdx.dev)                               | [mise](mise/README.md)             | Global tool versions: Node, gh and the AI agent CLIs                 |
 
 ### Editor
 
-| Tool     | Config                 | Description                                                             |
-| -------- | ---------------------- | ----------------------------------------------------------------------- |
-| [Neovim] | [nvim](nvim/README.md) | `vim.pack` + mini.nvim config, LSP, Claude Code integration, remote SSH |
-
-[Neovim]: https://neovim.io
+| Tool                        | Config                 | Description                                                             |
+| --------------------------- | ---------------------- | ----------------------------------------------------------------------- |
+| [Neovim](https://neovim.io) | [nvim](nvim/README.md) | `vim.pack` + mini.nvim config, LSP, Claude Code integration, remote SSH |
 
 ### Git
 
-| Tool      | Config                       | Description                                                          |
-| --------- | ---------------------------- | -------------------------------------------------------------------- |
-| [Git]     | [git](git/README.md)         | Global config, delta pager, global hooks with a gitleaks secret scan |
-| [lazygit] | [lazygit](lazygit/README.md) | Git TUI with delta diffs and an AI commit message command            |
-
-[Git]: https://git-scm.com
-[lazygit]: https://github.com/jesseduffield/lazygit
+| Tool                                                | Config                       | Description                                                          |
+| --------------------------------------------------- | ---------------------------- | -------------------------------------------------------------------- |
+| [Git](https://git-scm.com)                          | [git](git/README.md)         | Global config, delta pager, global hooks with a gitleaks secret scan |
+| [lazygit](https://github.com/jesseduffield/lazygit) | [lazygit](lazygit/README.md) | Git TUI with delta diffs and an AI commit message command            |
 
 ### AI
 
-| Tool          | Config                       | Description                                                          |
-| ------------- | ---------------------------- | -------------------------------------------------------------------- |
-| [Claude Code] | [claude](claude/README.md)   | Settings, hooks (RTK, atuin), vim-mode status line, theme, skills    |
-| [workmux]     | [workmux](workmux/README.md) | One git worktree + tmux window per task, each with Neovim and Claude |
+| Tool                                        | Config                       | Description                                                          |
+| ------------------------------------------- | ---------------------------- | -------------------------------------------------------------------- |
+| [Claude Code](https://code.claude.com)      | [claude](claude/README.md)   | Settings, hooks (RTK, atuin), vim-mode status line, theme, skills    |
+| [workmux](https://github.com/raine/workmux) | [workmux](workmux/README.md) | One git worktree + tmux window per task, each with Neovim and Claude |
 
 ### Desktop
 
 Linked with the `desktop` profile only.
 
-| Tool       | Config                       | Description                                                                  |
-| ---------- | ---------------------------- | ---------------------------------------------------------------------------- |
-| [Hyprland] | [hypr](hypr/README.md)       | Overrides on top of Omarchy: monitors, input, bindings, nav mode, animations |
-| [Omarchy]  | [omarchy](omarchy/README.md) | Omarchy shell (bar, idle), the catppuccin-glass theme, hooks                 |
-| [XKB]      | [xkb](xkb/README.md)         | `us-fr` layout: US QWERTY with French characters on AltGr                    |
-
-[Hyprland]: https://hypr.land
-[Omarchy]: https://omarchy.org
-[XKB]: https://xkbcommon.org
+| Tool                           | Config                       | Description                                                                  |
+| ------------------------------ | ---------------------------- | ---------------------------------------------------------------------------- |
+| [Hyprland](https://hypr.land)  | [hypr](hypr/README.md)       | Overrides on top of Omarchy: monitors, input, bindings, nav mode, animations |
+| [Omarchy](https://omarchy.org) | [omarchy](omarchy/README.md) | Omarchy shell (bar, idle), the catppuccin-glass theme, hooks                 |
+| [XKB](https://xkbcommon.org)   | [xkb](xkb/README.md)         | `us-fr` layout: US QWERTY with French characters on AltGr                    |
 
 ## Repository layout
 
