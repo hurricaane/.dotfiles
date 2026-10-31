@@ -417,26 +417,14 @@ now_if_args(function()
 			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
 		end
 	end)
-
-	-- ESLint fix all on save
-	Snacks.util.lsp.on({ name = "eslint" }, function(buffer)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = buffer,
-			callback = function()
-				if Config.autoformat_enabled(buffer) then
-					vim.cmd("LspEslintFixAll")
-				end
-			end,
-			desc = "ESLint fix all on save",
-		})
-	end)
 end)
 
 -- Formatting =================================================================
 later(function()
 	add({ "https://github.com/stevearc/conform.nvim" })
-	-- JS/TS/Vue have no formatter: the LSP fallback asks every server that can format.
-	-- When ESLint is attached it owns the style, so skip vtsls/vue_ls which would fight it
+	-- These filetypes have no formatter: the LSP fallback asks every server that can format.
+	-- When ESLint is attached it owns the style (and fixes on save), so skip
+	-- vtsls/vue_ls/jsonls/yamlls/taplo/cssls which would fight it
 	local eslint_only = function(bufnr)
 		local has_eslint = #vim.lsp.get_clients({ bufnr = bufnr, name = "eslint" }) > 0
 		local filter = function(client)
@@ -460,11 +448,14 @@ later(function()
 		end,
     -- stylua: ignore
 		formatters_by_ft = {
+      css                = eslint_only,
 			fish               = { "fish_indent" },
       go                 = { "goimports", "gofumpt" },
       hcl                = { "tofu_fmt" },
       javascript         = eslint_only,
       javascriptreact    = eslint_only,
+      json               = eslint_only,
+      jsonc              = eslint_only,
 			lua                = { "stylua" },
       markdown           = { "prettier", "markdownlint-cli2", "markdown-toc" },
       ["markdown.mdx"]   = { "prettier", "markdownlint-cli2", "markdown-toc" },
@@ -472,9 +463,11 @@ later(function()
       terraform          = { "tofu_fmt" },
       ["terraform-vars"] = { "tofu_fmt" },
       tf                 = { "tofu_fmt" },
+      toml               = eslint_only,
       typescript         = eslint_only,
       typescriptreact    = eslint_only,
       vue                = eslint_only,
+      yaml               = eslint_only,
 		},
 		formatters = {
 			["markdown-toc"] = {
