@@ -23,6 +23,7 @@ tmux/tmux.conf               ~/.config/tmux/tmux.conf
 claude/CLAUDE.md             ~/.claude/CLAUDE.md
 claude/RTK.md                ~/.claude/RTK.md
 claude/settings.json         ~/.claude/settings.json
+claude/keybindings.json      ~/.claude/keybindings.json
 claude/statusline.sh         ~/.claude/statusline.sh
 claude/ctxline.js            ~/.claude/ctxline.js
 claude/themes                ~/.claude/themes
